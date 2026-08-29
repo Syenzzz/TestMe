@@ -89,7 +89,7 @@ function ChapterCard({
         <div className="min-w-0 flex-1">
           <h4 className="text-sm font-semibold leading-snug text-white/90">{title}</h4>
           <div className="mt-1.5 flex items-center gap-2">
-            <span className="rounded-full border border-white/15 bg-white/[0.07] px-2 py-0.5 text-[10px] font-semibold text-white/65">
+            <span className="whitespace-nowrap rounded-full border border-white/15 bg-white/[0.07] px-2 py-0.5 text-[10px] font-semibold text-white/65">
               {subtitle ?? `${questionCount} 题`}
             </span>
           </div>
@@ -135,23 +135,26 @@ function SubjectPanel({
     <div className="glass animate-rise-in overflow-hidden rounded-2xl" style={{ animationDelay: `${delay}ms` }}>
       <button
         onClick={onToggle}
-        className="flex w-full items-center justify-between px-6 py-4 transition-colors hover:bg-white/[0.04]"
+        className="flex w-full items-center justify-between gap-2 px-4 py-4 transition-colors hover:bg-white/[0.04] md:px-6"
       >
-        <div className="flex items-center gap-4">
-          <div className="flex h-11 w-11 items-center justify-center rounded-xl border border-white/12 bg-white/[0.06] font-mono text-sm font-bold tracking-widest text-white/80">
+        <div className="flex min-w-0 flex-1 items-center gap-3 md:gap-4">
+          <div className="flex h-11 w-11 flex-shrink-0 items-center justify-center rounded-xl border border-white/12 bg-white/[0.06] font-mono text-sm font-bold tracking-widest text-white/80">
             {symbol}
           </div>
-          <div className="text-left">
-            <h3 className="text-lg font-bold text-white/95">{title}</h3>
-            <p className="text-sm text-star-500">{description}</p>
+          <div className="min-w-0 text-left">
+            <h3 className="text-base font-bold text-white/95 md:text-lg">{title}</h3>
+            <p className="mt-0.5 text-xs leading-snug text-star-500 md:text-sm">{description}</p>
           </div>
         </div>
-        <div className="flex items-center gap-2">
-          <span className="mono-label rounded-full border border-white/12 bg-white/[0.04] px-2.5 py-1" style={{ letterSpacing: '0.12em' }}>
+        <div className="flex flex-shrink-0 items-center gap-1.5">
+          <span
+            className="mono-label hidden whitespace-nowrap rounded-full border border-white/12 bg-white/[0.04] px-2.5 py-1 sm:inline-block"
+            style={{ letterSpacing: '0.12em' }}
+          >
             {badge}
           </span>
           <svg
-            className={`h-5 w-5 text-white/40 transition-transform duration-200 ${open ? 'rotate-180' : ''}`}
+            className={`h-5 w-5 flex-shrink-0 text-white/40 transition-transform duration-200 ${open ? 'rotate-180' : ''}`}
             fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}
           >
             <path strokeLinecap="round" strokeLinejoin="round" d="M19 9l-7 7-7-7" />
@@ -160,7 +163,7 @@ function SubjectPanel({
       </button>
 
       {open && (
-        <div className="px-6 pb-6">
+        <div className="px-4 pb-5 md:px-6 md:pb-6">
           <div className="mb-4 h-px bg-gradient-to-r from-transparent via-white/12 to-transparent" />
 
           {/* 模拟考试 */}
@@ -249,10 +252,10 @@ export function HomePage({ onStartQuiz, onStartReview }: Props) {
     <div className="min-h-screen">
       <div className="mx-auto max-w-4xl p-4 md:p-8">
         {/* 顶部 Hero */}
-        <header className="relative mb-14 mt-12 text-center">
+        <header className="relative mb-12 mt-8 text-center md:mb-14 md:mt-12">
           <div className="relative">
             <ParticleGlobe />
-            <p className="mono-label mb-3">⌬ TestMe</p>
+            <p className="mono-label mb-3 mt-1">⌬ TestMe</p>
             <h1 className="mb-3 text-4xl font-bold tracking-tight text-white md:text-5xl">
               TestMe
             </h1>

@@ -50,16 +50,16 @@ export function ReviewDashboard({ onStartReview }: Props) {
           ↻
         </div>
         <div className="min-w-0 flex-1">
-          <div className="flex items-center gap-2">
+          <div className="flex flex-wrap items-center gap-x-2 gap-y-1">
             <h3 className="text-sm font-bold text-white/90">今日复习</h3>
-            <span className="rounded-full border border-white/25 bg-white/[0.1] px-2 py-0.5 text-xs font-bold text-white/85">
+            <span className="whitespace-nowrap rounded-full border border-white/25 bg-white/[0.1] px-2 py-0.5 text-xs font-bold text-white/85">
               {stats.due} 题待复习
             </span>
           </div>
-          <div className="mt-1.5 flex items-center gap-3 font-mono text-[11px] text-white/45">
-            {round1 > 0 && <span>L1 {round1}题 · 第1轮</span>}
-            {round2Plus > 0 && <span>L2 {round2Plus}题 · 巩固</span>}
-            {consolidating > 0 && <span>L3 {consolidating}题 · 冲刺</span>}
+          <div className="mt-1.5 flex flex-wrap items-center gap-x-3 gap-y-0.5 font-mono text-[11px] text-white/45">
+            {round1 > 0 && <span className="whitespace-nowrap">L1 {round1}题 · 第1轮</span>}
+            {round2Plus > 0 && <span className="whitespace-nowrap">L2 {round2Plus}题 · 巩固</span>}
+            {consolidating > 0 && <span className="whitespace-nowrap">L3 {consolidating}题 · 冲刺</span>}
           </div>
         </div>
         <div className="flex-shrink-0 text-right">
