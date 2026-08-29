@@ -76,8 +76,8 @@ export function QuizPage({ questions, onFinish, isReviewMode = false, reviewItem
 
   if (!currentQuestion) {
     return (
-      <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50/30 to-slate-50 flex items-center justify-center">
-        <p className="text-gray-400">没有题目</p>
+      <div className="flex min-h-screen items-center justify-center">
+        <p className="text-white/40">没有题目</p>
       </div>
     )
   }
@@ -89,30 +89,33 @@ export function QuizPage({ questions, onFinish, isReviewMode = false, reviewItem
     : null
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50/30 to-slate-50 flex">
+    <div className="flex min-h-screen">
       {/* 桌面端可折叠侧边栏 */}
       <aside
-        className={`hidden md:block bg-white/80 backdrop-blur border-r border-gray-100 flex-shrink-0 transition-all duration-300 overflow-hidden ${
+        className={`glass sticky top-0 hidden h-screen flex-shrink-0 overflow-hidden border-y-0 border-l-0 transition-all duration-300 md:block ${
           sidebarOpen ? 'w-60' : 'w-12'
         }`}
       >
         {sidebarOpen ? (
-          <div className="p-3 h-full flex flex-col">
-            <div className="flex items-center justify-between mb-3">
-              <span className="text-xs font-bold text-gray-500 tracking-wide uppercase">答题卡</span>
+          <div className="flex h-full flex-col p-3">
+            <div className="mb-3 flex items-center justify-between">
+              <span className="mono-label" style={{ letterSpacing: '0.18em' }}>答题卡</span>
               <button
                 onClick={() => setSidebarOpen(false)}
-                className="w-6 h-6 rounded-lg hover:bg-gray-100 flex items-center justify-center text-gray-400 hover:text-gray-600 transition-colors"
+                className="flex h-6 w-6 items-center justify-center rounded-lg text-white/40 transition-colors hover:bg-white/10 hover:text-white"
               >
                 ◀
               </button>
             </div>
-            <div className="flex items-center gap-3 mb-3">
-              <div className="flex-1 h-1 bg-gray-100 rounded-full overflow-hidden">
-                <div className="h-full bg-emerald-400 rounded-full transition-all duration-500" style={{ width: `${pct}%` }} />
+            <div className="mb-3 flex items-center gap-3">
+              <div className="h-1 flex-1 overflow-hidden rounded-full bg-white/10">
+                <div
+                  className="h-full rounded-full bg-white/90 transition-all duration-500"
+                  style={{ width: `${pct}%` }}
+                />
               </div>
             </div>
-            <div className="flex-1 overflow-y-auto scrollbar-thin">
+            <div className="scrollbar-thin flex-1 overflow-y-auto">
               <div className="flex flex-wrap gap-1.5">
                 {questions.map((q, i) => {
                   const answered = hasAnswer(q.id)
@@ -121,17 +124,13 @@ export function QuizPage({ questions, onFinish, isReviewMode = false, reviewItem
                     <button
                       key={q.id}
                       onClick={() => setCurrentIndex(i)}
-                      className={`w-7 h-7 rounded-lg text-xs font-semibold transition-all flex-shrink-0
-                        ${isCurrent
-                          ? isReviewMode
-                            ? 'bg-purple-500 text-white shadow-sm shadow-purple-200 scale-110'
-                            : 'bg-blue-500 text-white shadow-sm shadow-blue-200 scale-110'
+                      className={`h-7 w-7 flex-shrink-0 rounded-lg font-mono text-xs font-semibold transition-all ${
+                        isCurrent
+                          ? 'scale-110 border border-white bg-white text-black'
                           : answered
-                            ? isReviewMode
-                              ? 'bg-purple-50 text-purple-600 hover:bg-purple-100 border border-purple-200'
-                              : 'bg-emerald-50 text-emerald-600 hover:bg-emerald-100 border border-emerald-200'
-                            : 'bg-gray-50 text-gray-400 hover:bg-gray-100 border border-gray-200'
-                        }`}
+                            ? 'border border-white/25 bg-white/[0.12] text-white/85 hover:bg-white/20'
+                            : 'border border-white/10 bg-white/[0.03] text-white/40 hover:bg-white/10 hover:text-white/70'
+                      }`}
                     >
                       {i + 1}
                     </button>
@@ -139,68 +138,68 @@ export function QuizPage({ questions, onFinish, isReviewMode = false, reviewItem
                 })}
               </div>
             </div>
-            <div className="mt-3 pt-2 border-t border-gray-100 flex gap-4 text-[10px] text-gray-400">
-              <span className="flex items-center gap-1"><span className="w-2 h-2 rounded bg-emerald-200" /> 已答</span>
-              <span className="flex items-center gap-1"><span className="w-2 h-2 rounded bg-gray-200" /> 未答</span>
+            <div className="mt-3 flex gap-4 border-t border-white/10 pt-2 font-mono text-[10px] text-white/40">
+              <span className="flex items-center gap-1"><span className="h-2 w-2 rounded-sm bg-white/70" /> 已答</span>
+              <span className="flex items-center gap-1"><span className="h-2 w-2 rounded-sm bg-white/20" /> 未答</span>
             </div>
           </div>
         ) : (
-          <div className="p-2 flex flex-col items-center gap-3 pt-4">
+          <div className="flex flex-col items-center gap-3 p-2 pt-4">
             <button
               onClick={() => setSidebarOpen(true)}
-              className="w-7 h-7 rounded-lg hover:bg-gray-100 flex items-center justify-center text-gray-400 hover:text-gray-600 transition-colors"
+              className="flex h-7 w-7 items-center justify-center rounded-lg text-white/40 transition-colors hover:bg-white/10 hover:text-white"
               title="展开答题卡"
             >
               ▶
             </button>
             <div className="flex flex-col items-center gap-1.5">
-              <div className="w-8 h-20 bg-gray-100 rounded-full relative overflow-hidden">
+              <div className="relative h-20 w-8 overflow-hidden rounded-full bg-white/10">
                 <div
-                  className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-emerald-400 to-emerald-300 rounded-full transition-all duration-500"
+                  className="absolute inset-x-0 bottom-0 rounded-full bg-gradient-to-t from-white/70 to-white transition-all duration-500"
                   style={{ height: `${pct}%` }}
                 />
               </div>
-              <span className="text-[10px] text-gray-400">{answeredCount}</span>
+              <span className="font-mono text-[10px] text-white/40">{answeredCount}</span>
             </div>
           </div>
         )}
       </aside>
 
       {/* 主答题区 */}
-      <main className="flex-1 flex flex-col max-w-3xl mx-auto w-full p-4 md:p-8">
+      <main className="mx-auto flex w-full max-w-3xl flex-1 flex-col p-4 md:p-8">
         {/* 顶部信息栏 */}
-        <div className="flex items-center justify-between mb-4">
+        <div className="mb-4 flex items-center justify-between">
           <div className="flex items-center gap-4">
-            <span className="text-sm font-semibold text-gray-700">
-              第 <span className="text-blue-500">{currentIndex + 1}</span>
-              <span className="text-gray-400 font-normal"> / {totalCount}</span>
+            <span className="font-mono text-sm font-semibold text-white/90">
+              <span className="text-white">{String(currentIndex + 1).padStart(2, '0')}</span>
+              <span className="text-white/40"> / {totalCount}</span>
             </span>
-            <span className="text-xs text-gray-400 hidden sm:inline">已答 {answeredCount} 题</span>
+            <span className="hidden text-xs text-white/40 sm:inline">已答 {answeredCount} 题</span>
           </div>
           <button
             onClick={() => setShowMobileSheet(true)}
-            className="md:hidden text-xs px-3 py-1.5 bg-white border border-gray-200 rounded-xl text-gray-600 hover:bg-gray-50 shadow-sm"
+            className="glass-soft rounded-xl px-3 py-1.5 font-mono text-xs text-white/80 transition-colors hover:bg-white/10 md:hidden"
           >
-            📋 {answeredCount}/{totalCount}
+            ⌬ {answeredCount}/{totalCount}
           </button>
         </div>
 
         <ProgressBar current={currentIndex} total={totalCount} />
 
         {currentReviewItem && (
-          <div className="flex items-center gap-2 mb-3 mt-4">
-            <span className="text-xs px-2.5 py-1 rounded-full font-semibold bg-purple-50 text-purple-600">
-              🔄 第 {currentReviewItem.repetitions + 1} 轮复习
+          <div className="mb-3 mt-4 flex items-center gap-2">
+            <span className="rounded-full border border-white/25 bg-white/[0.08] px-2.5 py-1 text-xs font-semibold text-white/80">
+              ↻ 第 {currentReviewItem.repetitions + 1} 轮复习
             </span>
-            <span className="text-xs text-gray-400">
+            <span className="text-xs text-white/40">
               上次复习: {currentReviewItem.lastReview}
             </span>
           </div>
         )}
 
         {/* 题目卡片 */}
-        <div className="flex-1 mt-5">
-          <div className="bg-white rounded-2xl shadow-sm border border-gray-100 p-6 md:p-8 transition-all">
+        <div className="mt-5 flex-1">
+          <div className="glass animate-rise-in rounded-2xl p-6 transition-all md:p-8" key={currentQuestion.id}>
             <QuestionCard
               question={currentQuestion}
               userAnswer={userAnswers[currentQuestion.id] || ''}
@@ -210,78 +209,46 @@ export function QuizPage({ questions, onFinish, isReviewMode = false, reviewItem
         </div>
 
         {/* 底部导航 */}
-        {isReviewMode ? (
-          <div className="flex items-center justify-between mt-5 pb-4">
-            <button
-              onClick={goPrev}
-              disabled={isFirst}
-              className={`px-5 py-3 rounded-xl text-sm font-medium transition-all ${
-                isFirst
-                  ? 'text-gray-300 cursor-not-allowed'
-                  : 'text-gray-600 hover:bg-white hover:shadow-sm border border-gray-200 bg-white'
-              }`}
-            >
-              ← 上一题
-            </button>
+        <div className="mt-5 flex items-center justify-between pb-4">
+          <button
+            onClick={goPrev}
+            disabled={isFirst}
+            className={`glass-soft rounded-xl px-5 py-3 text-sm font-medium transition-all ${
+              isFirst
+                ? 'cursor-not-allowed text-white/20'
+                : 'text-white/85 hover:bg-white/10'
+            }`}
+          >
+            ← 上一题
+          </button>
 
-            {isLast ? (
-              <button
-                onClick={handleReviewSubmit}
-                className="px-8 py-3 bg-gradient-to-r from-purple-500 to-purple-600 text-white rounded-xl text-sm font-semibold hover:from-purple-600 hover:to-purple-700 shadow-sm shadow-purple-200 transition-all hover:shadow-md"
-              >
-                完成复习
-              </button>
-            ) : (
-              <button
-                onClick={goNext}
-                className="px-6 py-3 bg-purple-500 text-white rounded-xl text-sm font-semibold hover:bg-purple-600 shadow-sm shadow-purple-200 transition-all hover:shadow-md"
-              >
-                下一题 →
-              </button>
-            )}
-          </div>
-        ) : (
-          <div className="flex items-center justify-between mt-5 pb-4">
+          {isLast ? (
             <button
-              onClick={goPrev}
-              disabled={isFirst}
-              className={`px-5 py-3 rounded-xl text-sm font-medium transition-all ${
-                isFirst
-                  ? 'text-gray-300 cursor-not-allowed'
-                  : 'text-gray-600 hover:bg-white hover:shadow-sm border border-gray-200 bg-white'
-              }`}
+              onClick={isReviewMode ? handleReviewSubmit : goNext}
+              className="rounded-xl bg-white px-8 py-3 text-sm font-semibold text-black transition-all hover:bg-white/85 hover:shadow-md"
             >
-              ← 上一题
+              {isReviewMode ? '完成复习' : '提交答卷'}
             </button>
-
-            {isLast ? (
-              <button
-                onClick={goNext}
-                className="px-8 py-3 bg-gradient-to-r from-emerald-500 to-emerald-600 text-white rounded-xl text-sm font-semibold hover:from-emerald-600 hover:to-emerald-700 shadow-sm shadow-emerald-200 transition-all hover:shadow-md"
-              >
-                提交答卷
-              </button>
-            ) : (
-              <button
-                onClick={goNext}
-                className="px-6 py-3 bg-blue-500 text-white rounded-xl text-sm font-semibold hover:bg-blue-600 shadow-sm shadow-blue-200 transition-all hover:shadow-md"
-              >
-                下一题 →
-              </button>
-            )}
-          </div>
-        )}
+          ) : (
+            <button
+              onClick={goNext}
+              className="rounded-xl bg-white px-6 py-3 text-sm font-semibold text-black transition-all hover:bg-white/85 hover:shadow-md"
+            >
+              下一题 →
+            </button>
+          )}
+        </div>
       </main>
 
       {/* 移动端答题卡 */}
       {showMobileSheet && (
         <div className="fixed inset-0 z-50 md:hidden">
-          <div className="absolute inset-0 bg-black/20 backdrop-blur-sm" onClick={() => setShowMobileSheet(false)} />
-          <div className="absolute bottom-0 left-0 right-0 bg-white rounded-t-3xl p-6 max-h-[70vh] overflow-y-auto shadow-2xl">
-            <div className="w-10 h-1 bg-gray-200 rounded-full mx-auto mb-4" />
-            <div className="flex items-center justify-between mb-4">
-              <span className="font-bold text-gray-800 text-lg">{isReviewMode ? '复习进度' : '答题卡'}</span>
-              <span className="text-sm text-gray-400">{answeredCount}/{totalCount} 已答</span>
+          <div className="absolute inset-0 bg-black/70 backdrop-blur-sm" onClick={() => setShowMobileSheet(false)} />
+          <div className="glass absolute inset-x-0 bottom-0 max-h-[70vh] overflow-y-auto rounded-t-3xl border-b-0 p-6">
+            <div className="mx-auto mb-4 h-1 w-10 rounded-full bg-white/25" />
+            <div className="mb-4 flex items-center justify-between">
+              <span className="text-lg font-bold text-white/95">{isReviewMode ? '复习进度' : '答题卡'}</span>
+              <span className="font-mono text-sm text-white/50">{answeredCount}/{totalCount} 已答</span>
             </div>
             <div className="flex flex-wrap gap-2">
               {questions.map((q, i) => {
@@ -291,16 +258,12 @@ export function QuizPage({ questions, onFinish, isReviewMode = false, reviewItem
                   <button
                     key={q.id}
                     onClick={() => { setCurrentIndex(i); setShowMobileSheet(false) }}
-                    className={`w-10 h-10 rounded-xl text-xs font-semibold transition-all ${
+                    className={`h-10 w-10 rounded-xl font-mono text-xs font-semibold transition-all ${
                       isCurrent
-                        ? isReviewMode
-                          ? 'bg-purple-500 text-white shadow-md shadow-purple-200'
-                          : 'bg-blue-500 text-white shadow-md shadow-blue-200'
+                        ? 'border border-white bg-white text-black'
                         : answered
-                          ? isReviewMode
-                            ? 'bg-purple-50 text-purple-600 border border-purple-200'
-                            : 'bg-emerald-50 text-emerald-600 border border-emerald-200'
-                          : 'bg-gray-50 text-gray-400 border border-gray-200'
+                          ? 'border border-white/25 bg-white/[0.12] text-white/85'
+                          : 'border border-white/10 bg-white/[0.03] text-white/40'
                     }`}
                   >
                     {i + 1}
@@ -315,25 +278,25 @@ export function QuizPage({ questions, onFinish, isReviewMode = false, reviewItem
       {/* 提交确认 */}
       {showSubmitConfirm && (
         <div className="fixed inset-0 z-50 flex items-center justify-center p-4">
-          <div className="absolute inset-0 bg-black/20 backdrop-blur-sm" onClick={() => setShowSubmitConfirm(false)} />
-          <div className="relative bg-white rounded-2xl p-8 max-w-sm w-full shadow-xl text-center">
-            <div className="w-14 h-14 bg-amber-100 rounded-2xl flex items-center justify-center text-2xl mx-auto mb-4">
-              ⚠️
+          <div className="absolute inset-0 bg-black/70 backdrop-blur-sm" onClick={() => setShowSubmitConfirm(false)} />
+          <div className="glass relative w-full max-w-sm rounded-2xl p-8 text-center">
+            <div className="mx-auto mb-4 flex h-14 w-14 items-center justify-center rounded-2xl border border-white/15 bg-white/[0.06] font-mono text-2xl font-bold text-white/85">
+              !
             </div>
-            <h3 className="font-bold text-gray-800 text-lg mb-2">确认提交</h3>
-            <p className="text-gray-500 text-sm mb-6">
-              还有 <span className="font-bold text-red-500">{unanswered}</span> 题未作答<br />提交后将计为 0 分
+            <h3 className="mb-2 text-lg font-bold text-white/95">确认提交</h3>
+            <p className="mb-6 text-sm text-white/50">
+              还有 <span className="font-bold text-white">{unanswered}</span> 题未作答<br />提交后将计为 0 分
             </p>
             <div className="flex gap-3">
               <button
                 onClick={() => setShowSubmitConfirm(false)}
-                className="flex-1 py-2.5 border border-gray-200 rounded-xl text-sm text-gray-600 hover:bg-gray-50 transition-colors"
+                className="flex-1 rounded-xl border border-white/15 bg-white/[0.05] py-2.5 text-sm text-white/85 transition-colors hover:bg-white/10"
               >
                 继续答题
               </button>
               <button
                 onClick={handleSubmit}
-                className="flex-1 py-2.5 bg-emerald-500 text-white rounded-xl text-sm font-medium hover:bg-emerald-600 transition-colors"
+                className="flex-1 rounded-xl bg-white py-2.5 text-sm font-semibold text-black transition-all hover:bg-white/85"
               >
                 确定提交
               </button>

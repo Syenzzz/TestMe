@@ -5,6 +5,7 @@ import structureExam from '../data/aircraft-structure-exam.json'
 import engineExam from '../data/engine-exam.json'
 import { shuffle } from '../utils/shuffle'
 import { ReviewDashboard } from './ReviewDashboard'
+import { ParticleGlobe } from './ParticleGlobe'
 import { getDueReviewItems } from '../utils/spacedRepetition'
 
 interface Props {
@@ -45,6 +46,150 @@ const ENGINE_CHAPTERS: HomeworkChapter[] = [
   { index: 4, name: '作业4', start: 126, end: 167 },
   { index: 5, name: '作业5', start: 168, end: 212 },
 ]
+
+function ChapterCard({
+  chapter,
+  questionCount,
+  onClick,
+  highlighted = false,
+  title,
+  subtitle,
+}: {
+  chapter?: HomeworkChapter
+  questionCount: number
+  onClick: () => void
+  highlighted?: boolean
+  title: string
+  subtitle?: string
+}) {
+  return (
+    <div
+      onClick={onClick}
+      role="button"
+      tabIndex={0}
+      onKeyDown={e => {
+        if (e.key === 'Enter' || e.key === ' ') {
+          e.preventDefault()
+          onClick()
+        }
+      }}
+      className={`glass-soft glass-interactive group relative cursor-pointer rounded-xl p-4
+        ${highlighted ? 'border-white/30 bg-white/[0.08]' : ''}`}
+    >
+      <div className="flex items-start gap-3">
+        <div
+          className={`flex h-8 w-8 flex-shrink-0 items-center justify-center rounded-lg border font-mono text-sm font-bold transition-transform duration-300 group-hover:scale-110 ${
+            highlighted
+              ? 'border-white/30 bg-white/10 text-white'
+              : 'border-white/12 bg-white/[0.05] text-white/60'
+          }`}
+        >
+          {highlighted ? '✦' : chapter ? String(chapter.index).padStart(2, '0') : ''}
+        </div>
+        <div className="min-w-0 flex-1">
+          <h4 className="text-sm font-semibold leading-snug text-white/90">{title}</h4>
+          <div className="mt-1.5 flex items-center gap-2">
+            <span className="rounded-full border border-white/15 bg-white/[0.07] px-2 py-0.5 text-[10px] font-semibold text-white/65">
+              {subtitle ?? `${questionCount} 题`}
+            </span>
+          </div>
+        </div>
+        <div className="mt-1 flex h-6 w-6 flex-shrink-0 items-center justify-center rounded-full text-white/35 transition-all duration-300 group-hover:translate-x-0.5 group-hover:text-white/80">
+          →
+        </div>
+      </div>
+    </div>
+  )
+}
+
+function SubjectPanel({
+  symbol,
+  title,
+  description,
+  badge,
+  open,
+  onToggle,
+  examTitle,
+  examCount,
+  onStartExam,
+  chapters,
+  questionCounts,
+  onStartChapter,
+  delay = 0,
+}: {
+  symbol: string
+  title: string
+  description: string
+  badge: string
+  open: boolean
+  onToggle: () => void
+  examTitle: string
+  examCount: number
+  onStartExam: () => void
+  chapters: HomeworkChapter[]
+  questionCounts: number[]
+  onStartChapter: (ch: HomeworkChapter) => void
+  delay?: number
+}) {
+  return (
+    <div className="glass animate-rise-in overflow-hidden rounded-2xl" style={{ animationDelay: `${delay}ms` }}>
+      <button
+        onClick={onToggle}
+        className="flex w-full items-center justify-between px-6 py-4 transition-colors hover:bg-white/[0.04]"
+      >
+        <div className="flex items-center gap-4">
+          <div className="flex h-11 w-11 items-center justify-center rounded-xl border border-white/12 bg-white/[0.06] font-mono text-sm font-bold tracking-widest text-white/80">
+            {symbol}
+          </div>
+          <div className="text-left">
+            <h3 className="text-lg font-bold text-white/95">{title}</h3>
+            <p className="text-sm text-star-500">{description}</p>
+          </div>
+        </div>
+        <div className="flex items-center gap-2">
+          <span className="mono-label rounded-full border border-white/12 bg-white/[0.04] px-2.5 py-1" style={{ letterSpacing: '0.12em' }}>
+            {badge}
+          </span>
+          <svg
+            className={`h-5 w-5 text-white/40 transition-transform duration-200 ${open ? 'rotate-180' : ''}`}
+            fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}
+          >
+            <path strokeLinecap="round" strokeLinejoin="round" d="M19 9l-7 7-7-7" />
+          </svg>
+        </div>
+      </button>
+
+      {open && (
+        <div className="px-6 pb-6">
+          <div className="mb-4 h-px bg-gradient-to-r from-transparent via-white/12 to-transparent" />
+
+          {/* 模拟考试 */}
+          <div className="mb-4">
+            <ChapterCard
+              highlighted
+              title={examTitle}
+              subtitle={`${examCount} 题 · 随机排序`}
+              questionCount={examCount}
+              onClick={onStartExam}
+            />
+          </div>
+
+          <div className="grid gap-4 sm:grid-cols-2">
+            {chapters.map((ch, i) => (
+              <ChapterCard
+                key={ch.index}
+                chapter={ch}
+                title={ch.name}
+                questionCount={questionCounts[i]}
+                onClick={() => onStartChapter(ch)}
+              />
+            ))}
+          </div>
+        </div>
+      )}
+    </div>
+  )
+}
 
 export function HomePage({ onStartQuiz, onStartReview }: Props) {
   const [avionicsOpen, setAvionicsOpen] = useState(true)
@@ -101,312 +246,90 @@ export function HomePage({ onStartQuiz, onStartReview }: Props) {
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50/30 to-slate-50">
-      <div className="max-w-4xl mx-auto p-4 md:p-8">
-        {/* 顶部 */}
-        <div className="text-center mb-12 mt-8">
-          <div className="inline-flex items-center justify-center w-16 h-16 bg-white rounded-2xl shadow-sm border border-gray-100 mb-5">
-            <span className="text-3xl">📝</span>
+    <div className="min-h-screen">
+      <div className="mx-auto max-w-4xl p-4 md:p-8">
+        {/* 顶部 Hero */}
+        <header className="relative mb-14 mt-12 text-center">
+          <div className="relative">
+            <ParticleGlobe />
+            <p className="mono-label mb-3">⌬ TestMe</p>
+            <h1 className="mb-3 text-4xl font-bold tracking-tight text-white md:text-5xl">
+              TestMe
+            </h1>
+            <p className="text-lg text-star-500">选择科目，逐题自测，自动评分</p>
           </div>
-          <h1 className="text-4xl font-bold text-gray-900 mb-2 tracking-tight">TestMe</h1>
-          <p className="text-gray-500 text-lg">选择科目，逐题自测，自动评分</p>
-        </div>
+        </header>
 
         {/* 考试栏 */}
-        <div>
-          <div className="flex items-center gap-3 mb-5">
-            <h2 className="text-lg font-bold text-gray-800">📋 考试栏</h2>
-            <span className="text-xs font-medium text-gray-500 bg-white border border-gray-200 px-2.5 py-0.5 rounded-full">
+        <section>
+          <div className="mb-5 flex items-center gap-3">
+            <span className="mono-label">// 考试栏</span>
+            <div className="h-px flex-1 bg-gradient-to-r from-white/12 to-transparent" />
+            <span className="rounded-full border border-white/12 bg-white/[0.04] px-2.5 py-0.5 text-xs font-medium text-white/55">
               3 门科目
             </span>
           </div>
 
           <ReviewDashboard onStartReview={handleStartReview} />
 
-          {/* 航空电子系统 Ⅰ — 可展开分组 */}
-          <div className="bg-white rounded-2xl border border-gray-100 shadow-sm overflow-hidden">
-            {/* 分组标题栏 */}
-            <button
-              onClick={() => setAvionicsOpen(v => !v)}
-              className="w-full flex items-center justify-between px-6 py-4 hover:bg-gray-50/50 transition-colors"
-            >
-              <div className="flex items-center gap-4">
-                <div className="w-11 h-11 bg-gradient-to-br from-blue-50 to-slate-100 rounded-xl flex items-center justify-center text-xl shadow-sm">
-                  ✈️
-                </div>
-                <div className="text-left">
-                  <h3 className="font-bold text-gray-800 text-lg">航空电子系统 Ⅰ</h3>
-                  <p className="text-sm text-gray-400">
-                    共 8 次作业，合计 {allQuestions.length} 题
-                  </p>
-                </div>
-              </div>
-              <div className="flex items-center gap-2">
-                <span className="text-xs font-medium text-gray-400 bg-gray-100 px-2.5 py-0.5 rounded-full">
-                  {AVIONICS_CHAPTERS.length} 次作业
-                </span>
-                <svg
-                  className={`w-5 h-5 text-gray-400 transition-transform duration-200 ${avionicsOpen ? 'rotate-180' : ''}`}
-                  fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}
-                >
-                  <path strokeLinecap="round" strokeLinejoin="round" d="M19 9l-7 7-7-7" />
-                </svg>
-              </div>
-            </button>
+          <div className="space-y-4">
+            <SubjectPanel
+              symbol="01"
+              title="航空电子系统 Ⅰ"
+              description={`共 8 次作业，合计 ${allQuestions.length} 题`}
+              badge={`${AVIONICS_CHAPTERS.length} 次作业`}
+              open={avionicsOpen}
+              onToggle={() => setAvionicsOpen(v => !v)}
+              examTitle="模拟考试"
+              examCount={allQuestions.length}
+              onStartExam={startAvionicsExam}
+              chapters={AVIONICS_CHAPTERS}
+              questionCounts={AVIONICS_CHAPTERS.map(ch => ch.end - ch.start + 1)}
+              onStartChapter={startHomework}
+              delay={0}
+            />
 
-            {/* 子章节卡片网格 */}
-            {avionicsOpen && (
-              <div className="px-6 pb-6">
-                <div className="border-t border-gray-100 pt-5" />
+            <SubjectPanel
+              symbol="02"
+              title="飞机结构与部附件修理"
+              description={`共 5 次作业，合计 ${allStructureQuestions.length} 题`}
+              badge={`${STRUCTURE_CHAPTERS.length} 次作业`}
+              open={structureOpen}
+              onToggle={() => setStructureOpen(v => !v)}
+              examTitle="模拟考试"
+              examCount={allStructureQuestions.length}
+              onStartExam={startStructureExam}
+              chapters={STRUCTURE_CHAPTERS}
+              questionCounts={STRUCTURE_CHAPTERS.map(ch => ch.end - ch.start + 1)}
+              onStartChapter={startStructureHomework}
+              delay={80}
+            />
 
-                {/* 模拟考试卡片 */}
-                <div
-                  onClick={startAvionicsExam}
-                  className="group relative bg-slate-50/60 border border-gray-100 rounded-xl p-4 cursor-pointer
-                    hover:bg-white hover:shadow-md hover:border-blue-200 hover:-translate-y-0.5
-                    transition-all duration-300 mb-4"
-                >
-                  <div className="flex items-start gap-3">
-                    <div className="w-8 h-8 bg-white rounded-lg flex items-center justify-center text-sm font-bold text-blue-600 shadow-sm border border-gray-100 group-hover:scale-110 transition-transform duration-300 flex-shrink-0">
-                      🏆
-                    </div>
-                    <div className="flex-1 min-w-0">
-                      <h4 className="font-semibold text-gray-800 text-sm leading-snug">模拟考试</h4>
-                      <div className="flex items-center gap-2 mt-1.5">
-                        <span className="text-xs bg-blue-50 text-blue-600 px-2 py-0.5 rounded-full font-semibold">
-                          {allQuestions.length} 题
-                        </span>
-                      </div>
-                    </div>
-                    <div className="w-6 h-6 rounded-full bg-white group-hover:bg-blue-50 flex items-center justify-center text-gray-300 group-hover:text-blue-400 transition-all duration-300 mt-1 flex-shrink-0">
-                      →
-                    </div>
-                  </div>
-                </div>
-
-                <div className="grid gap-4 sm:grid-cols-2">
-                  {AVIONICS_CHAPTERS.map(ch => (
-                    <div
-                      key={ch.index}
-                      onClick={() => startHomework(ch)}
-                      className="group relative bg-slate-50/60 border border-gray-100 rounded-xl p-4 cursor-pointer
-                        hover:bg-white hover:shadow-md hover:border-blue-200 hover:-translate-y-0.5
-                        transition-all duration-300"
-                    >
-                      <div className="flex items-start gap-3">
-                        <div className="w-8 h-8 bg-white rounded-lg flex items-center justify-center text-sm font-bold text-blue-600 shadow-sm border border-gray-100 group-hover:scale-110 transition-transform duration-300 flex-shrink-0">
-                          {ch.index}
-                        </div>
-                        <div className="flex-1 min-w-0">
-                          <h4 className="font-semibold text-gray-800 text-sm leading-snug">{ch.name}</h4>
-                          <div className="flex items-center gap-2 mt-1.5">
-                            <span className="text-xs bg-blue-50 text-blue-600 px-2 py-0.5 rounded-full font-semibold">
-                              {ch.end - ch.start + 1} 题
-                            </span>
-                          </div>
-                        </div>
-                        <div className="w-6 h-6 rounded-full bg-white group-hover:bg-blue-50 flex items-center justify-center text-gray-300 group-hover:text-blue-400 transition-all duration-300 mt-1 flex-shrink-0">
-                          →
-                        </div>
-                      </div>
-                    </div>
-                  ))}
-                </div>
-              </div>
-            )}
+            <SubjectPanel
+              symbol="03"
+              title="航空动力装置结构与系统"
+              description={`共 5 次作业，合计 ${allEngineQuestions.length} 题`}
+              badge={`${ENGINE_CHAPTERS.length} 次作业`}
+              open={engineOpen}
+              onToggle={() => setEngineOpen(v => !v)}
+              examTitle="模拟考试"
+              examCount={allEngineQuestions.length}
+              onStartExam={startEngineExam}
+              chapters={ENGINE_CHAPTERS}
+              questionCounts={ENGINE_CHAPTERS.map(ch => ch.end - ch.start + 1)}
+              onStartChapter={startEngineHomework}
+              delay={160}
+            />
           </div>
-
-          {/* 飞机结构与部附件修理 — 可展开分组 */}
-          <div className="bg-white rounded-2xl border border-gray-100 shadow-sm overflow-hidden mt-4">
-            {/* 分组标题栏 */}
-            <button
-              onClick={() => setStructureOpen(v => !v)}
-              className="w-full flex items-center justify-between px-6 py-4 hover:bg-gray-50/50 transition-colors"
-            >
-              <div className="flex items-center gap-4">
-                <div className="w-11 h-11 bg-gradient-to-br from-amber-50 to-orange-100 rounded-xl flex items-center justify-center text-xl shadow-sm">
-                  🔧
-                </div>
-                <div className="text-left">
-                  <h3 className="font-bold text-gray-800 text-lg">飞机结构与部附件修理</h3>
-                  <p className="text-sm text-gray-400">
-                    共 5 次作业，合计 {allStructureQuestions.length} 题
-                  </p>
-                </div>
-              </div>
-              <div className="flex items-center gap-2">
-                <span className="text-xs font-medium text-gray-400 bg-gray-100 px-2.5 py-0.5 rounded-full">
-                  {STRUCTURE_CHAPTERS.length} 次作业
-                </span>
-                <svg
-                  className={`w-5 h-5 text-gray-400 transition-transform duration-200 ${structureOpen ? 'rotate-180' : ''}`}
-                  fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}
-                >
-                  <path strokeLinecap="round" strokeLinejoin="round" d="M19 9l-7 7-7-7" />
-                </svg>
-              </div>
-            </button>
-
-            {/* 子章节卡片网格 */}
-            {structureOpen && (
-              <div className="px-6 pb-6">
-                <div className="border-t border-gray-100 pt-5" />
-
-                {/* 模拟考试卡片 */}
-                <div
-                  onClick={startStructureExam}
-                  className="group relative bg-slate-50/60 border border-gray-100 rounded-xl p-4 cursor-pointer
-                    hover:bg-white hover:shadow-md hover:border-amber-200 hover:-translate-y-0.5
-                    transition-all duration-300 mb-4"
-                >
-                  <div className="flex items-start gap-3">
-                    <div className="w-8 h-8 bg-white rounded-lg flex items-center justify-center text-sm font-bold text-amber-600 shadow-sm border border-gray-100 group-hover:scale-110 transition-transform duration-300 flex-shrink-0">
-                      🏆
-                    </div>
-                    <div className="flex-1 min-w-0">
-                      <h4 className="font-semibold text-gray-800 text-sm leading-snug">模拟考试</h4>
-                      <div className="flex items-center gap-2 mt-1.5">
-                        <span className="text-xs bg-amber-50 text-amber-600 px-2 py-0.5 rounded-full font-semibold">
-                          {allStructureQuestions.length} 题
-                        </span>
-                      </div>
-                    </div>
-                    <div className="w-6 h-6 rounded-full bg-white group-hover:bg-amber-50 flex items-center justify-center text-gray-300 group-hover:text-amber-400 transition-all duration-300 mt-1 flex-shrink-0">
-                      →
-                    </div>
-                  </div>
-                </div>
-
-                <div className="grid gap-4 sm:grid-cols-2">
-                  {STRUCTURE_CHAPTERS.map(ch => (
-                    <div
-                      key={ch.index}
-                      onClick={() => startStructureHomework(ch)}
-                      className="group relative bg-slate-50/60 border border-gray-100 rounded-xl p-4 cursor-pointer
-                        hover:bg-white hover:shadow-md hover:border-amber-200 hover:-translate-y-0.5
-                        transition-all duration-300"
-                    >
-                      <div className="flex items-start gap-3">
-                        <div className="w-8 h-8 bg-white rounded-lg flex items-center justify-center text-sm font-bold text-amber-600 shadow-sm border border-gray-100 group-hover:scale-110 transition-transform duration-300 flex-shrink-0">
-                          {ch.index}
-                        </div>
-                        <div className="flex-1 min-w-0">
-                          <h4 className="font-semibold text-gray-800 text-sm leading-snug">{ch.name}</h4>
-                          <div className="flex items-center gap-2 mt-1.5">
-                            <span className="text-xs bg-amber-50 text-amber-600 px-2 py-0.5 rounded-full font-semibold">
-                              {ch.end - ch.start + 1} 题
-                            </span>
-                          </div>
-                        </div>
-                        <div className="w-6 h-6 rounded-full bg-white group-hover:bg-amber-50 flex items-center justify-center text-gray-300 group-hover:text-amber-400 transition-all duration-300 mt-1 flex-shrink-0">
-                          →
-                        </div>
-                      </div>
-                    </div>
-                  ))}
-                </div>
-              </div>
-            )}
-          </div>
-
-          {/* 航空动力装置结构与系统 — 可展开分组 */}
-          <div className="bg-white rounded-2xl border border-gray-100 shadow-sm overflow-hidden mt-4">
-            {/* 分组标题栏 */}
-            <button
-              onClick={() => setEngineOpen(v => !v)}
-              className="w-full flex items-center justify-between px-6 py-4 hover:bg-gray-50/50 transition-colors"
-            >
-              <div className="flex items-center gap-4">
-                <div className="w-11 h-11 bg-gradient-to-br from-red-50 to-rose-100 rounded-xl flex items-center justify-center text-xl shadow-sm">
-                  🔥
-                </div>
-                <div className="text-left">
-                  <h3 className="font-bold text-gray-800 text-lg">航空动力装置结构与系统</h3>
-                  <p className="text-sm text-gray-400">
-                    共 5 次作业，合计 {allEngineQuestions.length} 题
-                  </p>
-                </div>
-              </div>
-              <div className="flex items-center gap-2">
-                <span className="text-xs font-medium text-gray-400 bg-gray-100 px-2.5 py-0.5 rounded-full">
-                  {ENGINE_CHAPTERS.length} 次作业
-                </span>
-                <svg
-                  className={`w-5 h-5 text-gray-400 transition-transform duration-200 ${engineOpen ? 'rotate-180' : ''}`}
-                  fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}
-                >
-                  <path strokeLinecap="round" strokeLinejoin="round" d="M19 9l-7 7-7-7" />
-                </svg>
-              </div>
-            </button>
-
-            {/* 子章节卡片网格 */}
-            {engineOpen && (
-              <div className="px-6 pb-6">
-                <div className="border-t border-gray-100 pt-5" />
-
-                {/* 模拟考试卡片 */}
-                <div
-                  onClick={startEngineExam}
-                  className="group relative bg-slate-50/60 border border-gray-100 rounded-xl p-4 cursor-pointer
-                    hover:bg-white hover:shadow-md hover:border-red-200 hover:-translate-y-0.5
-                    transition-all duration-300 mb-4"
-                >
-                  <div className="flex items-start gap-3">
-                    <div className="w-8 h-8 bg-white rounded-lg flex items-center justify-center text-sm font-bold text-red-600 shadow-sm border border-gray-100 group-hover:scale-110 transition-transform duration-300 flex-shrink-0">
-                      🏆
-                    </div>
-                    <div className="flex-1 min-w-0">
-                      <h4 className="font-semibold text-gray-800 text-sm leading-snug">模拟考试</h4>
-                      <div className="flex items-center gap-2 mt-1.5">
-                        <span className="text-xs bg-red-50 text-red-600 px-2 py-0.5 rounded-full font-semibold">
-                          {allEngineQuestions.length} 题
-                        </span>
-                      </div>
-                    </div>
-                    <div className="w-6 h-6 rounded-full bg-white group-hover:bg-red-50 flex items-center justify-center text-gray-300 group-hover:text-red-400 transition-all duration-300 mt-1 flex-shrink-0">
-                      →
-                    </div>
-                  </div>
-                </div>
-
-                <div className="grid gap-4 sm:grid-cols-2">
-                  {ENGINE_CHAPTERS.map(ch => (
-                    <div
-                      key={ch.index}
-                      onClick={() => startEngineHomework(ch)}
-                      className="group relative bg-slate-50/60 border border-gray-100 rounded-xl p-4 cursor-pointer
-                        hover:bg-white hover:shadow-md hover:border-red-200 hover:-translate-y-0.5
-                        transition-all duration-300"
-                    >
-                      <div className="flex items-start gap-3">
-                        <div className="w-8 h-8 bg-white rounded-lg flex items-center justify-center text-sm font-bold text-red-600 shadow-sm border border-gray-100 group-hover:scale-110 transition-transform duration-300 flex-shrink-0">
-                          {ch.index}
-                        </div>
-                        <div className="flex-1 min-w-0">
-                          <h4 className="font-semibold text-gray-800 text-sm leading-snug">{ch.name}</h4>
-                          <div className="flex items-center gap-2 mt-1.5">
-                            <span className="text-xs bg-red-50 text-red-600 px-2 py-0.5 rounded-full font-semibold">
-                              {ch.end - ch.start + 1} 题
-                            </span>
-                          </div>
-                        </div>
-                        <div className="w-6 h-6 rounded-full bg-white group-hover:bg-red-50 flex items-center justify-center text-gray-300 group-hover:text-red-400 transition-all duration-300 mt-1 flex-shrink-0">
-                          →
-                        </div>
-                      </div>
-                    </div>
-                  ))}
-                </div>
-              </div>
-            )}
-          </div>
-        </div>
+        </section>
 
         {/* 底部 */}
-        <p className="text-center text-xs text-gray-400 mt-12">
-          数据存储在浏览器本地，不会上传到任何服务器
-        </p>
+        <footer className="mb-8 mt-14 text-center">
+          <p className="mb-2 font-mono text-[10px] tracking-[0.5em] text-white/25">· ✦ ⌬ ✦ ·</p>
+          <p className="text-xs text-white/35">
+            数据存储在浏览器本地，不会上传到任何服务器
+          </p>
+        </footer>
       </div>
     </div>
   )

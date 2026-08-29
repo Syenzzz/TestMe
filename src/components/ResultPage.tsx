@@ -47,87 +47,93 @@ export function ResultPage({ results, totalScore, maxScore, questions, examTitle
 
   const getQuestion = (id: string) => questions.find(qq => qq.id === id)
 
-  const scoreEmoji = pct >= 90 ? '🎉' : pct >= 70 ? '👍' : pct >= 50 ? '📚' : '💪'
+  const verdict = pct >= 90 ? '表现卓越' : pct >= 70 ? '稳定发挥' : pct >= 50 ? '继续巩固' : '再接再厉'
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50/30 to-slate-50 p-4">
-      <div className="max-w-2xl mx-auto">
+    <div className="min-h-screen p-4">
+      <div className="mx-auto max-w-2xl">
         {/* 总分卡片 */}
-        <div className="bg-white rounded-2xl shadow-sm border border-gray-100 p-8 text-center mb-6 mt-4">
+        <div className="glass animate-rise-in relative mb-6 mt-6 overflow-hidden rounded-2xl p-8 text-center">
           {examTitle && (
-            <p className="text-gray-400 text-sm mb-1">{examTitle}</p>
+            <p className="mono-label mb-2">{examTitle}</p>
           )}
-          <p className="text-gray-400 text-sm mb-3">你的得分</p>
-          <div className="text-6xl font-bold text-blue-500 mb-2 tracking-tight">
+          <p className="mb-3 text-sm text-white/45">你的得分</p>
+          <div className="mb-2 text-6xl font-bold tracking-tight text-white">
             {displayScore}
-            <span className="text-xl text-gray-300 font-normal ml-1">/ {displayMax}</span>
+            <span className="ml-1 text-xl font-normal text-white/40">/ {displayMax}</span>
           </div>
-          <p className="text-gray-400 text-sm mb-4">{scoreEmoji} 正确率 {pct}%</p>
+          <p className="mb-5 text-sm text-white/45">
+            {verdict} · 正确率 {pct}%
+          </p>
 
-          {/* 得分环 */}
-          <div className="flex items-center justify-center gap-4 mb-2">
+          {/* 统计 */}
+          <div className="flex items-center justify-center gap-4">
             <div className="flex flex-col items-center">
-              <div className="w-16 h-16 rounded-2xl bg-emerald-50 flex items-center justify-center">
-                <span className="text-2xl font-bold text-emerald-600">{correctCount}</span>
+              <div className="flex h-16 w-16 items-center justify-center rounded-2xl border border-white/30 bg-white/[0.09]">
+                <span className="font-mono text-2xl font-bold text-white">{correctCount}</span>
               </div>
-              <span className="text-xs text-gray-400 mt-1">正确</span>
+              <span className="mt-1.5 text-xs text-white/45">正确</span>
             </div>
             {partialCount > 0 && (
               <div className="flex flex-col items-center">
-                <div className="w-16 h-16 rounded-2xl bg-amber-50 flex items-center justify-center">
-                  <span className="text-2xl font-bold text-amber-600">{partialCount}</span>
+                <div className="flex h-16 w-16 items-center justify-center rounded-2xl border border-white/18 bg-white/[0.055]">
+                  <span className="font-mono text-2xl font-bold text-white/70">{partialCount}</span>
                 </div>
-                <span className="text-xs text-gray-400 mt-1">部分</span>
+                <span className="mt-1.5 text-xs text-white/45">部分</span>
               </div>
             )}
             <div className="flex flex-col items-center">
-              <div className="w-16 h-16 rounded-2xl bg-red-50 flex items-center justify-center">
-                <span className="text-2xl font-bold text-red-500">{wrongCount}</span>
+              <div className="flex h-16 w-16 items-center justify-center rounded-2xl border border-white/10 bg-white/[0.035]">
+                <span className="font-mono text-2xl font-bold text-white/45">{wrongCount}</span>
               </div>
-              <span className="text-xs text-gray-400 mt-1">错误</span>
+              <span className="mt-1.5 text-xs text-white/45">错误</span>
             </div>
           </div>
         </div>
 
         {/* 逐题详情 */}
-        <div className="bg-white rounded-2xl shadow-sm border border-gray-100 overflow-hidden mb-6">
-          <h3 className="px-6 py-4 font-bold text-gray-800 border-b border-gray-50">答题详情</h3>
-          <div className="divide-y divide-gray-50 max-h-96 overflow-y-auto">
+        <div className="glass animate-rise-in mb-6 overflow-hidden rounded-2xl" style={{ animationDelay: '80ms' }}>
+          <h3 className="border-b border-white/10 px-6 py-4 font-bold text-white/95">答题详情</h3>
+          <div className="max-h-96 divide-y divide-white/[0.06] overflow-y-auto">
             {results.map((r, i) => {
               const q = getQuestion(r.questionId)
               return (
               <div
                 key={r.questionId}
-                className="px-6 py-3 hover:bg-gray-50/50 cursor-pointer transition-colors"
+                className="cursor-pointer px-6 py-3 transition-colors hover:bg-white/[0.05]"
                 onClick={() => setExpandedId(expandedId === r.questionId ? null : r.questionId)}
               >
                 <div className="flex items-center gap-3">
-                  <span className={`flex-shrink-0 w-7 h-7 rounded-lg flex items-center justify-center text-sm font-bold ${
-                    r.isCorrect
-                      ? 'bg-emerald-50 text-emerald-500'
-                      : r.isPartial
-                        ? 'bg-amber-50 text-amber-500'
-                        : 'bg-red-50 text-red-500'
-                  }`}>
+                  <span
+                    className={`flex h-7 w-7 flex-shrink-0 items-center justify-center rounded-lg border font-mono text-sm font-bold ${
+                      r.isCorrect
+                        ? 'border-white/30 bg-white/[0.1] text-white'
+                        : r.isPartial
+                          ? 'border-white/18 bg-white/[0.06] text-white/65'
+                          : 'border-white/10 bg-white/[0.035] text-white/40'
+                    }`}
+                  >
                     {r.isCorrect ? '✓' : r.isPartial ? '△' : '✗'}
                   </span>
-                  <span className="flex-1 text-sm text-gray-700 truncate">
-                    <strong className="text-gray-400 mr-1">{i + 1}.</strong>
+                  <span className="flex-1 truncate text-sm text-white/75">
+                    <strong className="mr-1 font-mono text-white/40">{i + 1}.</strong>
                     {q?.stem || ''}
                   </span>
-                  <span className={`text-sm font-bold flex-shrink-0 ${
-                    r.isCorrect ? 'text-emerald-600' : r.isPartial ? 'text-amber-600' : 'text-red-500'
-                  }`}>
+                  <span
+                    className={`flex-shrink-0 font-mono text-sm font-bold ${
+                      r.isCorrect ? 'text-white' : r.isPartial ? 'text-white/65' : 'text-white/40'
+                    }`}
+                  >
                     {Math.round(r.earnedScore * 100) / 100} 分
                   </span>
                 </div>
 
                 {expandedId === r.questionId && (
-                  <div className="mt-2 ml-10 text-xs space-y-1.5 bg-gray-50 rounded-xl p-3">
+                  <div className="glass-soft ml-10 mt-2 space-y-1.5 rounded-xl p-3 text-xs">
                     {q && q.options.length > 0 && (
                       <div className="flex gap-2">
-                        <span className="text-gray-400 flex-shrink-0">选项：</span>
-                        <div className="text-gray-700">
+                        <span className="flex-shrink-0 text-white/40">选项：</span>
+                        <div className="text-white/80">
                           {q.options.map((opt, j) => (
                             <div key={j}>
                               <span className="font-medium">{LABELS[j] || `${j + 1}`}.</span> {opt}
@@ -137,14 +143,14 @@ export function ResultPage({ results, totalScore, maxScore, questions, examTitle
                       </div>
                     )}
                     <div className="flex gap-2">
-                      <span className="text-gray-400 flex-shrink-0">你的答案：</span>
-                      <span className={`font-medium ${r.isCorrect ? 'text-emerald-700' : 'text-red-700'}`}>
+                      <span className="flex-shrink-0 text-white/40">你的答案：</span>
+                      <span className={`font-medium ${r.isCorrect ? 'text-white' : 'text-white/55'}`}>
                         {r.userAnswer || '(未作答)'}
                       </span>
                     </div>
                     <div className="flex gap-2">
-                      <span className="text-gray-400 flex-shrink-0">标准答案：</span>
-                      <span className="font-medium text-gray-700">{r.correctAnswer}</span>
+                      <span className="flex-shrink-0 text-white/40">标准答案：</span>
+                      <span className="font-medium text-white/90">{r.correctAnswer}</span>
                     </div>
                   </div>
                 )}
@@ -154,27 +160,28 @@ export function ResultPage({ results, totalScore, maxScore, questions, examTitle
         </div>
 
         {/* 操作 */}
-        <div className="flex flex-col gap-3 mb-8">
+        <div className="mb-10 flex flex-col gap-3">
           {!isReviewMode && wrongCount > 0 && (
             <button
               onClick={onGoHome}
-              className="py-3.5 bg-purple-500 text-white rounded-xl font-semibold hover:bg-purple-600 shadow-sm shadow-purple-200 transition-all text-sm"
+              className="animate-rise-in rounded-xl border border-white/25 bg-white/[0.08] py-3.5 text-sm font-semibold text-white/90 transition-all hover:bg-white/[0.14]"
+              style={{ animationDelay: '160ms' }}
             >
-              🧠 {wrongCount} 道错题已加入复习计划，返回首页开始复习
+              ↻ {wrongCount} 道错题已加入复习计划，返回首页开始复习
             </button>
           )}
           <div className="flex gap-3">
             {!isReviewMode && (
               <button
                 onClick={onRestart}
-                className="flex-1 py-3.5 bg-blue-500 text-white rounded-xl font-semibold hover:bg-blue-600 shadow-sm shadow-blue-200 transition-all"
+                className="flex-1 rounded-xl bg-white py-3.5 font-semibold text-black transition-all hover:bg-white/85"
               >
                 重新作答
               </button>
             )}
             <button
               onClick={onGoHome}
-              className="py-3.5 px-6 border border-gray-200 bg-white text-gray-600 rounded-xl font-medium hover:bg-gray-50 transition-all"
+              className="glass-soft rounded-xl px-6 py-3.5 font-medium text-white/85 transition-all hover:bg-white/10"
             >
               返回首页
             </button>
