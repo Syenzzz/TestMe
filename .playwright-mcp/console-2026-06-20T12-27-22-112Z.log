@@ -1,3 +1,0 @@
-[      35ms] [INFO] %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold @ http://localhost:5173/node_modules/.vite/deps/react-dom_client.js?v=7f32021b:14337
-[   35377ms] [INFO] %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold @ http://localhost:5173/node_modules/.vite/deps/react-dom_client.js?v=7f32021b:14337
-[   47199ms] [WARNING] Warning: TT: undefined function: 21 @ http://localhost:5173/@vite/client:524

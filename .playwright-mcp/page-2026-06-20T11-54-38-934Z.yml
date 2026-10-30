@@ -1,9 +1,0 @@
-- generic [ref=e3]:
-  - heading "📝 期末考试自测" [level=1] [ref=e4]
-  - paragraph [ref=e5]: 上传题库文件，逐题自测，自动评分
-  - generic [ref=e6]:
-    - generic [ref=e7]: 📁
-    - paragraph [ref=e8]: 拖拽题库文件到这里
-    - paragraph [ref=e9]: 支持 PDF · DOCX · PPTX
-    - generic [ref=e10] [cursor=pointer]: 选择文件
-  - paragraph [ref=e11]: 🔒 文件仅在浏览器本地处理，不会上传到任何服务器
