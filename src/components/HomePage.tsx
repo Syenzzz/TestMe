@@ -5,7 +5,6 @@ import structureExam from '../data/aircraft-structure-exam.json'
 import engineExam from '../data/engine-exam.json'
 import { shuffle } from '../utils/shuffle'
 import { ReviewDashboard } from './ReviewDashboard'
-import { ParticleGlobe } from './ParticleGlobe'
 import { getDueReviewItems } from '../utils/spacedRepetition'
 
 interface Props {
@@ -73,28 +72,28 @@ function ChapterCard({
           onClick()
         }
       }}
-      className={`glass-soft glass-interactive group relative cursor-pointer rounded-xl p-4
-        ${highlighted ? 'border-white/30 bg-white/[0.08]' : ''}`}
+      className={`glass-soft glass-interactive group relative cursor-pointer rounded-lg p-4
+        ${highlighted ? 'border-slate-200 bg-slate-100' : ''}`}
     >
       <div className="flex items-start gap-3">
         <div
           className={`flex h-8 w-8 flex-shrink-0 items-center justify-center rounded-lg border font-mono text-sm font-bold transition-transform duration-300 group-hover:scale-110 ${
             highlighted
-              ? 'border-white/30 bg-white/10 text-white'
-              : 'border-white/12 bg-white/[0.05] text-white/60'
+              ? 'border-slate-200 bg-slate-100 text-slate-900'
+              : 'border-slate-200 bg-slate-100 text-slate-600'
           }`}
         >
           {highlighted ? '✦' : chapter ? String(chapter.index).padStart(2, '0') : ''}
         </div>
         <div className="min-w-0 flex-1">
-          <h4 className="text-sm font-semibold leading-snug text-white/90">{title}</h4>
+          <h4 className="text-sm font-semibold leading-snug text-slate-600">{title}</h4>
           <div className="mt-1.5 flex items-center gap-2">
-            <span className="whitespace-nowrap rounded-full border border-white/15 bg-white/[0.07] px-2 py-0.5 text-[10px] font-semibold text-white/65">
+            <span className="whitespace-nowrap rounded-full border border-slate-200 bg-slate-100 px-2 py-0.5 text-[10px] font-semibold text-slate-600">
               {subtitle ?? `${questionCount} 题`}
             </span>
           </div>
         </div>
-        <div className="mt-1 flex h-6 w-6 flex-shrink-0 items-center justify-center rounded-full text-white/35 transition-all duration-300 group-hover:translate-x-0.5 group-hover:text-white/80">
+        <div className="mt-1 flex h-6 w-6 flex-shrink-0 items-center justify-center rounded-full text-slate-600 transition-all duration-300 group-hover:translate-x-0.5 group-hover:text-slate-600">
           →
         </div>
       </div>
@@ -132,29 +131,29 @@ function SubjectPanel({
   delay?: number
 }) {
   return (
-    <div className="glass animate-rise-in overflow-hidden rounded-2xl" style={{ animationDelay: `${delay}ms` }}>
+    <div className="glass animate-rise-in overflow-hidden rounded-lg" style={{ animationDelay: `${delay}ms` }}>
       <button
         onClick={onToggle}
-        className="flex w-full items-center justify-between gap-2 px-4 py-4 transition-colors hover:bg-white/[0.04] md:px-6"
+        className="flex w-full items-center justify-between gap-2 px-4 py-4 transition-colors hover:bg-slate-100 md:px-6"
       >
         <div className="flex min-w-0 flex-1 items-center gap-3 md:gap-4">
-          <div className="flex h-11 w-11 flex-shrink-0 items-center justify-center rounded-xl border border-white/12 bg-white/[0.06] font-mono text-sm font-bold tracking-widest text-white/80">
+          <div className="flex h-11 w-11 flex-shrink-0 items-center justify-center rounded-lg border border-slate-200 bg-slate-100 font-mono text-sm font-bold tracking-widest text-slate-600">
             {symbol}
           </div>
           <div className="min-w-0 text-left">
-            <h3 className="text-base font-bold text-white/95 md:text-lg">{title}</h3>
+            <h3 className="text-base font-bold text-slate-600 md:text-lg">{title}</h3>
             <p className="mt-0.5 text-xs leading-snug text-star-500 md:text-sm">{description}</p>
           </div>
         </div>
         <div className="flex flex-shrink-0 items-center gap-1.5">
           <span
-            className="mono-label hidden whitespace-nowrap rounded-full border border-white/12 bg-white/[0.04] px-2.5 py-1 sm:inline-block"
+            className="mono-label hidden whitespace-nowrap rounded-full border border-slate-200 bg-slate-100 px-2.5 py-1 sm:inline-block"
             style={{ letterSpacing: '0.12em' }}
           >
             {badge}
           </span>
           <svg
-            className={`h-5 w-5 flex-shrink-0 text-white/40 transition-transform duration-200 ${open ? 'rotate-180' : ''}`}
+            className={`h-5 w-5 flex-shrink-0 text-slate-600 transition-transform duration-200 ${open ? 'rotate-180' : ''}`}
             fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}
           >
             <path strokeLinecap="round" strokeLinejoin="round" d="M19 9l-7 7-7-7" />
@@ -252,11 +251,10 @@ export function HomePage({ onStartQuiz, onStartReview }: Props) {
     <div className="min-h-screen">
       <div className="mx-auto max-w-4xl p-4 md:p-8">
         {/* 顶部 Hero */}
-        <header className="relative mb-12 mt-8 text-center md:mb-14 md:mt-12">
+        <header className="relative mb-10 mt-6 border-b border-slate-200 pb-8 md:mt-10">
           <div className="relative">
-            <ParticleGlobe />
             <p className="mono-label mb-3 mt-1">⌬ TestMe</p>
-            <h1 className="mb-3 text-4xl font-bold tracking-tight text-white md:text-5xl">
+            <h1 className="mb-3 text-4xl font-bold tracking-tight text-slate-900 md:text-5xl">
               TestMe
             </h1>
             <p className="text-lg text-star-500">选择科目，逐题自测，自动评分</p>
@@ -267,8 +265,8 @@ export function HomePage({ onStartQuiz, onStartReview }: Props) {
         <section>
           <div className="mb-5 flex items-center gap-3">
             <span className="mono-label">// 考试栏</span>
-            <div className="h-px flex-1 bg-gradient-to-r from-white/12 to-transparent" />
-            <span className="rounded-full border border-white/12 bg-white/[0.04] px-2.5 py-0.5 text-xs font-medium text-white/55">
+            <div className="h-px flex-1 bg-gradient-to-r from-slate-200 to-transparent" />
+            <span className="rounded-full border border-slate-200 bg-slate-100 px-2.5 py-0.5 text-xs font-medium text-slate-600">
               3 门科目
             </span>
           </div>
@@ -328,8 +326,8 @@ export function HomePage({ onStartQuiz, onStartReview }: Props) {
 
         {/* 底部 */}
         <footer className="mb-8 mt-14 text-center">
-          <p className="mb-2 font-mono text-[10px] tracking-[0.5em] text-white/25">· ✦ ⌬ ✦ ·</p>
-          <p className="text-xs text-white/35">
+          <p className="mb-2 font-mono text-[10px] tracking-[0.5em] text-slate-600">· ✦ ⌬ ✦ ·</p>
+          <p className="text-xs text-slate-600">
             数据存储在浏览器本地，不会上传到任何服务器
           </p>
         </footer>

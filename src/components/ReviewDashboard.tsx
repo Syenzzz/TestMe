@@ -24,14 +24,14 @@ export function ReviewDashboard({ onStartReview }: Props) {
   // No due reviews → collapsed state
   if (stats.due === 0) {
     return (
-      <div className="glass mb-6 overflow-hidden rounded-2xl">
+      <div className="glass mb-6 overflow-hidden rounded-lg">
         <div className="flex items-center gap-4 px-6 py-5">
-          <div className="flex h-11 w-11 items-center justify-center rounded-xl border border-white/12 bg-white/[0.06] font-mono text-lg text-white/80">
+          <div className="flex h-11 w-11 items-center justify-center rounded-lg border border-slate-200 bg-slate-100 font-mono text-lg text-slate-600">
             ✓
           </div>
           <div>
-            <h3 className="text-sm font-bold text-white/90">全部已掌握</h3>
-            <p className="text-xs text-white/45">
+            <h3 className="text-sm font-bold text-slate-600">全部已掌握</h3>
+            <p className="text-xs text-slate-600">
               {stats.mastered} 题已掌握 · 复习队列 {stats.total} 题
             </p>
           </div>
@@ -43,28 +43,28 @@ export function ReviewDashboard({ onStartReview }: Props) {
   return (
     <div
       onClick={onStartReview}
-      className="glass glass-interactive mb-6 cursor-pointer overflow-hidden rounded-2xl"
+      className="glass glass-interactive mb-6 cursor-pointer overflow-hidden rounded-lg"
     >
       <div className="flex items-center gap-4 px-6 py-5">
-        <div className="flex h-11 w-11 items-center justify-center rounded-xl border border-white/12 bg-white/[0.06] font-mono text-lg text-white/80">
+        <div className="flex h-11 w-11 items-center justify-center rounded-lg border border-slate-200 bg-slate-100 font-mono text-lg text-slate-600">
           ↻
         </div>
         <div className="min-w-0 flex-1">
           <div className="flex flex-wrap items-center gap-x-2 gap-y-1">
-            <h3 className="text-sm font-bold text-white/90">今日复习</h3>
-            <span className="whitespace-nowrap rounded-full border border-white/25 bg-white/[0.1] px-2 py-0.5 text-xs font-bold text-white/85">
+            <h3 className="text-sm font-bold text-slate-600">今日复习</h3>
+            <span className="whitespace-nowrap rounded-full border border-slate-200 bg-slate-100 px-2 py-0.5 text-xs font-bold text-slate-600">
               {stats.due} 题待复习
             </span>
           </div>
-          <div className="mt-1.5 flex flex-wrap items-center gap-x-3 gap-y-0.5 font-mono text-[11px] text-white/45">
+          <div className="mt-1.5 flex flex-wrap items-center gap-x-3 gap-y-0.5 font-mono text-[11px] text-slate-600">
             {round1 > 0 && <span className="whitespace-nowrap">L1 {round1}题 · 第1轮</span>}
             {round2Plus > 0 && <span className="whitespace-nowrap">L2 {round2Plus}题 · 巩固</span>}
             {consolidating > 0 && <span className="whitespace-nowrap">L3 {consolidating}题 · 冲刺</span>}
           </div>
         </div>
         <div className="flex-shrink-0 text-right">
-          <div className="text-lg font-bold text-white">{stats.pct}%</div>
-          <div className="text-[10px] text-white/40">掌握率</div>
+          <div className="text-lg font-bold text-slate-900">{stats.pct}%</div>
+          <div className="text-[10px] text-slate-600">掌握率</div>
         </div>
       </div>
     </div>

@@ -12,7 +12,7 @@ export function AnswerSheet({ questions, currentIndex, hasAnswer, onJump, onClos
   const answeredCount = questions.filter(q => hasAnswer(q.id)).length
 
   return (
-    <div className="bg-white rounded-xl shadow-lg p-4">
+    <div className="bg-emerald-700 rounded-lg shadow-lg p-4">
       <div className="flex items-center justify-between mb-3">
         <h3 className="font-bold text-gray-800 text-sm">答题卡</h3>
         {onClose && (
@@ -34,9 +34,9 @@ export function AnswerSheet({ questions, currentIndex, hasAnswer, onJump, onClos
               onClick={() => onJump(i)}
               className={`w-9 h-9 rounded-lg text-xs font-medium transition-all flex-shrink-0 ${
                 isCurrent
-                  ? 'bg-blue-500 text-white ring-2 ring-blue-300'
+                  ? 'bg-blue-500 text-slate-900 ring-2 ring-blue-300'
                   : answered
-                    ? 'bg-emerald-500 text-white hover:bg-emerald-600'
+                    ? 'bg-emerald-500 text-slate-900 hover:bg-emerald-600'
                     : 'bg-gray-100 text-gray-500 hover:bg-gray-200'
               }`}
             >

@@ -53,75 +53,75 @@ export function ResultPage({ results, totalScore, maxScore, questions, examTitle
     <div className="min-h-screen p-4">
       <div className="mx-auto max-w-2xl">
         {/* 总分卡片 */}
-        <div className="glass animate-rise-in relative mb-6 mt-6 overflow-hidden rounded-2xl p-8 text-center">
+        <div className="glass animate-rise-in relative mb-6 mt-6 overflow-hidden rounded-lg p-8 text-center">
           {examTitle && (
             <p className="mono-label mb-2">{examTitle}</p>
           )}
-          <p className="mb-3 text-sm text-white/45">你的得分</p>
-          <div className="mb-2 text-6xl font-bold tracking-tight text-white">
+          <p className="mb-3 text-sm text-slate-600">你的得分</p>
+          <div className="mb-2 text-6xl font-bold tracking-tight text-slate-900">
             {displayScore}
-            <span className="ml-1 text-xl font-normal text-white/40">/ {displayMax}</span>
+            <span className="ml-1 text-xl font-normal text-slate-600">/ {displayMax}</span>
           </div>
-          <p className="mb-5 text-sm text-white/45">
+          <p className="mb-5 text-sm text-slate-600">
             {verdict} · 正确率 {pct}%
           </p>
 
           {/* 统计 */}
           <div className="flex items-center justify-center gap-4">
             <div className="flex flex-col items-center">
-              <div className="flex h-16 w-16 items-center justify-center rounded-2xl border border-white/30 bg-white/[0.09]">
-                <span className="font-mono text-2xl font-bold text-white">{correctCount}</span>
+              <div className="flex h-16 w-16 items-center justify-center rounded-lg border border-slate-200 bg-slate-100">
+                <span className="font-mono text-2xl font-bold text-slate-900">{correctCount}</span>
               </div>
-              <span className="mt-1.5 text-xs text-white/45">正确</span>
+              <span className="mt-1.5 text-xs text-slate-600">正确</span>
             </div>
             {partialCount > 0 && (
               <div className="flex flex-col items-center">
-                <div className="flex h-16 w-16 items-center justify-center rounded-2xl border border-white/18 bg-white/[0.055]">
-                  <span className="font-mono text-2xl font-bold text-white/70">{partialCount}</span>
+                <div className="flex h-16 w-16 items-center justify-center rounded-lg border border-slate-200 bg-slate-100">
+                  <span className="font-mono text-2xl font-bold text-slate-600">{partialCount}</span>
                 </div>
-                <span className="mt-1.5 text-xs text-white/45">部分</span>
+                <span className="mt-1.5 text-xs text-slate-600">部分</span>
               </div>
             )}
             <div className="flex flex-col items-center">
-              <div className="flex h-16 w-16 items-center justify-center rounded-2xl border border-white/10 bg-white/[0.035]">
-                <span className="font-mono text-2xl font-bold text-white/45">{wrongCount}</span>
+              <div className="flex h-16 w-16 items-center justify-center rounded-lg border border-slate-200 bg-slate-100">
+                <span className="font-mono text-2xl font-bold text-slate-600">{wrongCount}</span>
               </div>
-              <span className="mt-1.5 text-xs text-white/45">错误</span>
+              <span className="mt-1.5 text-xs text-slate-600">错误</span>
             </div>
           </div>
         </div>
 
         {/* 逐题详情 */}
-        <div className="glass animate-rise-in mb-6 overflow-hidden rounded-2xl" style={{ animationDelay: '80ms' }}>
-          <h3 className="border-b border-white/10 px-6 py-4 font-bold text-white/95">答题详情</h3>
+        <div className="glass animate-rise-in mb-6 overflow-hidden rounded-lg" style={{ animationDelay: '80ms' }}>
+          <h3 className="border-b border-slate-200 px-6 py-4 font-bold text-slate-600">答题详情</h3>
           <div className="max-h-96 divide-y divide-white/[0.06] overflow-y-auto">
             {results.map((r, i) => {
               const q = getQuestion(r.questionId)
               return (
               <div
                 key={r.questionId}
-                className="cursor-pointer px-6 py-3 transition-colors hover:bg-white/[0.05]"
+                className="cursor-pointer px-6 py-3 transition-colors hover:bg-slate-100"
                 onClick={() => setExpandedId(expandedId === r.questionId ? null : r.questionId)}
               >
                 <div className="flex items-center gap-3">
                   <span
                     className={`flex h-7 w-7 flex-shrink-0 items-center justify-center rounded-lg border font-mono text-sm font-bold ${
                       r.isCorrect
-                        ? 'border-white/30 bg-white/[0.1] text-white'
+                        ? 'border-emerald-200 bg-emerald-50 text-emerald-800'
                         : r.isPartial
-                          ? 'border-white/18 bg-white/[0.06] text-white/65'
-                          : 'border-white/10 bg-white/[0.035] text-white/40'
+                          ? 'border-slate-200 bg-slate-100 text-slate-600'
+                          : 'border-red-200 bg-red-50 text-red-700'
                     }`}
                   >
                     {r.isCorrect ? '✓' : r.isPartial ? '△' : '✗'}
                   </span>
-                  <span className="flex-1 truncate text-sm text-white/75">
-                    <strong className="mr-1 font-mono text-white/40">{i + 1}.</strong>
+                  <span className="flex-1 truncate text-sm text-slate-600">
+                    <strong className="mr-1 font-mono text-slate-600">{i + 1}.</strong>
                     {q?.stem || ''}
                   </span>
                   <span
                     className={`flex-shrink-0 font-mono text-sm font-bold ${
-                      r.isCorrect ? 'text-white' : r.isPartial ? 'text-white/65' : 'text-white/40'
+                      r.isCorrect ? 'text-slate-900' : r.isPartial ? 'text-slate-600' : 'text-slate-600'
                     }`}
                   >
                     {Math.round(r.earnedScore * 100) / 100} 分
@@ -129,11 +129,11 @@ export function ResultPage({ results, totalScore, maxScore, questions, examTitle
                 </div>
 
                 {expandedId === r.questionId && (
-                  <div className="glass-soft ml-10 mt-2 space-y-1.5 rounded-xl p-3 text-xs">
+                  <div className="glass-soft ml-10 mt-2 space-y-1.5 rounded-lg p-3 text-xs">
                     {q && q.options.length > 0 && (
                       <div className="flex gap-2">
-                        <span className="flex-shrink-0 text-white/40">选项：</span>
-                        <div className="text-white/80">
+                        <span className="flex-shrink-0 text-slate-600">选项：</span>
+                        <div className="text-slate-600">
                           {q.options.map((opt, j) => (
                             <div key={j}>
                               <span className="font-medium">{LABELS[j] || `${j + 1}`}.</span> {opt}
@@ -143,14 +143,14 @@ export function ResultPage({ results, totalScore, maxScore, questions, examTitle
                       </div>
                     )}
                     <div className="flex gap-2">
-                      <span className="flex-shrink-0 text-white/40">你的答案：</span>
-                      <span className={`font-medium ${r.isCorrect ? 'text-white' : 'text-white/55'}`}>
+                      <span className="flex-shrink-0 text-slate-600">你的答案：</span>
+                      <span className={`font-medium ${r.isCorrect ? 'text-slate-900' : 'text-slate-600'}`}>
                         {r.userAnswer || '(未作答)'}
                       </span>
                     </div>
                     <div className="flex gap-2">
-                      <span className="flex-shrink-0 text-white/40">标准答案：</span>
-                      <span className="font-medium text-white/90">{r.correctAnswer}</span>
+                      <span className="flex-shrink-0 text-slate-600">标准答案：</span>
+                      <span className="font-medium text-slate-600">{r.correctAnswer}</span>
                     </div>
                   </div>
                 )}
@@ -164,7 +164,7 @@ export function ResultPage({ results, totalScore, maxScore, questions, examTitle
           {!isReviewMode && wrongCount > 0 && (
             <button
               onClick={onGoHome}
-              className="animate-rise-in rounded-xl border border-white/25 bg-white/[0.08] py-3.5 text-sm font-semibold text-white/90 transition-all hover:bg-white/[0.14]"
+              className="animate-rise-in rounded-lg border border-slate-200 bg-slate-100 py-3.5 text-sm font-semibold text-slate-600 transition-all hover:bg-slate-100"
               style={{ animationDelay: '160ms' }}
             >
               ↻ {wrongCount} 道错题已加入复习计划，返回首页开始复习
@@ -174,14 +174,14 @@ export function ResultPage({ results, totalScore, maxScore, questions, examTitle
             {!isReviewMode && (
               <button
                 onClick={onRestart}
-                className="flex-1 rounded-xl bg-white py-3.5 font-semibold text-black transition-all hover:bg-white/85"
+                className="flex-1 rounded-lg bg-emerald-700 py-3.5 font-semibold text-white transition-all hover:bg-emerald-800"
               >
                 重新作答
               </button>
             )}
             <button
               onClick={onGoHome}
-              className="glass-soft rounded-xl px-6 py-3.5 font-medium text-white/85 transition-all hover:bg-white/10"
+              className="glass-soft rounded-lg px-6 py-3.5 font-medium text-slate-600 transition-all hover:bg-slate-100"
             >
               返回首页
             </button>

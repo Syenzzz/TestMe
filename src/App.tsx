@@ -3,7 +3,6 @@ import type { Question, GradingResult, AppPage } from './types'
 import { HomePage } from './components/HomePage'
 import { QuizPage } from './components/QuizPage'
 import { ResultPage } from './components/ResultPage'
-import { CosmosBackground } from './components/CosmosBackground'
 import { getDueReviewItems, recordReview } from './utils/spacedRepetition'
 import type { ReviewItem } from './types'
 
@@ -104,7 +103,6 @@ export default function App() {
 
   return (
     <div className="relative min-h-screen">
-      <CosmosBackground />
       <div className="relative z-10">
         {page === 'upload' && <HomePage onStartQuiz={handleStartQuiz} onStartReview={handleStartReview} />}
         {page === 'quiz' && (
