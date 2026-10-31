@@ -72,28 +72,36 @@ function ChapterCard({
           onClick()
         }
       }}
-      className={`glass-soft glass-interactive group relative cursor-pointer rounded-lg p-4
-        ${highlighted ? 'border-slate-200 bg-slate-100' : ''}`}
+      className={`group relative cursor-pointer rounded-xl p-4 transition-all duration-200
+        ${highlighted
+          ? 'border border-claude-terracotta bg-claude-terracotta hover:bg-claude-terracotta-dark'
+          : 'glass-soft glass-interactive'}`}
     >
       <div className="flex items-start gap-3">
         <div
-          className={`flex h-8 w-8 flex-shrink-0 items-center justify-center rounded-lg border font-mono text-sm font-bold transition-transform duration-300 group-hover:scale-110 ${
+          className={`flex h-8 w-8 flex-shrink-0 items-center justify-center rounded-lg border font-serif text-sm font-medium transition-transform duration-300 group-hover:scale-110 ${
             highlighted
-              ? 'border-slate-200 bg-slate-100 text-slate-900'
-              : 'border-slate-200 bg-slate-100 text-slate-600'
+              ? 'border-white/25 bg-white/15 text-white'
+              : 'border-claude-border bg-claude-canvas text-claude-muted'
           }`}
         >
           {highlighted ? '✦' : chapter ? String(chapter.index).padStart(2, '0') : ''}
         </div>
         <div className="min-w-0 flex-1">
-          <h4 className="text-sm font-semibold leading-snug text-slate-600">{title}</h4>
+          <h4 className={`text-sm font-semibold leading-snug ${highlighted ? 'text-white' : 'text-claude-ink'}`}>{title}</h4>
           <div className="mt-1.5 flex items-center gap-2">
-            <span className="whitespace-nowrap rounded-full border border-slate-200 bg-slate-100 px-2 py-0.5 text-[10px] font-semibold text-slate-600">
+            <span className={`whitespace-nowrap rounded-full border px-2 py-0.5 text-[10px] font-medium ${
+              highlighted
+                ? 'border-white/25 bg-white/15 text-white/85'
+                : 'border-claude-border bg-claude-canvas text-claude-muted'
+            }`}>
               {subtitle ?? `${questionCount} 题`}
             </span>
           </div>
         </div>
-        <div className="mt-1 flex h-6 w-6 flex-shrink-0 items-center justify-center rounded-full text-slate-600 transition-all duration-300 group-hover:translate-x-0.5 group-hover:text-slate-600">
+        <div className={`mt-1 flex h-6 w-6 flex-shrink-0 items-center justify-center rounded-full transition-all duration-300 group-hover:translate-x-0.5 ${
+          highlighted ? 'text-white/85' : 'text-claude-faint group-hover:text-claude-terracotta'
+        }`}>
           →
         </div>
       </div>
@@ -131,29 +139,28 @@ function SubjectPanel({
   delay?: number
 }) {
   return (
-    <div className="glass animate-rise-in overflow-hidden rounded-lg" style={{ animationDelay: `${delay}ms` }}>
+    <div className="glass animate-rise-in overflow-hidden rounded-2xl" style={{ animationDelay: `${delay}ms` }}>
       <button
         onClick={onToggle}
-        className="flex w-full items-center justify-between gap-2 px-4 py-4 transition-colors hover:bg-slate-100 md:px-6"
+        className="flex w-full items-center justify-between gap-2 px-5 py-5 transition-colors hover:bg-claude-canvas md:px-7"
       >
         <div className="flex min-w-0 flex-1 items-center gap-3 md:gap-4">
-          <div className="flex h-11 w-11 flex-shrink-0 items-center justify-center rounded-lg border border-slate-200 bg-slate-100 font-mono text-sm font-bold tracking-widest text-slate-600">
+          <div className="flex h-11 w-11 flex-shrink-0 items-center justify-center rounded-xl border border-claude-border bg-claude-canvas font-serif text-base font-medium tracking-widest text-claude-muted">
             {symbol}
           </div>
           <div className="min-w-0 text-left">
-            <h3 className="text-base font-bold text-slate-600 md:text-lg">{title}</h3>
-            <p className="mt-0.5 text-xs leading-snug text-star-500 md:text-sm">{description}</p>
+            <h3 className="text-lg font-medium text-claude-ink md:text-xl">{title}</h3>
+            <p className="mt-1 text-sm leading-snug text-claude-muted">{description}</p>
           </div>
         </div>
         <div className="flex flex-shrink-0 items-center gap-1.5">
           <span
-            className="mono-label hidden whitespace-nowrap rounded-full border border-slate-200 bg-slate-100 px-2.5 py-1 sm:inline-block"
-            style={{ letterSpacing: '0.12em' }}
+            className="hidden whitespace-nowrap rounded-full border border-claude-border bg-claude-canvas px-2.5 py-1 text-[11px] font-medium tracking-wide text-claude-faint sm:inline-block"
           >
             {badge}
           </span>
           <svg
-            className={`h-5 w-5 flex-shrink-0 text-slate-600 transition-transform duration-200 ${open ? 'rotate-180' : ''}`}
+            className={`h-5 w-5 flex-shrink-0 text-claude-muted transition-transform duration-200 ${open ? 'rotate-180' : ''}`}
             fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}
           >
             <path strokeLinecap="round" strokeLinejoin="round" d="M19 9l-7 7-7-7" />
@@ -162,11 +169,11 @@ function SubjectPanel({
       </button>
 
       {open && (
-        <div className="px-4 pb-5 md:px-6 md:pb-6">
-          <div className="mb-4 h-px bg-gradient-to-r from-transparent via-white/12 to-transparent" />
+        <div className="px-5 pb-6 md:px-7 md:pb-7">
+          <div className="mb-5 h-px bg-claude-border-soft" />
 
           {/* 模拟考试 */}
-          <div className="mb-4">
+          <div className="mb-3.5">
             <ChapterCard
               highlighted
               title={examTitle}
@@ -176,7 +183,7 @@ function SubjectPanel({
             />
           </div>
 
-          <div className="grid gap-4 sm:grid-cols-2">
+          <div className="grid gap-3.5 sm:grid-cols-2">
             {chapters.map((ch, i) => (
               <ChapterCard
                 key={ch.index}
@@ -249,24 +256,48 @@ export function HomePage({ onStartQuiz, onStartReview }: Props) {
 
   return (
     <div className="min-h-screen">
-      <div className="mx-auto max-w-4xl p-4 md:p-8">
+      <div className="mx-auto max-w-4xl px-5 py-8 md:px-8 md:py-12">
         {/* 顶部 Hero */}
-        <header className="relative mb-10 mt-6 border-b border-slate-200 pb-8 md:mt-10">
-          <div className="relative">
-            <p className="mono-label mb-3 mt-1">⌬ TestMe</p>
-            <h1 className="mb-3 text-4xl font-bold tracking-tight text-slate-900 md:text-5xl">
-              TestMe
-            </h1>
-            <p className="text-lg text-star-500">选择科目，逐题自测，自动评分</p>
+        <header className="relative mb-12 mt-4 border-b border-claude-border-soft pb-10 md:mt-8">
+          <div className="mb-5 flex items-center gap-2.5">
+            <svg
+              className="h-5 w-5 text-claude-terracotta"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="1.8"
+              strokeLinecap="round"
+              aria-hidden="true"
+            >
+              <path d="M12 5.5v13M5.5 12h13M7.2 7.2l9.6 9.6M16.8 7.2l-9.6 9.6" />
+              <g fill="currentColor" stroke="none">
+                <circle cx="12" cy="3.5" r="1.6" />
+                <circle cx="12" cy="20.5" r="1.6" />
+                <circle cx="3.5" cy="12" r="1.6" />
+                <circle cx="20.5" cy="12" r="1.6" />
+                <circle cx="6" cy="6" r="1.6" />
+                <circle cx="18" cy="18" r="1.6" />
+                <circle cx="18" cy="6" r="1.6" />
+                <circle cx="6" cy="18" r="1.6" />
+                <circle cx="12" cy="12" r="1.2" />
+              </g>
+            </svg>
+            <span className="text-sm font-medium tracking-wide text-claude-muted">TestMe</span>
           </div>
+          <h1 className="mb-4 text-5xl font-medium tracking-[-0.02em] text-claude-ink md:text-7xl">
+            TestMe
+          </h1>
+          <p className="max-w-xl text-lg leading-relaxed text-claude-muted">
+            航空课程题库，选择科目，逐题自测，自动评分。
+          </p>
         </header>
 
         {/* 考试栏 */}
         <section>
-          <div className="mb-5 flex items-center gap-3">
-            <span className="mono-label">// 考试栏</span>
-            <div className="h-px flex-1 bg-gradient-to-r from-slate-200 to-transparent" />
-            <span className="rounded-full border border-slate-200 bg-slate-100 px-2.5 py-0.5 text-xs font-medium text-slate-600">
+          <div className="mb-6 flex items-center gap-3">
+            <h2 className="text-base font-medium text-claude-ink">考试栏</h2>
+            <div className="h-px flex-1 bg-claude-border-soft" />
+            <span className="rounded-full border border-claude-border bg-claude-surface px-2.5 py-0.5 text-xs text-claude-muted">
               3 门科目
             </span>
           </div>
@@ -325,10 +356,9 @@ export function HomePage({ onStartQuiz, onStartReview }: Props) {
         </section>
 
         {/* 底部 */}
-        <footer className="mb-8 mt-14 text-center">
-          <p className="mb-2 font-mono text-[10px] tracking-[0.5em] text-slate-600">· ✦ ⌬ ✦ ·</p>
-          <p className="text-xs text-slate-600">
-            数据存储在浏览器本地，不会上传到任何服务器
+        <footer className="mb-8 mt-16 border-t border-claude-border-soft pt-6 text-center">
+          <p className="text-xs text-claude-faint">
+            数据保存在浏览器本地，不会上传到服务器
           </p>
         </footer>
       </div>

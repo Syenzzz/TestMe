@@ -92,7 +92,7 @@ export function QuizPage({ questions, onFinish, isReviewMode = false, reviewItem
     <div className="flex min-h-screen">
       {/* 桌面端可折叠侧边栏 */}
       <aside
-        className={`glass sticky top-0 hidden h-screen flex-shrink-0 overflow-hidden border-y-0 border-l-0 transition-all duration-300 md:block ${
+        className={`glass sticky top-0 hidden h-screen flex-shrink-0 overflow-hidden rounded-none border-y-0 border-l-0 transition-all duration-300 md:block ${
           sidebarOpen ? 'w-60' : 'w-12'
         }`}
       >
@@ -102,15 +102,15 @@ export function QuizPage({ questions, onFinish, isReviewMode = false, reviewItem
               <span className="mono-label" style={{ letterSpacing: '0.18em' }}>答题卡</span>
               <button
                 onClick={() => setSidebarOpen(false)}
-                className="flex h-6 w-6 items-center justify-center rounded-lg text-slate-600 transition-colors hover:bg-slate-100 hover:text-slate-900"
+                className="flex h-6 w-6 items-center justify-center rounded-lg text-claude-muted transition-colors hover:bg-claude-canvas hover:text-claude-ink"
               >
                 ◀
               </button>
             </div>
             <div className="mb-3 flex items-center gap-3">
-              <div className="h-1 flex-1 overflow-hidden rounded-full bg-slate-100">
+              <div className="h-1 flex-1 overflow-hidden rounded-full bg-claude-sand">
                 <div
-                  className="h-full rounded-full bg-emerald-600 transition-all duration-500"
+                  className="h-full rounded-full bg-claude-terracotta transition-all duration-500"
                   style={{ width: `${pct}%` }}
                 />
               </div>
@@ -124,12 +124,12 @@ export function QuizPage({ questions, onFinish, isReviewMode = false, reviewItem
                     <button
                       key={q.id}
                       onClick={() => setCurrentIndex(i)}
-                      className={`h-7 w-7 flex-shrink-0 rounded-lg font-mono text-xs font-semibold transition-all ${
+                      className={`h-7 w-7 flex-shrink-0 rounded-lg text-xs font-medium tabular-nums transition-all ${
                         isCurrent
-                          ? 'scale-110 border border-emerald-600 bg-emerald-700 text-white'
+                          ? 'scale-110 border border-claude-terracotta bg-claude-terracotta text-white'
                           : answered
                             ? 'border border-emerald-300 bg-emerald-50 text-emerald-800 hover:bg-emerald-100'
-                            : 'border border-slate-200 bg-slate-100 text-slate-600 hover:bg-slate-100 hover:text-slate-600'
+                            : 'border border-claude-border bg-claude-canvas text-claude-muted hover:bg-claude-sand'
                       }`}
                     >
                       {i + 1}
@@ -138,28 +138,28 @@ export function QuizPage({ questions, onFinish, isReviewMode = false, reviewItem
                 })}
               </div>
             </div>
-            <div className="mt-3 flex gap-4 border-t border-slate-200 pt-2 font-mono text-[10px] text-slate-600">
+            <div className="mt-3 flex gap-4 border-t border-claude-border-soft pt-2 text-[10px] text-claude-faint">
               <span className="flex items-center gap-1"><span className="h-2 w-2 rounded-sm bg-emerald-500" /> 已答</span>
-              <span className="flex items-center gap-1"><span className="h-2 w-2 rounded-sm bg-slate-100" /> 未答</span>
+              <span className="flex items-center gap-1"><span className="h-2 w-2 rounded-sm bg-claude-sand" /> 未答</span>
             </div>
           </div>
         ) : (
           <div className="flex flex-col items-center gap-3 p-2 pt-4">
             <button
               onClick={() => setSidebarOpen(true)}
-              className="flex h-7 w-7 items-center justify-center rounded-lg text-slate-600 transition-colors hover:bg-slate-100 hover:text-slate-900"
+              className="flex h-7 w-7 items-center justify-center rounded-lg text-claude-muted transition-colors hover:bg-claude-canvas hover:text-claude-ink"
               title="展开答题卡"
             >
               ▶
             </button>
             <div className="flex flex-col items-center gap-1.5">
-              <div className="relative h-20 w-8 overflow-hidden rounded-full bg-slate-100">
+              <div className="relative h-20 w-8 overflow-hidden rounded-full bg-claude-sand">
                 <div
-                  className="absolute inset-x-0 bottom-0 rounded-full bg-gradient-to-t from-white/70 to-white transition-all duration-500"
+                  className="absolute inset-x-0 bottom-0 rounded-full bg-claude-terracotta transition-all duration-500"
                   style={{ height: `${pct}%` }}
                 />
               </div>
-              <span className="font-mono text-[10px] text-slate-600">{answeredCount}</span>
+              <span className="text-[10px] tabular-nums text-claude-faint">{answeredCount}</span>
             </div>
           </div>
         )}
@@ -170,17 +170,17 @@ export function QuizPage({ questions, onFinish, isReviewMode = false, reviewItem
         {/* 顶部信息栏 */}
         <div className="mb-4 flex items-center justify-between">
           <div className="flex items-center gap-4">
-            <span className="font-mono text-sm font-semibold text-slate-600">
-              <span className="text-slate-900">{String(currentIndex + 1).padStart(2, '0')}</span>
-              <span className="text-slate-600"> / {totalCount}</span>
+            <span className="text-sm font-medium tabular-nums text-claude-faint">
+              <span className="text-claude-ink">{String(currentIndex + 1).padStart(2, '0')}</span>
+              <span className="text-claude-faint"> / {totalCount}</span>
             </span>
-            <span className="hidden text-xs text-slate-600 sm:inline">已答 {answeredCount} 题</span>
+            <span className="hidden text-xs text-claude-faint sm:inline">已答 {answeredCount} 题</span>
           </div>
           <button
             onClick={() => setShowMobileSheet(true)}
-            className="glass-soft rounded-lg px-3 py-1.5 font-mono text-xs text-slate-600 transition-colors hover:bg-slate-100 md:hidden"
+            className="glass-soft rounded-lg px-3 py-1.5 text-xs tabular-nums text-claude-muted transition-colors hover:bg-claude-canvas md:hidden"
           >
-            ⌬ {answeredCount}/{totalCount}
+            答题卡 {answeredCount}/{totalCount}
           </button>
         </div>
 
@@ -188,10 +188,10 @@ export function QuizPage({ questions, onFinish, isReviewMode = false, reviewItem
 
         {currentReviewItem && (
           <div className="mb-3 mt-4 flex items-center gap-2">
-            <span className="rounded-full border border-slate-200 bg-slate-100 px-2.5 py-1 text-xs font-semibold text-slate-600">
+            <span className="rounded-full border border-claude-terracotta/20 bg-claude-terracotta-soft px-2.5 py-1 text-xs font-medium text-claude-terracotta">
               ↻ 第 {currentReviewItem.repetitions + 1} 轮复习
             </span>
-            <span className="text-xs text-slate-600">
+            <span className="text-xs text-claude-faint">
               上次复习: {currentReviewItem.lastReview}
             </span>
           </div>
@@ -199,7 +199,7 @@ export function QuizPage({ questions, onFinish, isReviewMode = false, reviewItem
 
         {/* 题目卡片 */}
         <div className="mt-5 flex-1">
-          <div className="glass animate-rise-in rounded-lg p-6 transition-all md:p-8" key={currentQuestion.id}>
+          <div className="glass animate-rise-in rounded-2xl p-6 transition-all md:p-8" key={currentQuestion.id}>
             <QuestionCard
               question={currentQuestion}
               userAnswer={userAnswers[currentQuestion.id] || ''}
@@ -213,10 +213,10 @@ export function QuizPage({ questions, onFinish, isReviewMode = false, reviewItem
           <button
             onClick={goPrev}
             disabled={isFirst}
-            className={`glass-soft rounded-lg px-5 py-3 text-sm font-medium transition-all ${
+            className={`rounded-xl border px-5 py-3 text-sm font-medium transition-all ${
               isFirst
-                ? 'cursor-not-allowed text-slate-600'
-                : 'text-slate-600 hover:bg-slate-100'
+                ? 'cursor-not-allowed border-transparent text-claude-faint/50'
+                : 'border-claude-border bg-claude-surface text-claude-body hover:bg-claude-canvas'
             }`}
           >
             ← 上一题
@@ -225,14 +225,14 @@ export function QuizPage({ questions, onFinish, isReviewMode = false, reviewItem
           {isLast ? (
             <button
               onClick={isReviewMode ? handleReviewSubmit : goNext}
-              className="rounded-lg bg-emerald-700 px-8 py-3 text-sm font-semibold text-white transition-all hover:bg-emerald-800 hover:shadow-md"
+              className="rounded-xl bg-claude-terracotta px-8 py-3 text-sm font-semibold text-white transition-all hover:bg-claude-terracotta-dark hover:shadow-md"
             >
               {isReviewMode ? '完成复习' : '提交答卷'}
             </button>
           ) : (
             <button
               onClick={goNext}
-              className="rounded-lg bg-emerald-700 px-6 py-3 text-sm font-semibold text-white transition-all hover:bg-emerald-800 hover:shadow-md"
+              className="rounded-xl bg-claude-terracotta px-6 py-3 text-sm font-semibold text-white transition-all hover:bg-claude-terracotta-dark hover:shadow-md"
             >
               下一题 →
             </button>
@@ -243,12 +243,12 @@ export function QuizPage({ questions, onFinish, isReviewMode = false, reviewItem
       {/* 移动端答题卡 */}
       {showMobileSheet && (
         <div className="fixed inset-0 z-50 md:hidden">
-          <div className="absolute inset-0 bg-black/70 backdrop-blur-sm" onClick={() => setShowMobileSheet(false)} />
+          <div className="absolute inset-0 bg-claude-ink/30 backdrop-blur-sm" onClick={() => setShowMobileSheet(false)} />
           <div className="glass absolute inset-x-0 bottom-0 max-h-[70vh] overflow-y-auto rounded-t-3xl border-b-0 p-6">
-            <div className="mx-auto mb-4 h-1 w-10 rounded-full bg-slate-100" />
+            <div className="mx-auto mb-4 h-1 w-10 rounded-full bg-claude-sand" />
             <div className="mb-4 flex items-center justify-between">
-              <span className="text-lg font-bold text-slate-600">{isReviewMode ? '复习进度' : '答题卡'}</span>
-              <span className="font-mono text-sm text-slate-600">{answeredCount}/{totalCount} 已答</span>
+              <span className="text-lg font-medium text-claude-ink">{isReviewMode ? '复习进度' : '答题卡'}</span>
+              <span className="text-sm tabular-nums text-claude-faint">{answeredCount}/{totalCount} 已答</span>
             </div>
             <div className="flex flex-wrap gap-2">
               {questions.map((q, i) => {
@@ -258,12 +258,12 @@ export function QuizPage({ questions, onFinish, isReviewMode = false, reviewItem
                   <button
                     key={q.id}
                     onClick={() => { setCurrentIndex(i); setShowMobileSheet(false) }}
-                    className={`h-10 w-10 rounded-lg font-mono text-xs font-semibold transition-all ${
+                    className={`h-10 w-10 rounded-lg text-xs font-medium tabular-nums transition-all ${
                       isCurrent
-                        ? 'border border-emerald-600 bg-emerald-700 text-white'
+                        ? 'border border-claude-terracotta bg-claude-terracotta text-white'
                         : answered
                           ? 'border border-emerald-300 bg-emerald-50 text-emerald-800'
-                          : 'border border-slate-200 bg-slate-100 text-slate-600'
+                          : 'border border-claude-border bg-claude-canvas text-claude-muted'
                     }`}
                   >
                     {i + 1}
@@ -278,25 +278,25 @@ export function QuizPage({ questions, onFinish, isReviewMode = false, reviewItem
       {/* 提交确认 */}
       {showSubmitConfirm && (
         <div className="fixed inset-0 z-50 flex items-center justify-center p-4">
-          <div className="absolute inset-0 bg-black/70 backdrop-blur-sm" onClick={() => setShowSubmitConfirm(false)} />
-          <div className="glass relative w-full max-w-sm rounded-lg p-8 text-center">
-            <div className="mx-auto mb-4 flex h-14 w-14 items-center justify-center rounded-lg border border-slate-200 bg-slate-100 font-mono text-2xl font-bold text-slate-600">
+          <div className="absolute inset-0 bg-claude-ink/30 backdrop-blur-sm" onClick={() => setShowSubmitConfirm(false)} />
+          <div className="glass relative w-full max-w-sm rounded-2xl p-8 text-center">
+            <div className="mx-auto mb-4 flex h-14 w-14 items-center justify-center rounded-full border border-claude-terracotta/20 bg-claude-terracotta-soft font-serif text-2xl font-medium text-claude-terracotta">
               !
             </div>
-            <h3 className="mb-2 text-lg font-bold text-slate-600">确认提交</h3>
-            <p className="mb-6 text-sm text-slate-600">
-              还有 <span className="font-bold text-slate-900">{unanswered}</span> 题未作答<br />提交后将计为 0 分
+            <h3 className="mb-2 text-xl font-medium text-claude-ink">确认提交</h3>
+            <p className="mb-6 text-sm text-claude-muted">
+              还有 <span className="font-semibold text-claude-ink">{unanswered}</span> 题未作答<br />提交后将计为 0 分
             </p>
             <div className="flex gap-3">
               <button
                 onClick={() => setShowSubmitConfirm(false)}
-                className="flex-1 rounded-lg border border-slate-200 bg-slate-100 py-2.5 text-sm text-slate-600 transition-colors hover:bg-slate-100"
+                className="flex-1 rounded-xl border border-claude-border bg-claude-surface py-2.5 text-sm font-medium text-claude-body transition-colors hover:bg-claude-canvas"
               >
                 继续答题
               </button>
               <button
                 onClick={handleSubmit}
-                className="flex-1 rounded-lg bg-emerald-700 py-2.5 text-sm font-semibold text-white transition-all hover:bg-emerald-800"
+                className="flex-1 rounded-xl bg-claude-terracotta py-2.5 text-sm font-semibold text-white transition-all hover:bg-claude-terracotta-dark"
               >
                 确定提交
               </button>

@@ -1,32 +1,162 @@
 @import "tailwindcss";
 
 @theme {
-  --color-star-100: #172923;
-  --color-star-300: #51645c;
-  --color-star-500: #62736b;
+  /* Claude 暖色纸感色板 */
+  --color-claude-canvas: #f5f4ed;
+  --color-claude-surface: #faf9f5;
+  --color-claude-raised: #fffefa;
+  --color-claude-sand: #e8e6dc;
+  --color-claude-border: #e8e6dc;
+  --color-claude-border-soft: #f0eee6;
+  --color-claude-ink: #141413;
+  --color-claude-body: #3d3d3a;
+  --color-claude-muted: #5e5d59;
+  --color-claude-faint: #87867f;
+  --color-claude-terracotta: #c96442;
+  --color-claude-terracotta-dark: #ad5234;
+  --color-claude-terracotta-soft: #f7ece6;
+  --color-claude-coral: #d97757;
+  --color-claude-crimson: #b53333;
+  --color-claude-crimson-soft: #f9eeee;
+  --color-claude-sage: #5f7355;
+  --color-claude-sage-soft: #eef1e9;
+
+  /* 把项目中大量使用的 slate 映射为暖中性色 */
+  --color-slate-50: #faf9f5;
+  --color-slate-100: #f0eee6;
+  --color-slate-200: #e8e6dc;
+  --color-slate-300: #dedcd2;
+  --color-slate-400: #b0aea5;
+  --color-slate-500: #87867f;
+  --color-slate-600: #5e5d59;
+  --color-slate-700: #4d4c48;
+  --color-slate-800: #30302e;
+  --color-slate-900: #141413;
+
+  /* emerald 保留为“正确/已答”的鼠尾草绿 */
+  --color-emerald-50: #eef1e9;
+  --color-emerald-100: #e4e9dd;
+  --color-emerald-200: #d3dcc9;
+  --color-emerald-300: #b9c7aa;
+  --color-emerald-400: #93a681;
+  --color-emerald-500: #748a62;
+  --color-emerald-600: #5f7355;
+  --color-emerald-700: #4c5d43;
+  --color-emerald-800: #3d4b36;
+  --color-emerald-900: #333f2e;
+
+  --color-star-100: #141413;
+  --color-star-300: #5e5d59;
+  --color-star-500: #87867f;
+
+  --color-red-50: #f9eeee;
+  --color-red-200: #eccfcf;
+  --color-red-700: #b53333;
+
+  --color-gray-100: #f0eee6;
+  --color-gray-200: #e8e6dc;
+  --color-gray-400: #b0aea5;
+  --color-gray-500: #87867f;
+  --color-gray-600: #5e5d59;
+  --color-gray-800: #30302e;
+
+  --font-sans: "Anthropic Serif", "Copernicus", "Tiempos Text", "Source Serif 4 Variable",
+    "Source Serif 4", "Noto Serif SC Variable", "Noto Serif SC", "Songti SC", "STSong",
+    "SimSun", Georgia, serif;
+  --font-serif: "Anthropic Serif", "Copernicus", "Tiempos Text", "Source Serif 4 Variable",
+    "Source Serif 4", "Noto Serif SC Variable", "Noto Serif SC", "Songti SC", "STSong",
+    "SimSun", Georgia, serif;
+  --font-mono: "Anthropic Serif", "Copernicus", "Tiempos Text", "Source Serif 4 Variable",
+    "Source Serif 4", "Noto Serif SC Variable", "Noto Serif SC", "Songti SC", "STSong",
+    "SimSun", Georgia, serif;
 }
 
-:root { color-scheme: light; }
-html { background: #f8faf9; }
+:root {
+  color-scheme: light;
+}
+
+html {
+  background: #f5f4ed;
+}
+
 body {
   margin: 0;
-  background: #f8faf9;
-  color: #172923;
-  font-family: ui-sans-serif, system-ui, -apple-system, "Segoe UI", "PingFang SC", "Microsoft YaHei", sans-serif;
+  background: #f5f4ed;
+  color: #141413;
+  font-family: var(--font-serif);
+  font-size: 16px;
+  line-height: 1.6;
+  font-optical-sizing: auto;
   -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
 }
-::selection { background: #b7ead3; color: #123a2b; }
-*:focus-visible { outline: 2px solid #059669; outline-offset: 3px; }
+
+h1,
+h2,
+h3 {
+  font-family: var(--font-serif);
+  font-weight: 500;
+  letter-spacing: -0.01em;
+}
+
+::selection {
+  background: #e6d2c4;
+  color: #141413;
+}
+
+*:focus-visible {
+  outline: 2px solid #3898ec;
+  outline-offset: 3px;
+}
+
 @layer components {
-  .glass, .glass-soft {
-    background: #fff;
-    border: 1px solid #dfe8e3;
-    box-shadow: 0 1px 2px rgb(20 45 32 / 4%);
+  .glass,
+  .glass-soft {
+    background: #faf9f5;
+    border: 1px solid #e8e6dc;
+    box-shadow: 0 1px 2px rgb(20 20 19 / 4%);
   }
-  .glass-interactive { transition: border-color .2s, background-color .2s; }
-  .glass-interactive:hover { border-color: #8ac9ac; background: #f4fbf7; }
-  .mono-label { font-size: 12px; font-weight: 600; color: #527066; }
+  .glass {
+    border-radius: 16px;
+  }
+  .glass-soft {
+    border-radius: 12px;
+  }
+  .glass-interactive {
+    transition:
+      border-color 0.2s,
+      background-color 0.2s,
+      box-shadow 0.2s;
+  }
+  .glass-interactive:hover {
+    border-color: #d1cfc5;
+    background: #fffefa;
+    box-shadow: 0 4px 24px rgb(20 20 19 / 5%);
+  }
+  .mono-label {
+    font-family: var(--font-serif);
+    font-size: 12px;
+    font-weight: 500;
+    letter-spacing: 0.08em;
+    color: #87867f;
+  }
 }
-@keyframes rise-in { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } }
-.animate-rise-in { animation: rise-in .35s ease both; }
-@media (prefers-reduced-motion: reduce) { .animate-rise-in { animation: none; } }
+
+@keyframes rise-in {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+.animate-rise-in {
+  animation: rise-in 0.35s ease both;
+}
+@media (prefers-reduced-motion: reduce) {
+  .animate-rise-in {
+    animation: none;
+  }
+}

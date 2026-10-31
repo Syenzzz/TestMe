@@ -53,75 +53,69 @@ export function ResultPage({ results, totalScore, maxScore, questions, examTitle
     <div className="min-h-screen p-4">
       <div className="mx-auto max-w-2xl">
         {/* 总分卡片 */}
-        <div className="glass animate-rise-in relative mb-6 mt-6 overflow-hidden rounded-lg p-8 text-center">
+        <div className="glass animate-rise-in relative mb-6 mt-6 overflow-hidden rounded-2xl p-10 text-center">
           {examTitle && (
             <p className="mono-label mb-2">{examTitle}</p>
           )}
-          <p className="mb-3 text-sm text-slate-600">你的得分</p>
-          <div className="mb-2 text-6xl font-bold tracking-tight text-slate-900">
+          <p className="mb-3 text-sm text-claude-faint">你的得分</p>
+          <div className="mb-2 font-serif text-7xl font-medium tracking-tight text-claude-ink">
             {displayScore}
-            <span className="ml-1 text-xl font-normal text-slate-600">/ {displayMax}</span>
+            <span className="ml-2 text-xl font-normal text-claude-faint">/ {displayMax}</span>
           </div>
-          <p className="mb-5 text-sm text-slate-600">
+          <p className="mb-6 text-sm text-claude-muted">
             {verdict} · 正确率 {pct}%
           </p>
 
           {/* 统计 */}
-          <div className="flex items-center justify-center gap-4">
-            <div className="flex flex-col items-center">
-              <div className="flex h-16 w-16 items-center justify-center rounded-lg border border-slate-200 bg-slate-100">
-                <span className="font-mono text-2xl font-bold text-slate-900">{correctCount}</span>
-              </div>
-              <span className="mt-1.5 text-xs text-slate-600">正确</span>
+          <div className={`mx-auto grid max-w-sm gap-3 ${partialCount > 0 ? 'grid-cols-3' : 'grid-cols-2'}`}>
+            <div className="rounded-xl border border-claude-border bg-claude-canvas px-3 py-3">
+              <div className="font-serif text-2xl font-medium text-emerald-700">{correctCount}</div>
+              <span className="mt-0.5 block text-xs text-claude-faint">正确</span>
             </div>
             {partialCount > 0 && (
-              <div className="flex flex-col items-center">
-                <div className="flex h-16 w-16 items-center justify-center rounded-lg border border-slate-200 bg-slate-100">
-                  <span className="font-mono text-2xl font-bold text-slate-600">{partialCount}</span>
-                </div>
-                <span className="mt-1.5 text-xs text-slate-600">部分</span>
+              <div className="rounded-xl border border-claude-border bg-claude-canvas px-3 py-3">
+                <div className="font-serif text-2xl font-medium text-claude-terracotta">{partialCount}</div>
+                <span className="mt-0.5 block text-xs text-claude-faint">部分</span>
               </div>
             )}
-            <div className="flex flex-col items-center">
-              <div className="flex h-16 w-16 items-center justify-center rounded-lg border border-slate-200 bg-slate-100">
-                <span className="font-mono text-2xl font-bold text-slate-600">{wrongCount}</span>
-              </div>
-              <span className="mt-1.5 text-xs text-slate-600">错误</span>
+            <div className="rounded-xl border border-claude-border bg-claude-canvas px-3 py-3">
+              <div className="font-serif text-2xl font-medium text-claude-crimson">{wrongCount}</div>
+              <span className="mt-0.5 block text-xs text-claude-faint">错误</span>
             </div>
           </div>
         </div>
 
         {/* 逐题详情 */}
-        <div className="glass animate-rise-in mb-6 overflow-hidden rounded-lg" style={{ animationDelay: '80ms' }}>
-          <h3 className="border-b border-slate-200 px-6 py-4 font-bold text-slate-600">答题详情</h3>
-          <div className="max-h-96 divide-y divide-white/[0.06] overflow-y-auto">
+        <div className="glass animate-rise-in mb-6 overflow-hidden rounded-2xl" style={{ animationDelay: '80ms' }}>
+          <h3 className="border-b border-claude-border-soft px-6 py-4 text-base font-medium text-claude-ink">答题详情</h3>
+          <div className="max-h-96 divide-y divide-claude-border-soft overflow-y-auto">
             {results.map((r, i) => {
               const q = getQuestion(r.questionId)
               return (
               <div
                 key={r.questionId}
-                className="cursor-pointer px-6 py-3 transition-colors hover:bg-slate-100"
+                className="cursor-pointer px-6 py-3 transition-colors hover:bg-claude-canvas"
                 onClick={() => setExpandedId(expandedId === r.questionId ? null : r.questionId)}
               >
                 <div className="flex items-center gap-3">
                   <span
-                    className={`flex h-7 w-7 flex-shrink-0 items-center justify-center rounded-lg border font-mono text-sm font-bold ${
+                    className={`flex h-7 w-7 flex-shrink-0 items-center justify-center rounded-lg border text-sm font-medium ${
                       r.isCorrect
-                        ? 'border-emerald-200 bg-emerald-50 text-emerald-800'
+                        ? 'border-emerald-200 bg-emerald-50 text-emerald-700'
                         : r.isPartial
-                          ? 'border-slate-200 bg-slate-100 text-slate-600'
+                          ? 'border-claude-terracotta/20 bg-claude-terracotta-soft text-claude-terracotta'
                           : 'border-red-200 bg-red-50 text-red-700'
                     }`}
                   >
                     {r.isCorrect ? '✓' : r.isPartial ? '△' : '✗'}
                   </span>
-                  <span className="flex-1 truncate text-sm text-slate-600">
-                    <strong className="mr-1 font-mono text-slate-600">{i + 1}.</strong>
+                  <span className="flex-1 truncate text-sm text-claude-body">
+                    <strong className="mr-1 tabular-nums text-claude-faint">{i + 1}.</strong>
                     {q?.stem || ''}
                   </span>
                   <span
-                    className={`flex-shrink-0 font-mono text-sm font-bold ${
-                      r.isCorrect ? 'text-slate-900' : r.isPartial ? 'text-slate-600' : 'text-slate-600'
+                    className={`flex-shrink-0 text-sm font-semibold tabular-nums ${
+                      r.isCorrect ? 'text-claude-ink' : r.isPartial ? 'text-claude-terracotta' : 'text-claude-crimson'
                     }`}
                   >
                     {Math.round(r.earnedScore * 100) / 100} 分
@@ -129,11 +123,11 @@ export function ResultPage({ results, totalScore, maxScore, questions, examTitle
                 </div>
 
                 {expandedId === r.questionId && (
-                  <div className="glass-soft ml-10 mt-2 space-y-1.5 rounded-lg p-3 text-xs">
+                  <div className="ml-10 mt-2 space-y-1.5 rounded-xl border border-claude-border-soft bg-claude-canvas p-3 text-xs">
                     {q && q.options.length > 0 && (
                       <div className="flex gap-2">
-                        <span className="flex-shrink-0 text-slate-600">选项：</span>
-                        <div className="text-slate-600">
+                        <span className="flex-shrink-0 text-claude-faint">选项：</span>
+                        <div className="text-claude-body">
                           {q.options.map((opt, j) => (
                             <div key={j}>
                               <span className="font-medium">{LABELS[j] || `${j + 1}`}.</span> {opt}
@@ -143,14 +137,14 @@ export function ResultPage({ results, totalScore, maxScore, questions, examTitle
                       </div>
                     )}
                     <div className="flex gap-2">
-                      <span className="flex-shrink-0 text-slate-600">你的答案：</span>
-                      <span className={`font-medium ${r.isCorrect ? 'text-slate-900' : 'text-slate-600'}`}>
+                      <span className="flex-shrink-0 text-claude-faint">你的答案：</span>
+                      <span className={`font-medium ${r.isCorrect ? 'text-claude-ink' : 'text-claude-body'}`}>
                         {r.userAnswer || '(未作答)'}
                       </span>
                     </div>
                     <div className="flex gap-2">
-                      <span className="flex-shrink-0 text-slate-600">标准答案：</span>
-                      <span className="font-medium text-slate-600">{r.correctAnswer}</span>
+                      <span className="flex-shrink-0 text-claude-faint">标准答案：</span>
+                      <span className="font-medium text-claude-body">{r.correctAnswer}</span>
                     </div>
                   </div>
                 )}
@@ -164,7 +158,7 @@ export function ResultPage({ results, totalScore, maxScore, questions, examTitle
           {!isReviewMode && wrongCount > 0 && (
             <button
               onClick={onGoHome}
-              className="animate-rise-in rounded-lg border border-slate-200 bg-slate-100 py-3.5 text-sm font-semibold text-slate-600 transition-all hover:bg-slate-100"
+              className="animate-rise-in rounded-xl border border-claude-border bg-claude-canvas py-3.5 text-sm font-medium text-claude-body transition-all hover:bg-claude-sand"
               style={{ animationDelay: '160ms' }}
             >
               ↻ {wrongCount} 道错题已加入复习计划，返回首页开始复习
@@ -174,14 +168,14 @@ export function ResultPage({ results, totalScore, maxScore, questions, examTitle
             {!isReviewMode && (
               <button
                 onClick={onRestart}
-                className="flex-1 rounded-lg bg-emerald-700 py-3.5 font-semibold text-white transition-all hover:bg-emerald-800"
+                className="flex-1 rounded-xl bg-claude-terracotta py-3.5 font-semibold text-white transition-all hover:bg-claude-terracotta-dark"
               >
                 重新作答
               </button>
             )}
             <button
               onClick={onGoHome}
-              className="glass-soft rounded-lg px-6 py-3.5 font-medium text-slate-600 transition-all hover:bg-slate-100"
+              className="rounded-xl border border-claude-border bg-claude-surface px-6 py-3.5 font-medium text-claude-body transition-all hover:bg-claude-canvas"
             >
               返回首页
             </button>
