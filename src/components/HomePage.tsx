@@ -4,12 +4,9 @@ import avionicsExam from '../data/avionics-exam.json'
 import structureExam from '../data/aircraft-structure-exam.json'
 import engineExam from '../data/engine-exam.json'
 import { shuffle } from '../utils/shuffle'
-import { ReviewDashboard } from './ReviewDashboard'
-import { getDueReviewItems } from '../utils/spacedRepetition'
 
 interface Props {
   onStartQuiz: (questions: Question[], title: string) => void
-  onStartReview: (questions: Question[], title: string) => void
 }
 
 interface HomeworkChapter {
@@ -200,7 +197,7 @@ function SubjectPanel({
   )
 }
 
-export function HomePage({ onStartQuiz, onStartReview }: Props) {
+export function HomePage({ onStartQuiz }: Props) {
   const [pastOpen, setPastOpen] = useState(false)
   const [avionicsOpen, setAvionicsOpen] = useState(false)
   const [structureOpen, setStructureOpen] = useState(false)
@@ -241,21 +238,6 @@ export function HomePage({ onStartQuiz, onStartReview }: Props) {
     onStartQuiz(questions, `航空动力装置结构与系统 — 模拟考试`)
   }
 
-  const handleStartReview = () => {
-    const dueItems = getDueReviewItems()
-    const reviewQuestions = dueItems
-      .map(item =>
-        allQuestions.find(q => q.id === item.questionId) ||
-        allStructureQuestions.find(q => q.id === item.questionId) ||
-        allEngineQuestions.find(q => q.id === item.questionId)
-      )
-      .filter((q): q is Question => q !== undefined)
-
-    if (reviewQuestions.length > 0) {
-      onStartReview(reviewQuestions, '间隔复习')
-    }
-  }
-
   return (
     <div className="min-h-screen">
       <div className="mx-auto max-w-4xl px-5 py-8 md:px-8 md:py-12">
@@ -293,8 +275,6 @@ export function HomePage({ onStartQuiz, onStartReview }: Props) {
             航空课程题库，选择科目，逐题自测，自动评分。
           </p>
         </header>
-
-        <ReviewDashboard onStartReview={handleStartReview} />
 
         {/* 现有课程 */}
         <section>

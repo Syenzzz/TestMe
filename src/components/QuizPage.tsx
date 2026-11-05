@@ -1,5 +1,5 @@
 import { useState, useCallback, useRef } from 'react'
-import type { Question, GradingResult, ReviewItem } from '../types'
+import type { Question, GradingResult } from '../types'
 import { QuestionCard } from './QuestionCard'
 import { ProgressBar } from './ProgressBar'
 import { useQuiz } from '../hooks/useQuiz'
@@ -9,12 +9,9 @@ import { clearProgress } from '../utils/storage'
 interface Props {
   questions: Question[]
   onFinish: (results: GradingResult[], totalScore: number, maxScore: number) => void
-  isReviewMode?: boolean
-  reviewItems?: ReviewItem[]
-  onReviewComplete?: (gradingResults: GradingResult[], totalScore: number, maxScore: number, reviewQualities: { questionId: string; quality: number }[]) => void
 }
 
-export function QuizPage({ questions, onFinish, isReviewMode = false, reviewItems = [], onReviewComplete }: Props) {
+export function QuizPage({ questions, onFinish }: Props) {
   const {
     userAnswers,
     currentIndex,
@@ -63,17 +60,6 @@ export function QuizPage({ questions, onFinish, isReviewMode = false, reviewItem
     onFinish(results, totalScore, maxScore)
   }, [questions, userAnswers, onFinish])
 
-  const handleReviewSubmit = useCallback(() => {
-    if (!onReviewComplete) return
-    const { results, totalScore, maxScore } = gradeAll(questions, userAnswers)
-    const qualities = questions.map(q => ({
-      questionId: q.id,
-      quality: 3,
-    }))
-    clearProgress()
-    onReviewComplete(results, totalScore, maxScore, qualities)
-  }, [questions, userAnswers, onReviewComplete])
-
   if (!currentQuestion) {
     return (
       <div className="flex min-h-screen items-center justify-center">
@@ -84,9 +70,6 @@ export function QuizPage({ questions, onFinish, isReviewMode = false, reviewItem
 
   const unanswered = questions.filter(q => !hasAnswer(q.id)).length
   const pct = totalCount > 0 ? Math.round((answeredCount / totalCount) * 100) : 0
-  const currentReviewItem = isReviewMode
-    ? reviewItems.find(r => r.questionId === currentQuestion.id)
-    : null
 
   return (
     <div className="flex min-h-screen">
@@ -186,17 +169,6 @@ export function QuizPage({ questions, onFinish, isReviewMode = false, reviewItem
 
         <ProgressBar current={currentIndex} total={totalCount} />
 
-        {currentReviewItem && (
-          <div className="mb-3 mt-4 flex items-center gap-2">
-            <span className="rounded-full border border-claude-terracotta/20 bg-claude-terracotta-soft px-2.5 py-1 text-xs font-medium text-claude-terracotta">
-              ↻ 第 {currentReviewItem.repetitions + 1} 轮复习
-            </span>
-            <span className="text-xs text-claude-faint">
-              上次复习: {currentReviewItem.lastReview}
-            </span>
-          </div>
-        )}
-
         {/* 题目卡片 */}
         <div className="mt-5 flex-1">
           <div className="glass animate-rise-in rounded-2xl p-6 transition-all md:p-8" key={currentQuestion.id}>
@@ -224,10 +196,10 @@ export function QuizPage({ questions, onFinish, isReviewMode = false, reviewItem
 
           {isLast ? (
             <button
-              onClick={isReviewMode ? handleReviewSubmit : goNext}
+              onClick={goNext}
               className="rounded-xl bg-claude-terracotta px-8 py-3 text-sm font-semibold text-white transition-all hover:bg-claude-terracotta-dark hover:shadow-md"
             >
-              {isReviewMode ? '完成复习' : '提交答卷'}
+              提交答卷
             </button>
           ) : (
             <button
@@ -247,7 +219,7 @@ export function QuizPage({ questions, onFinish, isReviewMode = false, reviewItem
           <div className="glass absolute inset-x-0 bottom-0 max-h-[70vh] overflow-y-auto rounded-t-3xl border-b-0 p-6">
             <div className="mx-auto mb-4 h-1 w-10 rounded-full bg-claude-sand" />
             <div className="mb-4 flex items-center justify-between">
-              <span className="text-lg font-medium text-claude-ink">{isReviewMode ? '复习进度' : '答题卡'}</span>
+              <span className="text-lg font-medium text-claude-ink">答题卡</span>
               <span className="text-sm tabular-nums text-claude-faint">{answeredCount}/{totalCount} 已答</span>
             </div>
             <div className="flex flex-wrap gap-2">

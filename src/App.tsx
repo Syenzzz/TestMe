@@ -3,8 +3,6 @@ import type { Question, GradingResult, AppPage } from './types'
 import { HomePage } from './components/HomePage'
 import { QuizPage } from './components/QuizPage'
 import { ResultPage } from './components/ResultPage'
-import { getDueReviewItems, recordReview } from './utils/spacedRepetition'
-import type { ReviewItem } from './types'
 
 const PAGE_HISTORY: AppPage[] = ['upload', 'quiz', 'result']
 
@@ -15,8 +13,6 @@ export default function App() {
   const [totalScore, setTotalScore] = useState(0)
   const [maxScore, setMaxScore] = useState(0)
   const [examTitle, setExamTitle] = useState('')
-  const [isReviewMode, setIsReviewMode] = useState(false)
-  const [reviewItems, setReviewItems] = useState<ReviewItem[]>([])
 
   // 跟踪当前页面以便 popstate 时使用
   const pageRef = useRef<AppPage>(page)
@@ -60,28 +56,6 @@ export default function App() {
     navigateTo('quiz')
   }, [navigateTo])
 
-  const handleStartReview = useCallback((q: Question[], title: string) => {
-    const items = getDueReviewItems()
-    const normalized = q.map((item) => ({
-      ...item,
-      score: 0,
-    }))
-    setQuestions(normalized)
-    setExamTitle(title)
-    setIsReviewMode(true)
-    setReviewItems(items)
-    navigateTo('quiz')
-  }, [navigateTo])
-
-  const handleReviewComplete = useCallback((gradingResults: GradingResult[], totalScore: number, maxScore: number, reviewQualities: { questionId: string; quality: number }[]) => {
-    reviewQualities.forEach(r => recordReview(r.questionId, r.quality))
-    setReviewItems([])
-    setResults(gradingResults)
-    setTotalScore(totalScore)
-    setMaxScore(maxScore)
-    navigateTo('result')
-  }, [navigateTo])
-
   const handleFinish = useCallback((r: GradingResult[], ts: number, ms: number) => {
     setResults(r)
     setTotalScore(ts)
@@ -90,28 +64,21 @@ export default function App() {
   }, [navigateTo])
 
   const handleRestart = useCallback(() => {
-    setIsReviewMode(false)
-    setReviewItems([])
     navigateTo('quiz')
   }, [navigateTo])
 
   const handleGoHome = useCallback(() => {
-    setIsReviewMode(false)
-    setReviewItems([])
     navigateTo('upload')
   }, [navigateTo])
 
   return (
     <div className="relative min-h-screen">
       <div className="relative z-10">
-        {page === 'upload' && <HomePage onStartQuiz={handleStartQuiz} onStartReview={handleStartReview} />}
+        {page === 'upload' && <HomePage onStartQuiz={handleStartQuiz} />}
         {page === 'quiz' && (
           <QuizPage
             questions={questions}
             onFinish={handleFinish}
-            isReviewMode={isReviewMode}
-            reviewItems={reviewItems}
-            onReviewComplete={handleReviewComplete}
           />
         )}
         {page === 'result' && (
@@ -121,7 +88,6 @@ export default function App() {
             maxScore={maxScore}
             questions={questions}
             examTitle={examTitle}
-            isReviewMode={isReviewMode}
             onRestart={handleRestart}
             onGoHome={handleGoHome}
           />

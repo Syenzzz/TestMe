@@ -1,7 +1,6 @@
 import { useState, useEffect, useRef } from 'react'
 import type { GradingResult, Question } from '../types'
 import { saveHistory } from '../utils/storage'
-import { enqueueReview } from '../utils/spacedRepetition'
 
 interface Props {
   results: GradingResult[]
@@ -9,14 +8,13 @@ interface Props {
   maxScore: number
   questions: Question[]
   examTitle: string
-  isReviewMode?: boolean
   onRestart: () => void
   onGoHome: () => void
 }
 
 const LABELS = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H']
 
-export function ResultPage({ results, totalScore, maxScore, questions, examTitle, isReviewMode = false, onRestart, onGoHome }: Props) {
+export function ResultPage({ results, totalScore, maxScore, questions, examTitle, onRestart, onGoHome }: Props) {
   const [expandedId, setExpandedId] = useState<string | null>(null)
   const savedRef = useRef(false)
 
@@ -27,7 +25,7 @@ export function ResultPage({ results, totalScore, maxScore, questions, examTitle
   const partialCount = results.filter(r => r.isPartial).length
   const wrongCount = results.length - correctCount - partialCount
 
-  // Side effects: save history + enqueue wrong answers (once)
+  // Side effect: save history (once)
   useEffect(() => {
     if (savedRef.current) return
     savedRef.current = true
@@ -39,10 +37,6 @@ export function ResultPage({ results, totalScore, maxScore, questions, examTitle
       totalCount: results.length,
       results,
     })
-    if (!isReviewMode) {
-      const wrongIds = results.filter(r => !r.isCorrect).map(r => r.questionId)
-      wrongIds.forEach(id => enqueueReview(id))
-    }
   }, []) // eslint-disable-line react-hooks/exhaustive-deps
 
   const getQuestion = (id: string) => questions.find(qq => qq.id === id)
@@ -155,24 +149,13 @@ export function ResultPage({ results, totalScore, maxScore, questions, examTitle
 
         {/* 操作 */}
         <div className="mb-10 flex flex-col gap-3">
-          {!isReviewMode && wrongCount > 0 && (
-            <button
-              onClick={onGoHome}
-              className="animate-rise-in rounded-xl border border-claude-border bg-claude-canvas py-3.5 text-sm font-medium text-claude-body transition-all hover:bg-claude-sand"
-              style={{ animationDelay: '160ms' }}
-            >
-              ↻ {wrongCount} 道错题已加入复习计划，返回首页开始复习
-            </button>
-          )}
           <div className="flex gap-3">
-            {!isReviewMode && (
-              <button
-                onClick={onRestart}
-                className="flex-1 rounded-xl bg-claude-terracotta py-3.5 font-semibold text-white transition-all hover:bg-claude-terracotta-dark"
-              >
-                重新作答
-              </button>
-            )}
+            <button
+              onClick={onRestart}
+              className="flex-1 rounded-xl bg-claude-terracotta py-3.5 font-semibold text-white transition-all hover:bg-claude-terracotta-dark"
+            >
+              重新作答
+            </button>
             <button
               onClick={onGoHome}
               className="rounded-xl border border-claude-border bg-claude-surface px-6 py-3.5 font-medium text-claude-body transition-all hover:bg-claude-canvas"
