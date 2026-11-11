@@ -4,6 +4,8 @@ import { HomePage } from './components/HomePage'
 import { QuizPage } from './components/QuizPage'
 import { ResultPage } from './components/ResultPage'
 import { SharkBackground } from './components/SharkBackground'
+import type { SharkBackgroundHandle } from './components/SharkBackground'
+import { getScoreFeedback } from './utils/sharkFeedback'
 
 const PAGE_HISTORY: AppPage[] = ['upload', 'quiz', 'result']
 
@@ -14,6 +16,7 @@ export default function App() {
   const [totalScore, setTotalScore] = useState(0)
   const [maxScore, setMaxScore] = useState(0)
   const [examTitle, setExamTitle] = useState('')
+  const sharkRef = useRef<SharkBackgroundHandle>(null)
 
   // 跟踪当前页面以便 popstate 时使用
   const pageRef = useRef<AppPage>(page)
@@ -58,6 +61,7 @@ export default function App() {
   }, [navigateTo])
 
   const handleFinish = useCallback((r: GradingResult[], ts: number, ms: number) => {
+    sharkRef.current?.react(getScoreFeedback(ts, ms).tier)
     setResults(r)
     setTotalScore(ts)
     setMaxScore(ms)
@@ -74,13 +78,14 @@ export default function App() {
 
   return (
     <div className="relative min-h-screen">
-      <SharkBackground />
+      <SharkBackground ref={sharkRef} />
       <div className="relative z-10">
         {page === 'upload' && <HomePage onStartQuiz={handleStartQuiz} />}
         {page === 'quiz' && (
           <QuizPage
             questions={questions}
             onFinish={handleFinish}
+            onAnswerChange={() => sharkRef.current?.react('answer')}
           />
         )}
         {page === 'result' && (

@@ -230,6 +230,12 @@ export class World {
     }
   }
 
+  react(strength: number) {
+    for (const shark of this.sharks) {
+      shark.speed = Math.min(shark.speed + strength, 150);
+    }
+  }
+
   step(dt: number) {
     this.time += dt;
     this.rebuildHash();

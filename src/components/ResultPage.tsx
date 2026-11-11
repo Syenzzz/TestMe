@@ -1,6 +1,7 @@
 import { useState, useEffect, useRef } from 'react'
 import type { GradingResult, Question } from '../types'
 import { saveHistory } from '../utils/storage'
+import { getScoreFeedback } from '../utils/sharkFeedback'
 
 interface Props {
   results: GradingResult[]
@@ -20,7 +21,7 @@ export function ResultPage({ results, totalScore, maxScore, questions, examTitle
 
   const displayScore = Math.round(totalScore * 100) / 100
   const displayMax = Math.round(maxScore * 100) / 100
-  const pct = maxScore > 0 ? Math.round((totalScore / maxScore) * 1000) / 10 : 0
+  const { pct, verdict } = getScoreFeedback(totalScore, maxScore)
   const correctCount = results.filter(r => r.isCorrect).length
   const partialCount = results.filter(r => r.isPartial).length
   const wrongCount = results.length - correctCount - partialCount
@@ -40,8 +41,6 @@ export function ResultPage({ results, totalScore, maxScore, questions, examTitle
   }, []) // eslint-disable-line react-hooks/exhaustive-deps
 
   const getQuestion = (id: string) => questions.find(qq => qq.id === id)
-
-  const verdict = pct >= 90 ? '表现卓越' : pct >= 70 ? '稳定发挥' : pct >= 50 ? '继续巩固' : '再接再厉'
 
   return (
     <div className="min-h-screen p-4">

@@ -62,6 +62,10 @@ export class OceanEngine {
     window.removeEventListener("blur", this.onPointerLeave);
   }
 
+  react(strength: number) {
+    if (!this.reducedMotion.matches) this.world.react(strength);
+  }
+
   private resize() {
     const rect = this.canvas.getBoundingClientRect();
     if (rect.width < 1 || rect.height < 1) return;

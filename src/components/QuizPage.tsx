@@ -9,9 +9,10 @@ import { clearProgress } from '../utils/storage'
 interface Props {
   questions: Question[]
   onFinish: (results: GradingResult[], totalScore: number, maxScore: number) => void
+  onAnswerChange: () => void
 }
 
-export function QuizPage({ questions, onFinish }: Props) {
+export function QuizPage({ questions, onFinish, onAnswerChange }: Props) {
   const {
     userAnswers,
     currentIndex,
@@ -175,7 +176,10 @@ export function QuizPage({ questions, onFinish }: Props) {
             <QuestionCard
               question={currentQuestion}
               userAnswer={userAnswers[currentQuestion.id] || ''}
-              onAnswer={answer => setAnswer(currentQuestion.id, answer)}
+              onAnswer={answer => {
+                if (answer !== (userAnswers[currentQuestion.id] || '')) onAnswerChange()
+                setAnswer(currentQuestion.id, answer)
+              }}
             />
           </div>
         </div>
