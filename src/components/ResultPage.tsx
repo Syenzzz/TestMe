@@ -117,7 +117,7 @@ export function ResultPage({ results, totalScore, maxScore, questions, examTitle
                 </div>
 
                 {expandedId === r.questionId && (
-                  <div className="ml-10 mt-2 space-y-1.5 rounded-xl border border-claude-border-soft bg-claude-canvas p-3 text-xs">
+                  <div className="ml-10 mt-2 space-y-1.5 rounded-xl border border-claude-border-soft bg-claude-canvas/50 p-3 text-xs">
                     {q && q.options.length > 0 && (
                       <div className="flex gap-2">
                         <span className="flex-shrink-0 text-claude-faint">选项：</span>

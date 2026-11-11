@@ -335,7 +335,7 @@ export function HomePage({ onStartQuiz }: Props) {
             </button>
 
             {pastOpen && (
-              <div className="border-t border-claude-border-soft bg-claude-canvas/60 p-3 md:p-4">
+              <div className="border-t border-claude-border-soft bg-claude-canvas/25 p-3 md:p-4">
                 <div className="space-y-3">
                   <SubjectPanel
                     symbol="01"

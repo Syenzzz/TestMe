@@ -32,8 +32,8 @@ function OptionButton({
       onClick={onClick}
       className={`group rounded-xl border px-4 py-3.5 text-left transition-all duration-200 ${
         isSelected
-          ? 'border-claude-terracotta bg-claude-terracotta-soft'
-          : 'border-claude-border bg-claude-raised hover:border-claude-terracotta/40 hover:bg-claude-canvas'
+          ? 'border-claude-terracotta bg-claude-terracotta-soft/80'
+          : 'border-claude-border bg-claude-raised/60 hover:border-claude-terracotta/40 hover:bg-claude-canvas/75'
       }`}
     >
       <span
@@ -137,7 +137,7 @@ export function QuestionCard({ question, userAnswer, onAnswer }: Props) {
           onChange={e => onAnswer(e.target.value)}
           placeholder={question.type === 'fill-blank' ? '输入答案...' : '输入你的回答...'}
           rows={question.type === 'short-answer' ? 5 : 2}
-          className="w-full resize-none rounded-xl border border-claude-border bg-claude-raised px-4 py-3.5 text-claude-ink placeholder:text-claude-faint transition-all focus:border-claude-terracotta focus:outline-none focus:ring-2 focus:ring-claude-terracotta/15"
+          className="w-full resize-none rounded-xl border border-claude-border bg-claude-raised/60 px-4 py-3.5 text-claude-ink placeholder:text-claude-faint transition-all focus:border-claude-terracotta focus:outline-none focus:ring-2 focus:ring-claude-terracotta/15"
         />
       </div>
     )
