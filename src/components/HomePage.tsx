@@ -4,6 +4,7 @@ import avionicsExam from '../data/avionics-exam.json'
 import structureExam from '../data/aircraft-structure-exam.json'
 import engineExam from '../data/engine-exam.json'
 import humanFactorsExam from '../data/human-factors-exam.json'
+import healthMonitoringExam from '../data/health-monitoring-exam.json'
 import { shuffle } from '../utils/shuffle'
 
 interface Props {
@@ -42,6 +43,15 @@ const ENGINE_CHAPTERS: HomeworkChapter[] = [
   { index: 3, name: '作业3', start: 84, end: 125 },
   { index: 4, name: '作业4', start: 126, end: 167 },
   { index: 5, name: '作业5', start: 168, end: 212 },
+]
+
+const HEALTH_MONITORING_CHAPTERS: HomeworkChapter[] = [
+  { index: 1, name: '作业五（贝叶斯诊断计算）', start: 0, end: 0 },
+  { index: 2, name: '故障树化简练习题', start: 1, end: 1 },
+  { index: 3, name: '第二章作业', start: 2, end: 11 },
+  { index: 4, name: '项目三 综合测验1——故障树诊断方法', start: 12, end: 26 },
+  { index: 5, name: '空调系统健康监测与故障诊断（作业六）', start: 27, end: 31 },
+  { index: 6, name: '引气系统健康监测与故障诊断（作业七）', start: 32, end: 36 },
 ]
 
 function ChapterCard({
@@ -206,10 +216,12 @@ export function HomePage({ onStartQuiz }: Props) {
   const [structureOpen, setStructureOpen] = useState(false)
   const [engineOpen, setEngineOpen] = useState(false)
   const [humanFactorsOpen, setHumanFactorsOpen] = useState(false)
+  const [healthMonitoringOpen, setHealthMonitoringOpen] = useState(false)
 
   const allQuestions = avionicsExam as Question[]
   const allStructureQuestions = structureExam as Question[]
   const allEngineQuestions = engineExam as Question[]
+  const allHealthMonitoringQuestions = healthMonitoringExam as Question[]
   const humanFactorsGroups = Array.from({ length: 5 }, (_, group) =>
     (humanFactorsExam as Question[]).filter((_, index) => index % 5 === group),
   )
@@ -243,6 +255,16 @@ export function HomePage({ onStartQuiz }: Props) {
   const startEngineExam = () => {
     const questions = shuffle(allEngineQuestions)
     onStartQuiz(questions, `航空动力装置结构与系统 — 模拟考试`)
+  }
+
+  const startHealthMonitoringHomework = (chapter: HomeworkChapter) => {
+    const questions = allHealthMonitoringQuestions.slice(chapter.start, chapter.end + 1)
+    onStartQuiz(questions, `健康监测与故障诊断 — ${chapter.name}`)
+  }
+
+  const startHealthMonitoringExam = () => {
+    const questions = shuffle(allHealthMonitoringQuestions)
+    onStartQuiz(questions, `健康监测与故障诊断 — 模拟考试`)
   }
 
   return (
@@ -300,6 +322,33 @@ export function HomePage({ onStartQuiz }: Props) {
             </button>
             {humanFactorsOpen && <div className="grid gap-3 px-5 pb-6 sm:grid-cols-2 md:px-7">
               {humanFactorsGroups.map((group, index) => <ChapterCard key={index} number={index + 1} title={`第 ${index + 1} 组`} questionCount={group.length} onClick={() => onStartQuiz(shuffle(group), `人为因素与航空法规 — 第 ${index + 1} 组`)} />)}
+            </div>}
+          </div>
+
+          <div className="glass mt-10 overflow-hidden rounded-2xl">
+            <button className="flex w-full items-center justify-between px-5 py-5 text-left md:px-7" onClick={() => setHealthMonitoringOpen(v => !v)} aria-expanded={healthMonitoringOpen}>
+              <span><span className="block text-lg font-medium text-claude-ink">健康监测与故障诊断</span><span className="mt-1 block text-sm text-claude-muted">按作业练习 · {allHealthMonitoringQuestions.length} 题 · {HEALTH_MONITORING_CHAPTERS.length} 次作业</span></span>
+              <span className="text-claude-muted">{healthMonitoringOpen ? '收起' : '展开'}</span>
+            </button>
+            {healthMonitoringOpen && <div className="px-5 pb-6 md:px-7">
+              <div className="mb-3.5">
+                <ChapterCard
+                  highlighted
+                  title="模拟考试"
+                  subtitle={`${allHealthMonitoringQuestions.length} 题 · 随机排序`}
+                  questionCount={allHealthMonitoringQuestions.length}
+                  onClick={startHealthMonitoringExam}
+                />
+              </div>
+              <div className="grid gap-3.5 sm:grid-cols-2">
+                {HEALTH_MONITORING_CHAPTERS.map(ch => <ChapterCard
+                  key={ch.index}
+                  chapter={ch}
+                  title={ch.name}
+                  questionCount={allHealthMonitoringQuestions.slice(ch.start, ch.end + 1).length}
+                  onClick={() => startHealthMonitoringHomework(ch)}
+                />)}
+              </div>
             </div>}
           </div>
 
