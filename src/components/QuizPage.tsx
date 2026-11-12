@@ -179,6 +179,7 @@ export function QuizPage({ questions, onFinish, onAnswerChange }: Props) {
               onAnswer={answer => {
                 if (answer !== (userAnswers[currentQuestion.id] || '')) onAnswerChange()
                 setAnswer(currentQuestion.id, answer)
+                if (currentQuestion.type === 'single' && !isLast) setCurrentIndex(currentIndex + 1)
               }}
             />
           </div>
