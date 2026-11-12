@@ -138,7 +138,7 @@ export function QuestionCard({ question, userAnswer, onAnswer }: Props) {
           onChange={e => onAnswer(e.target.value)}
           placeholder={question.type === 'fill-blank' ? '输入答案...' : '输入你的回答...'}
           rows={question.type === 'short-answer' ? 5 : 2}
-          className="w-full resize-none rounded-xl border border-claude-border bg-claude-raised/60 px-4 py-3.5 text-claude-ink placeholder:text-claude-faint transition-all focus:border-claude-terracotta focus:outline-none focus:ring-2 focus:ring-claude-terracotta/15"
+          className="w-full resize-none rounded-xl border-0 bg-claude-canvas/50 px-4 py-3.5 text-claude-ink placeholder:text-claude-faint transition-colors focus:bg-claude-canvas focus:outline-none focus:ring-0"
         />
       </div>
     )

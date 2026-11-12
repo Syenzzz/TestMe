@@ -122,7 +122,7 @@ h3 {
 }
 
 textarea:focus-visible {
-  outline-color: var(--color-claude-terracotta);
+  outline: none;
 }
 
 @layer components {
