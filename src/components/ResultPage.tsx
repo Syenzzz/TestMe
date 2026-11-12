@@ -16,7 +16,7 @@ interface Props {
 const LABELS = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H']
 
 export function ResultPage({ results, totalScore, maxScore, questions, examTitle, onRestart, onGoHome }: Props) {
-  const [expandedId, setExpandedId] = useState<string | null>(null)
+  const [selectedIndex, setSelectedIndex] = useState<number | null>(null)
   const savedRef = useRef(false)
 
   const displayScore = Math.round(totalScore * 100) / 100
@@ -41,6 +41,52 @@ export function ResultPage({ results, totalScore, maxScore, questions, examTitle
   }, []) // eslint-disable-line react-hooks/exhaustive-deps
 
   const getQuestion = (id: string) => questions.find(qq => qq.id === id)
+
+  if (selectedIndex !== null) {
+    const result = results[selectedIndex]
+    const question = getQuestion(result.questionId)
+    const answerText = question && (question.type === 'single' || question.type === 'multiple')
+      ? `${result.correctAnswer} ${result.correctAnswer.split('').map(letter => question.options[LABELS.indexOf(letter)]).filter(Boolean).join('、')}`
+      : result.correctAnswer
+    return (
+      <div className="min-h-screen px-3 py-6 sm:px-4 sm:py-8">
+        <div className="mx-auto grid max-w-5xl grid-cols-[72px_minmax(0,1fr)] items-start gap-3 sm:grid-cols-[180px_minmax(0,1fr)] sm:gap-6">
+        <aside aria-label="题号导航" className="glass sticky top-4 max-h-[calc(100vh-2rem)] overflow-y-auto p-2 sm:p-4">
+          <h2 className="mb-3 text-center text-xs font-medium text-claude-muted sm:text-left sm:text-sm">题号</h2>
+          <div className="grid grid-cols-2 gap-1.5 sm:grid-cols-3 sm:gap-2">
+            {results.map((item, index) => (
+              <button
+                type="button"
+                key={item.questionId}
+                aria-label={`第 ${index + 1} 题，${item.isCorrect ? '正确' : item.isPartial ? '部分正确' : '错误'}`}
+                aria-current={index === selectedIndex ? 'true' : undefined}
+                onClick={() => setSelectedIndex(index)}
+                className={`aspect-square min-h-7 rounded-md border text-xs font-semibold sm:min-h-10 sm:text-sm ${item.isCorrect ? 'border-emerald-300 bg-emerald-100 text-emerald-800' : item.isPartial ? 'border-claude-terracotta/30 bg-claude-terracotta-soft text-claude-terracotta' : 'border-red-200 bg-red-50 text-red-700'} ${index === selectedIndex ? 'ring-2 ring-claude-ink ring-offset-1' : ''}`}
+              >{index + 1}</button>
+            ))}
+          </div>
+        </aside>
+        <main className="min-w-0">
+          <button onClick={() => setSelectedIndex(null)} className="mb-5 text-sm font-medium text-claude-muted hover:text-claude-ink">← 返回成绩总结</button>
+          <div className="glass p-6 md:p-8">
+            <p className="mb-3 text-sm text-claude-muted">第 {selectedIndex + 1} 题 / {results.length} · {result.isCorrect ? '正确' : result.isPartial ? '部分正确' : '错误'} · {Math.round(result.earnedScore * 100) / 100} 分</p>
+            <h2 className="mb-6 text-xl leading-relaxed text-claude-ink">{question?.stem}</h2>
+            {question && question.options.length > 0 && <div className="mb-6 space-y-2 text-sm text-claude-body">{question.options.map((option, index) => <p key={index}>{LABELS[index]}. {option}</p>)}</div>}
+            <div className="space-y-5 border-t border-claude-border-soft pt-5 text-sm leading-relaxed">
+              <div><p className="mb-1 text-claude-faint">你的答案</p><p className="whitespace-pre-wrap text-claude-body">{result.userAnswer || '未作答'}</p></div>
+              <div><p className="mb-1 text-claude-faint">标准答案</p><p className="whitespace-pre-wrap font-medium text-claude-ink">{answerText}</p></div>
+              {question?.sourceText && <div><p className="mb-1 text-claude-faint">PDF 原文{question.sourcePage ? `（第 ${question.sourcePage} 页）` : ''}</p><p className="whitespace-pre-wrap text-claude-body">{question.sourceText}</p></div>}
+            </div>
+          </div>
+          <div className="mt-5 flex justify-between gap-3">
+            <button disabled={selectedIndex === 0} onClick={() => setSelectedIndex(selectedIndex - 1)} className="rounded-lg border border-claude-border px-4 py-2 text-sm disabled:opacity-40">← 上一题</button>
+            <button disabled={selectedIndex === results.length - 1} onClick={() => setSelectedIndex(selectedIndex + 1)} className="rounded-lg border border-claude-border px-4 py-2 text-sm disabled:opacity-40">下一题 →</button>
+          </div>
+        </main>
+        </div>
+      </div>
+    )
+  }
 
   return (
     <div className="min-h-screen p-4">
@@ -81,67 +127,18 @@ export function ResultPage({ results, totalScore, maxScore, questions, examTitle
         {/* 逐题详情 */}
         <div className="glass animate-rise-in mb-6 overflow-hidden rounded-2xl" style={{ animationDelay: '80ms' }}>
           <h3 className="border-b border-claude-border-soft px-6 py-4 text-base font-medium text-claude-ink">答题详情</h3>
-          <div className="max-h-96 divide-y divide-claude-border-soft overflow-y-auto">
+          <div className="grid grid-cols-5 gap-3 p-6 sm:grid-cols-8">
             {results.map((r, i) => {
-              const q = getQuestion(r.questionId)
               return (
-              <div
+              <button
+                type="button"
                 key={r.questionId}
-                className="cursor-pointer px-6 py-3 transition-colors hover:bg-claude-canvas"
-                onClick={() => setExpandedId(expandedId === r.questionId ? null : r.questionId)}
+                aria-label={`第 ${i + 1} 题，${r.isCorrect ? '正确' : r.isPartial ? '部分正确' : '错误'}`}
+                className={`aspect-square rounded-lg border text-sm font-semibold transition-colors ${r.isCorrect ? 'border-emerald-300 bg-emerald-100 text-emerald-800' : r.isPartial ? 'border-claude-terracotta/30 bg-claude-terracotta-soft text-claude-terracotta' : 'border-red-200 bg-red-50 text-red-700'}`}
+                onClick={() => setSelectedIndex(i)}
               >
-                <div className="flex items-center gap-3">
-                  <span
-                    className={`flex h-7 w-7 flex-shrink-0 items-center justify-center rounded-lg border text-sm font-medium ${
-                      r.isCorrect
-                        ? 'border-emerald-200 bg-emerald-50 text-emerald-700'
-                        : r.isPartial
-                          ? 'border-claude-terracotta/20 bg-claude-terracotta-soft text-claude-terracotta'
-                          : 'border-red-200 bg-red-50 text-red-700'
-                    }`}
-                  >
-                    {r.isCorrect ? '✓' : r.isPartial ? '△' : '✗'}
-                  </span>
-                  <span className="flex-1 truncate text-sm text-claude-body">
-                    <strong className="mr-1 tabular-nums text-claude-faint">{i + 1}.</strong>
-                    {q?.stem || ''}
-                  </span>
-                  <span
-                    className={`flex-shrink-0 text-sm font-semibold tabular-nums ${
-                      r.isCorrect ? 'text-claude-ink' : r.isPartial ? 'text-claude-terracotta' : 'text-claude-crimson'
-                    }`}
-                  >
-                    {Math.round(r.earnedScore * 100) / 100} 分
-                  </span>
-                </div>
-
-                {expandedId === r.questionId && (
-                  <div className="ml-10 mt-2 space-y-1.5 rounded-xl border border-claude-border-soft bg-claude-canvas/50 p-3 text-xs">
-                    {q && q.options.length > 0 && (
-                      <div className="flex gap-2">
-                        <span className="flex-shrink-0 text-claude-faint">选项：</span>
-                        <div className="text-claude-body">
-                          {q.options.map((opt, j) => (
-                            <div key={j}>
-                              <span className="font-medium">{LABELS[j] || `${j + 1}`}.</span> {opt}
-                            </div>
-                          ))}
-                        </div>
-                      </div>
-                    )}
-                    <div className="flex gap-2">
-                      <span className="flex-shrink-0 text-claude-faint">你的答案：</span>
-                      <span className={`font-medium ${r.isCorrect ? 'text-claude-ink' : 'text-claude-body'}`}>
-                        {r.userAnswer || '(未作答)'}
-                      </span>
-                    </div>
-                    <div className="flex gap-2">
-                      <span className="flex-shrink-0 text-claude-faint">标准答案：</span>
-                      <span className="font-medium text-claude-body">{r.correctAnswer}</span>
-                    </div>
-                  </div>
-                )}
-              </div>
+                {i + 1}
+              </button>
             )})}
           </div>
         </div>

@@ -3,6 +3,7 @@ import type { Question } from '../types'
 import avionicsExam from '../data/avionics-exam.json'
 import structureExam from '../data/aircraft-structure-exam.json'
 import engineExam from '../data/engine-exam.json'
+import humanFactorsExam from '../data/human-factors-exam.json'
 import { shuffle } from '../utils/shuffle'
 
 interface Props {
@@ -45,6 +46,7 @@ const ENGINE_CHAPTERS: HomeworkChapter[] = [
 
 function ChapterCard({
   chapter,
+  number,
   questionCount,
   onClick,
   highlighted = false,
@@ -52,6 +54,7 @@ function ChapterCard({
   subtitle,
 }: {
   chapter?: HomeworkChapter
+  number?: number
   questionCount: number
   onClick: () => void
   highlighted?: boolean
@@ -82,7 +85,7 @@ function ChapterCard({
               : 'border-claude-border bg-claude-canvas text-claude-muted'
           }`}
         >
-          {highlighted ? '✦' : chapter ? String(chapter.index).padStart(2, '0') : ''}
+          {highlighted ? '✦' : chapter || number !== undefined ? String(chapter?.index ?? number).padStart(2, '0') : ''}
         </div>
         <div className="min-w-0 flex-1">
           <h4 className={`text-sm font-semibold leading-snug ${highlighted ? 'text-white' : 'text-claude-ink'}`}>{title}</h4>
@@ -202,10 +205,14 @@ export function HomePage({ onStartQuiz }: Props) {
   const [avionicsOpen, setAvionicsOpen] = useState(false)
   const [structureOpen, setStructureOpen] = useState(false)
   const [engineOpen, setEngineOpen] = useState(false)
+  const [humanFactorsOpen, setHumanFactorsOpen] = useState(false)
 
   const allQuestions = avionicsExam as Question[]
   const allStructureQuestions = structureExam as Question[]
   const allEngineQuestions = engineExam as Question[]
+  const humanFactorsGroups = Array.from({ length: 5 }, (_, group) =>
+    (humanFactorsExam as Question[]).filter((_, index) => index % 5 === group),
+  )
   const totalQuestions = allQuestions.length + allStructureQuestions.length + allEngineQuestions.length
 
   const startHomework = (chapter: HomeworkChapter) => {
@@ -286,9 +293,14 @@ export function HomePage({ onStartQuiz }: Props) {
             </span>
           </div>
 
-          <div className="rounded-2xl border border-dashed border-claude-border bg-claude-surface/60 px-6 py-8 text-center">
-            <p className="text-sm font-medium text-claude-muted">本学期课程尚未导入</p>
-            <p className="mt-1 text-xs text-claude-faint">新课程导入后会显示在这里</p>
+          <div className="glass overflow-hidden rounded-2xl">
+            <button className="flex w-full items-center justify-between px-5 py-5 text-left md:px-7" onClick={() => setHumanFactorsOpen(v => !v)} aria-expanded={humanFactorsOpen}>
+              <span><span className="block text-lg font-medium text-claude-ink">人为因素与航空法规</span><span className="mt-1 block text-sm text-claude-muted">重点练习 · {humanFactorsExam.length} 题 · 5 组</span></span>
+              <span className="text-claude-muted">{humanFactorsOpen ? '收起' : '展开'}</span>
+            </button>
+            {humanFactorsOpen && <div className="grid gap-3 px-5 pb-6 sm:grid-cols-2 md:px-7">
+              {humanFactorsGroups.map((group, index) => <ChapterCard key={index} number={index + 1} title={`第 ${index + 1} 组`} questionCount={group.length} onClick={() => onStartQuiz(shuffle(group), `人为因素与航空法规 — 第 ${index + 1} 组`)} />)}
+            </div>}
           </div>
 
           <div className="glass mt-10 overflow-hidden rounded-2xl">

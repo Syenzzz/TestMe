@@ -11,6 +11,9 @@ export interface Question {
   answer: string
   /** 解析（可选） */
   explanation: string
+  /** 原始学习资料的文字及 PDF 页码 */
+  sourceText?: string
+  sourcePage?: string
   /** 所属章节 */
   chapter: string
   /** 分值，默认 5 */

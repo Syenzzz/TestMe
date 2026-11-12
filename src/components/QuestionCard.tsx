@@ -132,6 +132,7 @@ export function QuestionCard({ question, userAnswer, onAnswer }: Props) {
           <span className="text-xs tabular-nums text-claude-faint">{question.score} 分</span>
         </div>
         <p className="mb-7 font-serif text-xl font-medium leading-[1.75] text-claude-ink">{question.stem}</p>
+        <p className="mb-3 text-xs text-claude-faint">{question.type === 'fill-blank' ? '填空题按标准答案精确匹配，多个答案请用中文分号分隔。' : '简答题按关键词自动评分，请结合参考答案自行核对。'}</p>
         <textarea
           value={userAnswer || ''}
           onChange={e => onAnswer(e.target.value)}
