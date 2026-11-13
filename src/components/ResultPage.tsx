@@ -2,6 +2,7 @@ import { useState, useEffect, useRef } from 'react'
 import type { GradingResult, Question } from '../types'
 import { saveHistory } from '../utils/storage'
 import { getScoreFeedback } from '../utils/sharkFeedback'
+import { QuestionStem } from './QuestionStem'
 
 interface Props {
   results: GradingResult[]
@@ -70,7 +71,7 @@ export function ResultPage({ results, totalScore, maxScore, questions, examTitle
           <button onClick={() => setSelectedIndex(null)} className="mb-5 text-sm font-medium text-claude-muted hover:text-claude-ink">← 返回成绩总结</button>
           <div className="glass p-6 md:p-8">
             <p className="mb-3 text-sm text-claude-muted">第 {selectedIndex + 1} 题 / {results.length} · {result.isCorrect ? '正确' : result.isPartial ? '部分正确' : '错误'} · {Math.round(result.earnedScore * 100) / 100} 分</p>
-            <h2 className="mb-6 text-xl leading-relaxed text-claude-ink">{question?.stem}</h2>
+            {question?.type === 'short-answer' ? <QuestionStem stem={question.stem} /> : <h2 className="mb-6 text-xl leading-relaxed text-claude-ink">{question?.stem}</h2>}
             {question && question.options.length > 0 && <div className="mb-6 space-y-2 text-sm text-claude-body">{question.options.map((option, index) => <p key={index}>{LABELS[index]}. {option}</p>)}</div>}
             <div className="space-y-5 border-t border-claude-border-soft pt-5 text-sm leading-relaxed">
               <div><p className="mb-1 text-claude-faint">你的答案</p><p className="whitespace-pre-wrap text-claude-body">{result.userAnswer || '未作答'}</p></div>
