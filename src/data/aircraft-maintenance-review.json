@@ -1,0 +1,1202 @@
+[
+  {
+    "id": "amr-1",
+    "type": "single",
+    "stem": "三相电路中，线电压指的是（　）",
+    "options": [
+      "火线与火线之间的电压",
+      "火线与零线之间的电压",
+      "火线与地线之间的电压",
+      "零线与地线之间的电压"
+    ],
+    "answer": "A",
+    "explanation": "",
+    "chapter": "",
+    "score": 5
+  },
+  {
+    "id": "amr-2",
+    "type": "single",
+    "stem": "导线的电阻率由（　）决定",
+    "options": [
+      "电流",
+      "材料",
+      "电压",
+      "温度"
+    ],
+    "answer": "B",
+    "explanation": "",
+    "chapter": "",
+    "score": 5
+  },
+  {
+    "id": "amr-3",
+    "type": "single",
+    "stem": "金属材料弹性模量的大小主要取决于（　）",
+    "options": [
+      "冷变形",
+      "构件的厚度",
+      "金属的种类",
+      "热处理方式"
+    ],
+    "answer": "C",
+    "explanation": "",
+    "chapter": "",
+    "score": 5
+  },
+  {
+    "id": "amr-4",
+    "type": "single",
+    "stem": "影响疲劳强度的因素有很多，其中最主要的因素是（　）",
+    "options": [
+      "应力集中",
+      "噪声环境",
+      "表面加工",
+      "温度"
+    ],
+    "answer": "A",
+    "explanation": "",
+    "chapter": "",
+    "score": 5
+  },
+  {
+    "id": "amr-5",
+    "type": "single",
+    "stem": "下面论述哪项是错误的（　）",
+    "options": [
+      "垫片可以调整螺纹到构件表面之间的距离；",
+      "通常，允许在螺栓头下面加垫一个垫圈，在螺帽下面加垫两个垫圈；",
+      "埋头垫圈一般安放在高强度螺栓的螺栓头下面；",
+      "疲劳问题不严重的连接部位，通常采用预紧指示垫圈。"
+    ],
+    "answer": "D",
+    "explanation": "",
+    "chapter": "",
+    "score": 5
+  },
+  {
+    "id": "amr-6",
+    "type": "single",
+    "stem": "短波通常采用的传播方式为（　）",
+    "options": [
+      "地表波",
+      "天波",
+      "空间波",
+      "散射波"
+    ],
+    "answer": "B",
+    "explanation": "",
+    "chapter": "",
+    "score": 5
+  },
+  {
+    "id": "amr-7",
+    "type": "single",
+    "stem": "燃气涡轮螺旋桨发动机中的螺旋桨的功用是（　）",
+    "options": [
+      "产生离心力",
+      "产生拉力",
+      "产生弹力",
+      "产生应力"
+    ],
+    "answer": "B",
+    "explanation": "",
+    "chapter": "",
+    "score": 5
+  },
+  {
+    "id": "amr-8",
+    "type": "single",
+    "stem": "在监控型发动机电子控制中，力矩马达的作用是（　）",
+    "options": [
+      "电／液转换",
+      "机／电转换",
+      "机／液转换",
+      "模／数转换"
+    ],
+    "answer": "A",
+    "explanation": "",
+    "chapter": "",
+    "score": 5
+  },
+  {
+    "id": "amr-9",
+    "type": "single",
+    "stem": "发动机电子控制器(EEC)大多数安装在（　）",
+    "options": [
+      "附件机匣外侧",
+      "机身尾部",
+      "风扇机匣外侧",
+      "涡轮机匣外侧"
+    ],
+    "answer": "C",
+    "explanation": "",
+    "chapter": "",
+    "score": 5
+  },
+  {
+    "id": "amr-10",
+    "type": "single",
+    "stem": "发动机点燃的标志是发动机的（　）",
+    "options": [
+      "滑油压力低灯灭",
+      "转速升高",
+      "进气温度升高",
+      "排气温度上升"
+    ],
+    "answer": "D",
+    "explanation": "",
+    "chapter": "",
+    "score": 5
+  },
+  {
+    "id": "amr-11",
+    "type": "single",
+    "stem": "滑油的功用中不包括（　）",
+    "options": [
+      "减少摩檫",
+      "降低磨损吸收并带走热量",
+      "冲走机件摩擦面之间的磨损物和杂物",
+      "燃烧产生推力"
+    ],
+    "answer": "D",
+    "explanation": "",
+    "chapter": "",
+    "score": 5
+  },
+  {
+    "id": "amr-12",
+    "type": "single",
+    "stem": "在发动机滑油系统供油路上安装的最终油滤，（　）更换",
+    "options": [
+      "随时可以",
+      "在外场维修时",
+      "只能在发动机翻修时",
+      "不能"
+    ],
+    "answer": "C",
+    "explanation": "",
+    "chapter": "",
+    "score": 5
+  },
+  {
+    "id": "amr-13",
+    "type": "single",
+    "stem": "滑油系统中磁屑探测器的作用是（　）",
+    "options": [
+      "吸附微小含铁粒子，帮助进行故障分析",
+      "去除气泡、蒸汽，防止供油中断或破坏油膜，",
+      "减少滑油消耗测量滑油温度",
+      "测量滑油压力"
+    ],
+    "answer": "A",
+    "explanation": "",
+    "chapter": "",
+    "score": 5
+  },
+  {
+    "id": "amr-14",
+    "type": "single",
+    "stem": "惠斯通电桥的平衡条件是（　）",
+    "options": [
+      "桥路左侧两桥臂电阻相等",
+      "桥路右侧两桥臂电阻相等",
+      "相对桥臂电阻乘积相等",
+      "相对桥臂电阻相等"
+    ],
+    "answer": "C",
+    "explanation": "",
+    "chapter": "",
+    "score": 5
+  },
+  {
+    "id": "amr-15",
+    "type": "single",
+    "stem": "在电路中，任一个节点上所连接支路的电流代数和为零，这就是（　）",
+    "options": [
+      "欧姆定律",
+      "基尔霍夫电流定律",
+      "戴维南定律",
+      "基尔霍夫电压定律"
+    ],
+    "answer": "B",
+    "explanation": "",
+    "chapter": "",
+    "score": 5
+  },
+  {
+    "id": "amr-16",
+    "type": "single",
+    "stem": "正弦交流电的三个要素是（　）",
+    "options": [
+      "电压、频率、相位",
+      "压差、频差、相差",
+      "幅值、频率、初相位",
+      "电压、电流、功率"
+    ],
+    "answer": "C",
+    "explanation": "",
+    "chapter": "",
+    "score": 5
+  },
+  {
+    "id": "amr-17",
+    "type": "single",
+    "stem": "沿一个回路绕行一周，在回路上所有元件的电压代数和为零，这就是（　）",
+    "options": [
+      "欧姆定律",
+      "基尔霍夫电压定律",
+      "戴维南定律",
+      "基尔霍夫电流定律"
+    ],
+    "answer": "B",
+    "explanation": "",
+    "chapter": "",
+    "score": 5
+  },
+  {
+    "id": "amr-18",
+    "type": "single",
+    "stem": "镁合金的防腐处理方法是（　）",
+    "options": [
+      "表面镀镉",
+      "阿洛丁",
+      "重铬酸盐",
+      "表面镀镍"
+    ],
+    "answer": "A",
+    "explanation": "",
+    "chapter": "",
+    "score": 5
+  },
+  {
+    "id": "amr-19",
+    "type": "single",
+    "stem": "螺栓和螺钉都是带螺纹的紧固件，它们的区别是什么？（　）",
+    "options": [
+      "螺栓螺纹都是细螺纹，螺钉螺纹都是粗螺纹",
+      "螺栓都有明确的夹紧长度，而螺钉不一定都有明确的夹紧长度",
+      "螺栓都可以用在结构上，而螺钉都不能用在结构上",
+      "螺栓的连接可以多次拆卸，而螺钉的连接不能拆卸"
+    ],
+    "answer": "B",
+    "explanation": "",
+    "chapter": "",
+    "score": 5
+  },
+  {
+    "id": "amr-20",
+    "type": "single",
+    "stem": "雷击有极大的破坏力，其破坏作用是综合的，包括（　）的破坏",
+    "options": [
+      "闪电和雷击",
+      "电性质、热性质和机械性质",
+      "有意辐射和无意辐射",
+      "静电"
+    ],
+    "answer": "B",
+    "explanation": "",
+    "chapter": "",
+    "score": 5
+  },
+  {
+    "id": "amr-21",
+    "type": "single",
+    "stem": "搭接可以在飞机各部件之间提供一个（　），平衡各金属部件之间的电位差，从而消除静电放电所引起的电磁干扰，同时也使电荷流通路径上保持恒定的（　）",
+    "options": [
+      "高阻通路、高阻值",
+      "高阻通路、低阻值",
+      "低阻通路、低阻值",
+      "低阻通路、高阻值"
+    ],
+    "answer": "C",
+    "explanation": "",
+    "chapter": "",
+    "score": 5
+  },
+  {
+    "id": "amr-22",
+    "type": "single",
+    "stem": "螺丝刀具有的功能（　）",
+    "options": [
+      "拧螺钉、作冲子",
+      "拧螺钉、作橇棍",
+      "拧螺丝、作划线",
+      "拧螺钉、作探杆"
+    ],
+    "answer": "D",
+    "explanation": "",
+    "chapter": "",
+    "score": 5
+  },
+  {
+    "id": "amr-23",
+    "type": "single",
+    "stem": "航空有机玻璃（　）",
+    "options": [
+      "耐气候性能差",
+      "具有优良的热塑加工性能",
+      "脆性比硅酸盐玻璃的脆性大",
+      "比重比硅酸盐玻璃比重大"
+    ],
+    "answer": "B",
+    "explanation": "",
+    "chapter": "",
+    "score": 5
+  },
+  {
+    "id": "amr-24",
+    "type": "single",
+    "stem": "一导线的阻值为40Ω，现将其导线从中截为两段，并联联接，等效电阻为（　）",
+    "options": [
+      "40Ω",
+      "10Ω",
+      "20Ω",
+      "80Ω"
+    ],
+    "answer": "B",
+    "explanation": "",
+    "chapter": "",
+    "score": 5
+  },
+  {
+    "id": "amr-25",
+    "type": "single",
+    "stem": "在电阻并联电路中（　）",
+    "options": [
+      "电阻大的支路电流大",
+      "电阻小的支路电流大",
+      "电阻小的支路电流小",
+      "各条支路电流相等"
+    ],
+    "answer": "B",
+    "explanation": "",
+    "chapter": "",
+    "score": 5
+  },
+  {
+    "id": "amr-26",
+    "type": "single",
+    "stem": "电阻串联电路中（　）",
+    "options": [
+      "电流越来越小",
+      "电流处处相等",
+      "电流越来越大",
+      "电压处处相同"
+    ],
+    "answer": "B",
+    "explanation": "",
+    "chapter": "",
+    "score": 5
+  },
+  {
+    "id": "amr-27",
+    "type": "single",
+    "stem": "拆卸紧固件优先选择的扳手是（　）",
+    "options": [
+      "活动扳手",
+      "梅花扳手",
+      "开口扳手",
+      "棘轮扳手"
+    ],
+    "answer": "B",
+    "explanation": "",
+    "chapter": "",
+    "score": 5
+  },
+  {
+    "id": "amr-28",
+    "type": "single",
+    "stem": "力矩扳手使用时（　）",
+    "options": [
+      "应定期校验",
+      "不需校验",
+      "每次使用时校验",
+      "不定期校验"
+    ],
+    "answer": "A",
+    "explanation": "",
+    "chapter": "",
+    "score": 5
+  },
+  {
+    "id": "amr-29",
+    "type": "single",
+    "stem": "对涡轮喷气发动机来说，主要噪声源是（　）",
+    "options": [
+      "附面层噪声",
+      "进气口噪声",
+      "尾喷口的排气噪声",
+      "螺旋桨噪声"
+    ],
+    "answer": "C",
+    "explanation": "",
+    "chapter": "",
+    "score": 5
+  },
+  {
+    "id": "amr-30",
+    "type": "single",
+    "stem": "启动过程是指（　）",
+    "options": [
+      "发动机从静止状态到慢车转速的过程",
+      "发动机从静止状态到最大转速的过程",
+      "发动机从静止状态到巡航状态的过程",
+      "发动机从慢车转速到最大转速的过程"
+    ],
+    "answer": "A",
+    "explanation": "",
+    "chapter": "",
+    "score": 5
+  },
+  {
+    "id": "amr-31",
+    "type": "single",
+    "stem": "两台变压器A和B，输出功率相同PA2=PB2，但效率不同，A的效率比B的效率高，则输入功率PA1和PB1的关系是（　）",
+    "options": [
+      "PA1<PB1",
+      "PA1>PB1",
+      "PA1=PB1",
+      "无法判断"
+    ],
+    "answer": "A",
+    "explanation": "",
+    "chapter": "",
+    "score": 5
+  },
+  {
+    "id": "amr-32",
+    "type": "single",
+    "stem": "比较两个正弦交流电的相位关系时，其前提条件是（　）",
+    "options": [
+      "两者同为电压或电流",
+      "两者的大小相等",
+      "两者的频率相同",
+      "两者的有效值相同"
+    ],
+    "answer": "C",
+    "explanation": "",
+    "chapter": "",
+    "score": 5
+  },
+  {
+    "id": "amr-33",
+    "type": "single",
+    "stem": "金属材料的硬度（　）",
+    "options": [
+      "是无法测量的",
+      "与强度没有任何关系",
+      "越高，拉伸强度越低",
+      "是反映材料软硬程度的指标"
+    ],
+    "answer": "D",
+    "explanation": "",
+    "chapter": "",
+    "score": 5
+  },
+  {
+    "id": "amr-34",
+    "type": "single",
+    "stem": "发动机轴承的滚动体是在（　）",
+    "options": [
+      "内圈滚动",
+      "外圈滚动",
+      "内圈和外圈之间的滚道滚动",
+      "轴承座里滚动"
+    ],
+    "answer": "C",
+    "explanation": "",
+    "chapter": "",
+    "score": 5
+  },
+  {
+    "id": "amr-35",
+    "type": "single",
+    "stem": "现代涡桨发动机中，多数是（　）螺旋桨",
+    "options": [
+      "变速",
+      "恒速",
+      "固定",
+      "定距"
+    ],
+    "answer": "B",
+    "explanation": "",
+    "chapter": "",
+    "score": 5
+  },
+  {
+    "id": "amr-36",
+    "type": "single",
+    "stem": "供给螺旋桨的功率加上喷气推力的总功率输出称（　）",
+    "options": [
+      "轴功率",
+      "当量功率",
+      "燃油消耗率",
+      "有效推力"
+    ],
+    "answer": "B",
+    "explanation": "",
+    "chapter": "",
+    "score": 5
+  },
+  {
+    "id": "amr-37",
+    "type": "single",
+    "stem": "人员的防风安全要求中规定（　）",
+    "options": [
+      "严禁在露天大风环境中进行登高作业",
+      "严禁在露天大风环境中上下航空器和车辆",
+      "严禁在露天大风环境中进行登高作业和上下航空器",
+      "在露天大风环境中必须进行登高作业时应采取可靠的安全保护措施，如佩戴安全帽、系缚安全带等"
+    ],
+    "answer": "D",
+    "explanation": "",
+    "chapter": "",
+    "score": 5
+  },
+  {
+    "id": "amr-38",
+    "type": "single",
+    "stem": "哪种无损检测法方法最适合用来检查机翼的内部结构（　）",
+    "options": [
+      "连续磁化式磁粉检测",
+      "剩磁式侧分检测",
+      "渗透检测",
+      "X光检测"
+    ],
+    "answer": "D",
+    "explanation": "",
+    "chapter": "",
+    "score": 5
+  },
+  {
+    "id": "amr-39",
+    "type": "single",
+    "stem": "飞机在平飞时，载重量越大其失速速度（　）",
+    "options": [
+      "越大",
+      "越小",
+      "与重量无关",
+      "对应的失速迎角愈大"
+    ],
+    "answer": "A",
+    "explanation": "",
+    "chapter": "",
+    "score": 5
+  },
+  {
+    "id": "amr-40",
+    "type": "single",
+    "stem": "为了飞行安全，飞机飞行时的升力系数和迎角可以达到（　）",
+    "options": [
+      "最大升力系数和临界迎角",
+      "最大升力系数和小于临界迎角的限定值",
+      "小于最大升力系数的限定值和临界迎角",
+      "小于最大升力系数和临界迎角的两个限定值"
+    ],
+    "answer": "D",
+    "explanation": "",
+    "chapter": "",
+    "score": 5
+  },
+  {
+    "id": "amr-41",
+    "type": "single",
+    "stem": "飞机前缘结冰对飞行的主要影响（　）",
+    "options": [
+      "增大了飞机重量，使起飞困难",
+      "增大了飞行阻力，使所需发动机推力大幅增加",
+      "增大了临界攻角，使飞机易失速",
+      "相同迎角，升力系数下降"
+    ],
+    "answer": "D",
+    "explanation": "",
+    "chapter": "",
+    "score": 5
+  },
+  {
+    "id": "amr-42",
+    "type": "single",
+    "stem": "关于飞机失速，下列说法哪些是正确的？（　）",
+    "options": [
+      "飞机失速是通过加大发动机动力就可以克服的飞行障碍。",
+      "亚音速飞行只会出现大迎角失速。",
+      "高亚音速飞行只会出现激波失速。",
+      "在大迎角或高速飞行状态下都可能出现飞机失速现象。"
+    ],
+    "answer": "D",
+    "explanation": "",
+    "chapter": "",
+    "score": 5
+  },
+  {
+    "id": "amr-43",
+    "type": "single",
+    "stem": "飞机的爬升率（　）",
+    "options": [
+      "受到飞机临界迎角的限制",
+      "只取决于爬升角大小",
+      "是单位时间内，飞机等速上升的高度",
+      "随着高度的增加，逐渐加大"
+    ],
+    "answer": "C",
+    "explanation": "",
+    "chapter": "",
+    "score": 5
+  },
+  {
+    "id": "amr-44",
+    "type": "single",
+    "stem": "前缘缝翼的主要作用是？（　）",
+    "options": [
+      "放出前缘缝翼，可增大飞机的临界迎角",
+      "增大机翼升力",
+      "减小阻力",
+      "改变机翼弯度"
+    ],
+    "answer": "A",
+    "explanation": "",
+    "chapter": "",
+    "score": 5
+  },
+  {
+    "id": "amr-45",
+    "type": "single",
+    "stem": "增升装置的增升原理有（　）",
+    "options": [
+      "增大部分机翼弦长",
+      "使最大厚度点后移",
+      "使最大弯度点后移",
+      "减小机翼的迎风面积。"
+    ],
+    "answer": "A",
+    "explanation": "",
+    "chapter": "",
+    "score": 5
+  },
+  {
+    "id": "amr-46",
+    "type": "single",
+    "stem": "描述飞机在空中姿态的姿态角有（　）",
+    "options": [
+      "迎角，偏航角，滚转角",
+      "滚转角，偏航角，俯仰角",
+      "俯仰角，侧滑角，滚转角",
+      "迎角，侧滑角，滚转角。"
+    ],
+    "answer": "B",
+    "explanation": "",
+    "chapter": "",
+    "score": 5
+  },
+  {
+    "id": "amr-47",
+    "type": "single",
+    "stem": "世界航空安全所达到的水平是（　）",
+    "options": [
+      "较高",
+      "较低",
+      "公众可接受",
+      "公众不能接受"
+    ],
+    "answer": "C",
+    "explanation": "",
+    "chapter": "",
+    "score": 5
+  },
+  {
+    "id": "amr-48",
+    "type": "single",
+    "stem": "一架全金属飞机的操纵系统未装张力调节器，冬天时钢索张力已调节好，到了夏天，钢索张力将（　）",
+    "options": [
+      "增大。",
+      "减小。",
+      "不受影响，若安装的是不锈钢预拉伸钢索的话。",
+      "不受影响，若安装的是镀锡的高碳钢钢索的话。"
+    ],
+    "answer": "A",
+    "explanation": "",
+    "chapter": "",
+    "score": 5
+  },
+  {
+    "id": "amr-49",
+    "type": "single",
+    "stem": "波音飞机液压系统中使用的液压驱动泵都是（　）",
+    "options": [
+      "离心泵。",
+      "柱塞泵。",
+      "齿轮泵。",
+      "变量泵。"
+    ],
+    "answer": "B",
+    "explanation": "",
+    "chapter": "",
+    "score": 5
+  },
+  {
+    "id": "amr-50",
+    "type": "single",
+    "stem": "飞机液压系统中使用的变量泵，变量是通过什么方式实现的?（　）",
+    "options": [
+      "改变泵的转数。",
+      "改变泵出口处的单向活门的阻力。",
+      "改变泵进口处节流器的开度。",
+      "改变斜盘的倾角。"
+    ],
+    "answer": "D",
+    "explanation": "",
+    "chapter": "",
+    "score": 5
+  },
+  {
+    "id": "amr-51",
+    "type": "single",
+    "stem": "飞机翼尖小翼的功用是？（　）",
+    "options": [
+      "减小摩擦阻力。",
+      "减小压差阻力。",
+      "减小诱导阻力。",
+      "减小干扰阻力。"
+    ],
+    "answer": "C",
+    "explanation": "",
+    "chapter": "",
+    "score": 5
+  },
+  {
+    "id": "amr-52",
+    "type": "single",
+    "stem": "当迎角达到临界迎角时（　）",
+    "options": [
+      "升力突然大大增加，而阻力迅速减小。",
+      "升力突然大大降低，而阻力迅速增加。",
+      "升力和阻力同时大大增加。",
+      "升力和阻力同时大大减小。"
+    ],
+    "answer": "B",
+    "explanation": "",
+    "chapter": "",
+    "score": 5
+  },
+  {
+    "id": "amr-53",
+    "type": "single",
+    "stem": "现代大飞机副翼分段的主要目的是（　）",
+    "options": [
+      "减少操纵力矩",
+      "提高操纵效率",
+      "增大转弯坡度",
+      "提高操纵灵活性，防止机翼弯曲过大时引起副翼偏转卡滞"
+    ],
+    "answer": "D",
+    "explanation": "",
+    "chapter": "",
+    "score": 5
+  },
+  {
+    "id": "amr-54",
+    "type": "single",
+    "stem": "何时可供电给地面作业汇流条？（　）",
+    "options": [
+      "仅在地面时",
+      "仅当APU工作时",
+      "在地面发动机工作时",
+      "在地面或空中都可以"
+    ],
+    "answer": "A",
+    "explanation": "",
+    "chapter": "",
+    "score": 5
+  },
+  {
+    "id": "amr-55",
+    "type": "single",
+    "stem": "在双转子涡轮喷气发动机中，低压涡轮带动（　）",
+    "options": [
+      "高压压气机",
+      "低压压气机",
+      "高压压气机和低压压气机",
+      "附件传动部分"
+    ],
+    "answer": "B",
+    "explanation": "",
+    "chapter": "",
+    "score": 5
+  },
+  {
+    "id": "amr-56",
+    "type": "single",
+    "stem": "涡轮喷气发动机的理想热力循环的热效率取决于（　）",
+    "options": [
+      "发动机涡轮前温度",
+      "发动机加热量",
+      "发动机进口温度",
+      "发动机增压比"
+    ],
+    "answer": "D",
+    "explanation": "",
+    "chapter": "",
+    "score": 5
+  },
+  {
+    "id": "amr-57",
+    "type": "single",
+    "stem": "燃油消耗率是（　）",
+    "options": [
+      "单位时间内产生单位推力所消耗的燃油量",
+      "单位时间内发动机加热量。",
+      "每小时所消耗的燃油量",
+      "单位时间内发动机产生的机械能"
+    ],
+    "answer": "A",
+    "explanation": "",
+    "chapter": "",
+    "score": 5
+  },
+  {
+    "id": "amr-58",
+    "type": "single",
+    "stem": "涡扇发动机进气道的防冰通常采用（　）",
+    "options": [
+      "压气机引气防冰",
+      "发动机滑油防冰",
+      "电加热防冰",
+      "发动机排气防冰"
+    ],
+    "answer": "C",
+    "explanation": "",
+    "chapter": "",
+    "score": 5
+  },
+  {
+    "id": "amr-59",
+    "type": "single",
+    "stem": "燃气涡轮发动机中压气机的功用是（　）",
+    "options": [
+      "增大进入发动机的空气流量",
+      "压缩空气，提高空气的压力",
+      "增大进入发动机的空气容积",
+      "降低进入燃烧室的空气温度"
+    ],
+    "answer": "B",
+    "explanation": "",
+    "chapter": "",
+    "score": 5
+  },
+  {
+    "id": "amr-60",
+    "type": "single",
+    "stem": "双转子轴流式压气机提高了涡喷发动机效率是因为（　）",
+    "options": [
+      "使用更多的涡轮",
+      "有更高的增压比",
+      "进入燃烧室的空气速度增加",
+      "进入燃烧室的温度增加"
+    ],
+    "answer": "B",
+    "explanation": "",
+    "chapter": "",
+    "score": 5
+  },
+  {
+    "id": "amr-61",
+    "type": "single",
+    "stem": "轴流式压气机进气导向器的功能是（　）",
+    "options": [
+      "增大进气量",
+      "增大扭速",
+      "产生预旋",
+      "增大密流"
+    ],
+    "answer": "C",
+    "explanation": "",
+    "chapter": "",
+    "score": 5
+  },
+  {
+    "id": "amr-62",
+    "type": "single",
+    "stem": "空气流过压气机整流环(即静子叶片)时，气流的（　）",
+    "options": [
+      "速度增加，压力下降",
+      "速度增加，压力增加",
+      "速度下降，压力增加",
+      "速度下降，压力下降"
+    ],
+    "answer": "C",
+    "explanation": "",
+    "chapter": "",
+    "score": 5
+  },
+  {
+    "id": "amr-63",
+    "type": "single",
+    "stem": "离心式压气机的增压原理是（　）",
+    "options": [
+      "充气增压",
+      "冲压增压",
+      "加热增压",
+      "扩散增压和离心增压"
+    ],
+    "answer": "D",
+    "explanation": "",
+    "chapter": "",
+    "score": 5
+  },
+  {
+    "id": "amr-64",
+    "type": "single",
+    "stem": "高压涡轮叶片和导向器由那里引气冷却（　）",
+    "options": [
+      "风扇",
+      "低压压气机",
+      "外界空气",
+      "高压压气机"
+    ],
+    "answer": "D",
+    "explanation": "",
+    "chapter": "",
+    "score": 5
+  },
+  {
+    "id": "amr-65",
+    "type": "single",
+    "stem": "影响涡轮使用寿命的因素是（　）",
+    "options": [
+      "烧蚀",
+      "变形",
+      "黏结",
+      "材料疲劳和腐蚀"
+    ],
+    "answer": "D",
+    "explanation": "",
+    "chapter": "",
+    "score": 5
+  },
+  {
+    "id": "amr-66",
+    "type": "single",
+    "stem": "发动机轴承的内圈装在（　）",
+    "options": [
+      "轴上，与轴紧配合",
+      "轴上，与轴松配合",
+      "轴承座上",
+      "联轴器上"
+    ],
+    "answer": "A",
+    "explanation": "",
+    "chapter": "",
+    "score": 5
+  },
+  {
+    "id": "amr-67",
+    "type": "single",
+    "stem": "通过什么方法供给轴承必要的润滑（　）",
+    "options": [
+      "直接润滑和间接润滑",
+      "压力润滑和拨溅润滑",
+      "润滑脂",
+      "喷雾润滑"
+    ],
+    "answer": "A",
+    "explanation": "",
+    "chapter": "",
+    "score": 5
+  },
+  {
+    "id": "amr-68",
+    "type": "single",
+    "stem": "反推装置的作用是（　）",
+    "options": [
+      "飞机机轮刹车失效时起刹车作用",
+      "用于飞机后退",
+      "飞机落地后，减低飞机速度缩短滑跑距离",
+      "增加发动机推力"
+    ],
+    "answer": "C",
+    "explanation": "",
+    "chapter": "",
+    "score": 5
+  },
+  {
+    "id": "amr-69",
+    "type": "single",
+    "stem": "在液压舵机上使用的动作筒一般为（　）",
+    "options": [
+      "双向单杆式。",
+      "双向双杆式。",
+      "单向式。",
+      "伸缩套筒式。"
+    ],
+    "answer": "B",
+    "explanation": "",
+    "chapter": "",
+    "score": 5
+  },
+  {
+    "id": "amr-70",
+    "type": "single",
+    "stem": "风档玻璃防雾加热层在（　）",
+    "options": [
+      "外层玻璃的内表面上。",
+      "中间层玻璃的内表面上。",
+      "内层玻璃与乙烯树脂层之间。",
+      "中间层玻璃外表面上。"
+    ],
+    "answer": "C",
+    "explanation": "",
+    "chapter": "",
+    "score": 5
+  },
+  {
+    "id": "amr-71",
+    "type": "single",
+    "stem": "飞机座舱压力控制器中，用来感受座舱高度的传感器是一个（　）",
+    "options": [
+      "压差膜盒。",
+      "真空膜盒。",
+      "带节流孔的开口膜盒。",
+      "压力电门。"
+    ],
+    "answer": "B",
+    "explanation": "",
+    "chapter": "",
+    "score": 5
+  },
+  {
+    "id": "amr-72",
+    "type": "single",
+    "stem": "飞机上产生的摩擦阻力与什么因素有关？（　）",
+    "options": [
+      "与大气可压缩性。",
+      "与大气的粘性、飞机表面状况以及同气流接触的飞机表面面积。",
+      "仅与大气的温度。",
+      "仅与大气的密度。"
+    ],
+    "answer": "B",
+    "explanation": "",
+    "chapter": "",
+    "score": 5
+  },
+  {
+    "id": "amr-73",
+    "type": "single",
+    "stem": "减小干扰阻力的主要措施是（　）",
+    "options": [
+      "把机翼表面做的很光滑",
+      "部件连接处采取整流措施",
+      "把暴露的部件做成流线型",
+      "采用翼尖小翼"
+    ],
+    "answer": "B",
+    "explanation": "",
+    "chapter": "",
+    "score": 5
+  },
+  {
+    "id": "amr-74",
+    "type": "single",
+    "stem": "直流发电机通过什么方法输出直流电（　）",
+    "options": [
+      "电枢产生了感应电动势",
+      "励磁绕组产生磁场",
+      "换向器进行换向",
+      "增加补偿绕组"
+    ],
+    "answer": "C",
+    "explanation": "",
+    "chapter": "",
+    "score": 5
+  },
+  {
+    "id": "amr-75",
+    "type": "single",
+    "stem": "在维修工作进行完了之后，必须清点（　）",
+    "options": [
+      "参加工作的人员",
+      "所使用过的工具",
+      "所有的机床设备",
+      "大型设备"
+    ],
+    "answer": "B",
+    "explanation": "",
+    "chapter": "",
+    "score": 5
+  },
+  {
+    "id": "amr-76",
+    "type": "single",
+    "stem": "理想集成运算放大器输入电阻（　）",
+    "options": [
+      "无穷大",
+      "等于0",
+      "很小",
+      "很大"
+    ],
+    "answer": "A",
+    "explanation": "",
+    "chapter": "",
+    "score": 5
+  },
+  {
+    "id": "amr-77",
+    "type": "single",
+    "stem": "飞机上的机载同步传输系统通常使用（　）",
+    "options": [
+      "50Hz的交流电",
+      "115Hz的交流电",
+      "400Hz的交流电",
+      "直流电"
+    ],
+    "answer": "C",
+    "explanation": "",
+    "chapter": "",
+    "score": 5
+  },
+  {
+    "id": "amr-78",
+    "type": "single",
+    "stem": "无线电波的波长/频率与传播速度之间的关系是（　）",
+    "options": [
+      "速度等于波长除以频率",
+      "速度等于频率除以波长",
+      "波长等于频率乘以速度",
+      "波长等于速度除以频率"
+    ],
+    "answer": "D",
+    "explanation": "",
+    "chapter": "",
+    "score": 5
+  },
+  {
+    "id": "amr-79",
+    "type": "single",
+    "stem": "直流发电机电枢绕组内产生的电势随时间（　）",
+    "options": [
+      "大小和方向都改变",
+      "大小不变，方向改变",
+      "大小改变，方向不变",
+      "大小和方向都不变"
+    ],
+    "answer": "A",
+    "explanation": "",
+    "chapter": "",
+    "score": 5
+  },
+  {
+    "id": "amr-80",
+    "type": "single",
+    "stem": "电容器具有（　）",
+    "options": [
+      "通直流隔交流的作用",
+      "通交流隔直流的作用",
+      "隔交流隔直流的作用",
+      "通交流通直流的作用"
+    ],
+    "answer": "B",
+    "explanation": "",
+    "chapter": "",
+    "score": 5
+  }
+]
