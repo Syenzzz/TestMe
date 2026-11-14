@@ -5,6 +5,7 @@ import structureExam from '../data/aircraft-structure-exam.json'
 import engineExam from '../data/engine-exam.json'
 import humanFactorsExam from '../data/human-factors-exam.json'
 import healthMonitoringExam from '../data/health-monitoring-exam.json'
+import maintenanceReviewExam from '../data/aircraft-maintenance-review.json'
 import { shuffle } from '../utils/shuffle'
 
 interface Props {
@@ -217,13 +218,18 @@ export function HomePage({ onStartQuiz }: Props) {
   const [engineOpen, setEngineOpen] = useState(false)
   const [humanFactorsOpen, setHumanFactorsOpen] = useState(false)
   const [healthMonitoringOpen, setHealthMonitoringOpen] = useState(false)
+  const [maintenanceReviewOpen, setMaintenanceReviewOpen] = useState(false)
 
   const allQuestions = avionicsExam as Question[]
   const allStructureQuestions = structureExam as Question[]
   const allEngineQuestions = engineExam as Question[]
   const allHealthMonitoringQuestions = healthMonitoringExam as Question[]
+  const allMaintenanceReviewQuestions = maintenanceReviewExam as Question[]
   const humanFactorsGroups = Array.from({ length: 5 }, (_, group) =>
     (humanFactorsExam as Question[]).filter((_, index) => index % 5 === group),
+  )
+  const maintenanceReviewGroups = Array.from({ length: 4 }, (_, group) =>
+    allMaintenanceReviewQuestions.slice(group * 20, group * 20 + 20),
   )
   const totalQuestions = allQuestions.length + allStructureQuestions.length + allEngineQuestions.length
 
@@ -265,6 +271,11 @@ export function HomePage({ onStartQuiz }: Props) {
   const startHealthMonitoringExam = () => {
     const questions = shuffle(allHealthMonitoringQuestions)
     onStartQuiz(questions, `健康监测与故障诊断 — 模拟考试`)
+  }
+
+  const startMaintenanceReviewExam = () => {
+    const questions = shuffle(allMaintenanceReviewQuestions)
+    onStartQuiz(questions, `飞机维修学习资料（2026-2027） — 模拟考试`)
   }
 
   return (
@@ -347,6 +358,33 @@ export function HomePage({ onStartQuiz }: Props) {
                   title={ch.name}
                   questionCount={allHealthMonitoringQuestions.slice(ch.start, ch.end + 1).length}
                   onClick={() => startHealthMonitoringHomework(ch)}
+                />)}
+              </div>
+            </div>}
+          </div>
+
+          <div className="glass mt-10 overflow-hidden rounded-2xl">
+            <button className="flex w-full items-center justify-between px-5 py-5 text-left md:px-7" onClick={() => setMaintenanceReviewOpen(v => !v)} aria-expanded={maintenanceReviewOpen}>
+              <span><span className="block text-lg font-medium text-claude-ink">飞机维修学习资料（2026-2027）</span><span className="mt-1 block text-sm text-claude-muted">综合练习 · {allMaintenanceReviewQuestions.length} 题 · {maintenanceReviewGroups.length} 组</span></span>
+              <span className="text-claude-muted">{maintenanceReviewOpen ? '收起' : '展开'}</span>
+            </button>
+            {maintenanceReviewOpen && <div className="px-5 pb-6 md:px-7">
+              <div className="mb-3.5">
+                <ChapterCard
+                  highlighted
+                  title="模拟考试"
+                  subtitle={`${allMaintenanceReviewQuestions.length} 题 · 随机排序`}
+                  questionCount={allMaintenanceReviewQuestions.length}
+                  onClick={startMaintenanceReviewExam}
+                />
+              </div>
+              <div className="grid gap-3.5 sm:grid-cols-2">
+                {maintenanceReviewGroups.map((group, index) => <ChapterCard
+                  key={index}
+                  number={index + 1}
+                  title={`第 ${index + 1} 组（题 ${index * 20 + 1}-${(index + 1) * 20}）`}
+                  questionCount={group.length}
+                  onClick={() => onStartQuiz(group, `飞机维修学习资料（2026-2027） — 第 ${index + 1} 组`)}
                 />)}
               </div>
             </div>}
