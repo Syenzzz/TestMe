@@ -5,6 +5,9 @@ import structureExam from '../data/aircraft-structure-exam.json'
 import engineExam from '../data/engine-exam.json'
 import humanFactorsExam from '../data/human-factors-exam.json'
 import healthMonitoringExam from '../data/health-monitoring-exam.json'
+import humanFactorsTest1 from '../data/human-factors-test-1.json'
+import humanFactorsTest2 from '../data/human-factors-test-2.json'
+import humanFactorsTest3 from '../data/human-factors-test-3.json'
 import { shuffle } from '../utils/shuffle'
 
 interface Props {
@@ -225,6 +228,11 @@ export function HomePage({ onStartQuiz }: Props) {
   const humanFactorsGroups = Array.from({ length: 5 }, (_, group) =>
     (humanFactorsExam as Question[]).filter((_, index) => index % 5 === group),
   )
+  const humanFactorsTests = [
+    { title: '第一次测验', questions: humanFactorsTest1 as Question[] },
+    { title: '第二次测验', questions: humanFactorsTest2 as Question[] },
+    { title: '第三次测验', questions: humanFactorsTest3 as Question[] },
+  ]
   const totalQuestions = allQuestions.length + allStructureQuestions.length + allEngineQuestions.length
 
   const startHomework = (chapter: HomeworkChapter) => {
@@ -317,11 +325,25 @@ export function HomePage({ onStartQuiz }: Props) {
 
           <div className="glass overflow-hidden rounded-2xl">
             <button className="flex w-full items-center justify-between px-5 py-5 text-left md:px-7" onClick={() => setHumanFactorsOpen(v => !v)} aria-expanded={humanFactorsOpen}>
-              <span><span className="block text-lg font-medium text-claude-ink">人为因素与航空法规</span><span className="mt-1 block text-sm text-claude-muted">重点练习 · {humanFactorsExam.length} 题 · 5 组</span></span>
+              <span><span className="block text-lg font-medium text-claude-ink">人为因素与航空法规</span><span className="mt-1 block text-sm text-claude-muted">重点练习 · {humanFactorsExam.length} 题 · 5 组 · 3 次测验</span></span>
               <span className="text-claude-muted">{humanFactorsOpen ? '收起' : '展开'}</span>
             </button>
-            {humanFactorsOpen && <div className="grid gap-3 px-5 pb-6 sm:grid-cols-2 md:px-7">
-              {humanFactorsGroups.map((group, index) => <ChapterCard key={index} number={index + 1} title={`第 ${index + 1} 组`} questionCount={group.length} onClick={() => onStartQuiz(shuffle(group), `人为因素与航空法规 — 第 ${index + 1} 组`)} />)}
+            {humanFactorsOpen && <div className="px-5 pb-6 md:px-7">
+              <p className="mb-3 text-xs font-medium tracking-wide text-claude-muted">课程测验</p>
+              <div className="grid gap-3.5 sm:grid-cols-2">
+                {humanFactorsTests.map((test, index) => <ChapterCard
+                  key={test.title}
+                  number={index + 1}
+                  title={test.title}
+                  questionCount={test.questions.length}
+                  subtitle={`${test.questions.length} 题 · ${test.questions.reduce((sum, question) => sum + question.score, 0)} 分`}
+                  onClick={() => onStartQuiz(test.questions, `人为因素与航空法规 — ${test.title}`)}
+                />)}
+              </div>
+              <p className="mb-3 mt-6 text-xs font-medium tracking-wide text-claude-muted">重点练习</p>
+              <div className="grid gap-3.5 sm:grid-cols-2">
+                {humanFactorsGroups.map((group, index) => <ChapterCard key={index} number={index + 1} title={`第 ${index + 1} 组`} questionCount={group.length} onClick={() => onStartQuiz(shuffle(group), `人为因素与航空法规 — 第 ${index + 1} 组`)} />)}
+              </div>
             </div>}
           </div>
 

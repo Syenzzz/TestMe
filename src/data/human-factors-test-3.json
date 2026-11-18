@@ -1,0 +1,357 @@
+[
+  {
+    "id": "hf-test-3-1",
+    "type": "single",
+    "stem": "在拆装或工作未完成的情况下，( )是防止记忆差错的有效措施。",
+    "options": [
+      "互相口头提醒",
+      "坚持挂警示牌制度",
+      "向领导报备",
+      "向其他同事报备"
+    ],
+    "answer": "B",
+    "explanation": "",
+    "chapter": "第三次测验",
+    "score": 4
+  },
+  {
+    "id": "hf-test-3-2",
+    "type": "single",
+    "stem": "维修工作中情景意识的完整过程是（ ）。",
+    "options": [
+      "推断-理解-感知",
+      "理解-感知-推断",
+      "感知-理解-推断",
+      "感知-推断-理解"
+    ],
+    "answer": "C",
+    "explanation": "",
+    "chapter": "第三次测验",
+    "score": 4
+  },
+  {
+    "id": "hf-test-3-3",
+    "type": "single",
+    "stem": "一般情况下，直接从事航空器维修的工作人员，每周的工作时间累计最多不应超过（ ）小时。",
+    "options": [
+      "32",
+      "36",
+      "40",
+      "48"
+    ],
+    "answer": "C",
+    "explanation": "",
+    "chapter": "第三次测验",
+    "score": 4
+  },
+  {
+    "id": "hf-test-3-4",
+    "type": "single",
+    "stem": "一般情况下，直接从事航空器维修的工作人员，每天的工作时间不应超过（ ）小时。",
+    "options": [
+      "6",
+      "8",
+      "10",
+      "11"
+    ],
+    "answer": "B",
+    "explanation": "",
+    "chapter": "第三次测验",
+    "score": 4
+  },
+  {
+    "id": "hf-test-3-5",
+    "type": "single",
+    "stem": "特殊情况下，直接从事航空器维修的工作人员，每个月的加班时间不得超过（ ）小时。",
+    "options": [
+      "32",
+      "36",
+      "40",
+      "48"
+    ],
+    "answer": "B",
+    "explanation": "",
+    "chapter": "第三次测验",
+    "score": 4
+  },
+  {
+    "id": "hf-test-3-6",
+    "type": "single",
+    "stem": "特殊情况下，直接从事航空器维修的工作人员，每天的加班时间最多不得超过（ ）小时。",
+    "options": [
+      "3",
+      "4",
+      "5",
+      "6"
+    ],
+    "answer": "A",
+    "explanation": "",
+    "chapter": "第三次测验",
+    "score": 4
+  },
+  {
+    "id": "hf-test-3-7",
+    "type": "single",
+    "stem": "根据马斯洛层次需要理论，人的首要需求是（ ）。",
+    "options": [
+      "安全需求",
+      "生理需求",
+      "自我实现",
+      "获得尊重"
+    ],
+    "answer": "B",
+    "explanation": "",
+    "chapter": "第三次测验",
+    "score": 4
+  },
+  {
+    "id": "hf-test-3-8",
+    "type": "single",
+    "stem": "根据马斯洛层次需要理论，人的终极需求是（ ）。",
+    "options": [
+      "安全需求",
+      "生理需求",
+      "自我实现",
+      "获得尊重"
+    ],
+    "answer": "C",
+    "explanation": "",
+    "chapter": "第三次测验",
+    "score": 4
+  },
+  {
+    "id": "hf-test-3-9",
+    "type": "single",
+    "stem": "对特定项目、安装件或组件进行深入检查，以发现损坏、故障或不规则现象。在执行此类检查时，需要采用特定设备（例如内窥镜/孔探仪）。这类检查称之为（ ）",
+    "options": [
+      "绕机检查（Walkaround）",
+      "一般目视检查（GVI）",
+      "详细目视检查（DET/DVI）",
+      "特殊详细目视检查（SDI）"
+    ],
+    "answer": "D",
+    "explanation": "",
+    "chapter": "第三次测验",
+    "score": 4
+  },
+  {
+    "id": "hf-test-3-10",
+    "type": "single",
+    "stem": "对特定项目、安装件或组件进行的深入检查，以发现损坏、故障或不规则现象。除正常可用照明外，还需使用直接光源以获得适当的光照强度。可能需要使用检查辅助工具（例如反光镜、放大镜等）。这类检查称之为（ ）",
+    "options": [
+      "绕机检查（Walkaround）",
+      "一般目视检查（GVI）",
+      "详细目视检查（DET/DVI）",
+      "特殊详细目视检查（SDI）"
+    ],
+    "answer": "C",
+    "explanation": "",
+    "chapter": "第三次测验",
+    "score": 4
+  },
+  {
+    "id": "hf-test-3-11",
+    "type": "single",
+    "stem": "对内部或外部区域、安装件或组件进行目视检查，以发现明显的损坏、故障或不规则现象。除非另有规定，这类检查应在可触及的距离内进行。可使用反光镜来增强对检查区域所有暴露表面的目视可达性。这类检查称之为（ ）",
+    "options": [
+      "绕机检查（Walkaround）",
+      "一般目视检查（GVI）",
+      "详细目视检查（DET/DVI）",
+      "特殊详细目视检查（SDI）"
+    ],
+    "answer": "B",
+    "explanation": "",
+    "chapter": "第三次测验",
+    "score": 4
+  },
+  {
+    "id": "hf-test-3-12",
+    "type": "single",
+    "stem": "从地面水平进行的快速检查，旨在发现差异并确定飞机的总体状况和适航性。例如，用于检测泄漏、撞击损伤、部件缺失或部件位置不当等情况。这类检查称之为（ ）",
+    "options": [
+      "绕机检查（Walkaround）",
+      "一般目视检查（GVI）",
+      "详细目视检查（DET/DVI）",
+      "特殊详细目视检查（SDI）"
+    ],
+    "answer": "A",
+    "explanation": "",
+    "chapter": "第三次测验",
+    "score": 4
+  },
+  {
+    "id": "hf-test-3-13",
+    "type": "single",
+    "stem": "人是社会的一员，需要友谊和群体的归属感，需要人际交往、友情、相互帮助和信任。根据马斯洛层次需要理论，这种需求属于（ ）",
+    "options": [
+      "安全需求",
+      "生理需求",
+      "尊重需求",
+      "社交需求"
+    ],
+    "answer": "D",
+    "explanation": "",
+    "chapter": "第三次测验",
+    "score": 4
+  },
+  {
+    "id": "hf-test-3-14",
+    "type": "multiple",
+    "stem": "（多选）亚健康是人身体的一种状态，它的分类有以下哪些（ ）。",
+    "options": [
+      "躯体亚健康",
+      "心理亚健康",
+      "社会适应性亚健康",
+      "道德方面的亚健康"
+    ],
+    "answer": "ABCD",
+    "explanation": "",
+    "chapter": "第三次测验",
+    "score": 4
+  },
+  {
+    "id": "hf-test-3-15",
+    "type": "multiple",
+    "stem": "（多选）常见的沟通方式有（ ）。",
+    "options": [
+      "语言沟通",
+      "文字书面沟通（书面/文字，图形）",
+      "身体语言",
+      "意念交流"
+    ],
+    "answer": "ABC",
+    "explanation": "",
+    "chapter": "第三次测验",
+    "score": 4
+  },
+  {
+    "id": "hf-test-3-16",
+    "type": "true-false",
+    "stem": "人们获取外部世界的信息，有80%以上是通过视觉途径完成的.",
+    "options": [
+      "正确",
+      "错误"
+    ],
+    "answer": "A",
+    "explanation": "",
+    "chapter": "第三次测验",
+    "score": 4
+  },
+  {
+    "id": "hf-test-3-17",
+    "type": "true-false",
+    "stem": "在白天执行绕机检查时，由于自然光充足，根据“尽可能采用自然光照明”的原则，工作者可以不用携带手电筒进行绕机检查。",
+    "options": [
+      "正确",
+      "错误"
+    ],
+    "answer": "B",
+    "explanation": "",
+    "chapter": "第三次测验",
+    "score": 4
+  },
+  {
+    "id": "hf-test-3-18",
+    "type": "true-false",
+    "stem": "由于飞机维修工作对于视觉辨别能力没有过高要求，色觉异常者也可从事飞机维修行业。",
+    "options": [
+      "正确",
+      "错误"
+    ],
+    "answer": "B",
+    "explanation": "",
+    "chapter": "第三次测验",
+    "score": 4
+  },
+  {
+    "id": "hf-test-3-19",
+    "type": "true-false",
+    "stem": "持续地在85分贝的噪音下工作，必须采取保护措施。当噪音超过115分贝时，不论持续多长时间，都应使用听觉防护。",
+    "options": [
+      "正确",
+      "错误"
+    ],
+    "answer": "A",
+    "explanation": "",
+    "chapter": "第三次测验",
+    "score": 4
+  },
+  {
+    "id": "hf-test-3-20",
+    "type": "true-false",
+    "stem": "幽闭恐惧症和恐高症是人的极限表现，体现了人的行为表现具有局限性。",
+    "options": [
+      "正确",
+      "错误"
+    ],
+    "answer": "A",
+    "explanation": "",
+    "chapter": "第三次测验",
+    "score": 4
+  },
+  {
+    "id": "hf-test-3-21",
+    "type": "true-false",
+    "stem": "过少的紧张压力和时间压力有利于维修人员的工作表现。",
+    "options": [
+      "正确",
+      "错误"
+    ],
+    "answer": "B",
+    "explanation": "",
+    "chapter": "第三次测验",
+    "score": 4
+  },
+  {
+    "id": "hf-test-3-22",
+    "type": "true-false",
+    "stem": "工作环境应当满足维修任务的要求。因气温、湿度、雨、雪、冰、雹、风、光和灰尘等因素影响而不能进行维修工作的，应当在工作环境恢复正常后开始工作。",
+    "options": [
+      "正确",
+      "错误"
+    ],
+    "answer": "A",
+    "explanation": "",
+    "chapter": "第三次测验",
+    "score": 4
+  },
+  {
+    "id": "hf-test-3-23",
+    "type": "true-false",
+    "stem": "书面沟通比语言沟通更可靠，因此我们在交接班时尽量使用书面沟通，避免使用语言沟通。",
+    "options": [
+      "正确",
+      "错误"
+    ],
+    "answer": "B",
+    "explanation": "",
+    "chapter": "第三次测验",
+    "score": 4
+  },
+  {
+    "id": "hf-test-3-24",
+    "type": "true-false",
+    "stem": "人的能力和潜力是无限的，经过不懈努力，人可以从事超出人体极限的工作。",
+    "options": [
+      "正确",
+      "错误"
+    ],
+    "answer": "B",
+    "explanation": "",
+    "chapter": "第三次测验",
+    "score": 4
+  },
+  {
+    "id": "hf-test-3-25",
+    "type": "true-false",
+    "stem": "在两项检查工作中间稍事休息，对恢复心理和生理状态很有好处。有利于目视检查的效果。不建议在一项检查任务没有完成时中途暂停。",
+    "options": [
+      "正确",
+      "错误"
+    ],
+    "answer": "A",
+    "explanation": "",
+    "chapter": "第三次测验",
+    "score": 4
+  }
+]
