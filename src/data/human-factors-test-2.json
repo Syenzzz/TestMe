@@ -1,0 +1,482 @@
+[
+  {
+    "id": "hf-test-2-1",
+    "type": "single",
+    "stem": "下列关于人为差错的论述错误的是（ ）",
+    "options": [
+      "人为差错是指人的行为的结果超出了可接受的界限",
+      "人为差错是指人的行为的结果偏离了规定的目标，并产生了不良影响",
+      "人为差错在生产过程中是不可避免的，并且可测定失误率",
+      "人为差错可通过严格的管理加以杜绝"
+    ],
+    "answer": "D",
+    "explanation": "",
+    "chapter": "第二次测验",
+    "score": 3
+  },
+  {
+    "id": "hf-test-2-2",
+    "type": "single",
+    "stem": "研究航空维修中的人为因素，主要目的是以下几项，除了( )",
+    "options": [
+      "优化航空维修人员的工作表现",
+      "避免人为差错",
+      "保证航空安全",
+      "降低维修成本"
+    ],
+    "answer": "D",
+    "explanation": "",
+    "chapter": "第二次测验",
+    "score": 3
+  },
+  {
+    "id": "hf-test-2-3",
+    "type": "single",
+    "stem": "维修中人的差错不可能完全避免，这种理论正确吗?",
+    "options": [
+      "不正确",
+      "正确",
+      "不完全正确",
+      "对错参半"
+    ],
+    "answer": "B",
+    "explanation": "",
+    "chapter": "第二次测验",
+    "score": 3
+  },
+  {
+    "id": "hf-test-2-4",
+    "type": "single",
+    "stem": "控制人为差错的主要方法有三种，下述哪一项可以去掉？",
+    "options": [
+      "减少差错",
+      "提高人的综合素质",
+      "捕获差错",
+      "包容差错"
+    ],
+    "answer": "B",
+    "explanation": "",
+    "chapter": "第二次测验",
+    "score": 3
+  },
+  {
+    "id": "hf-test-2-5",
+    "type": "single",
+    "stem": "人为差错可以从不同角度进行多种分类，其中根据维修差错的主导原因划分为：",
+    "options": [
+      "维护作风型、技术技能型、组织管理型。",
+      "维护作风型、技术技能型、信息处理型。",
+      "工作蛮干型、技术技能型、组织管理型。",
+      "维护作风型、信息处理型、组织管理型。"
+    ],
+    "answer": "A",
+    "explanation": "",
+    "chapter": "第二次测验",
+    "score": 3
+  },
+  {
+    "id": "hf-test-2-6",
+    "type": "single",
+    "stem": "人为差错是指人的行为结果（ ）",
+    "options": [
+      "理想化",
+      "现实化",
+      "超出了可接受的界限",
+      "以上都不是"
+    ],
+    "answer": "C",
+    "explanation": "",
+    "chapter": "第二次测验",
+    "score": 3
+  },
+  {
+    "id": "hf-test-2-7",
+    "type": "single",
+    "stem": "在人为差错的模型里面，与“设计引发的差错”相反的模型是（ ）",
+    "options": [
+      "可变的差错",
+      "可逆的差错",
+      "不可逆的差错",
+      "操作人员引发的差错"
+    ],
+    "answer": "D",
+    "explanation": "",
+    "chapter": "第二次测验",
+    "score": 3
+  },
+  {
+    "id": "hf-test-2-8",
+    "type": "single",
+    "stem": "在人为差错的模型里面，与“固定的差错”相反的模型是（ ）",
+    "options": [
+      "可变的差错",
+      "可逆的差错",
+      "不可逆的差错",
+      "操作人员引发的差错"
+    ],
+    "answer": "A",
+    "explanation": "",
+    "chapter": "第二次测验",
+    "score": 3
+  },
+  {
+    "id": "hf-test-2-9",
+    "type": "single",
+    "stem": "孔探发动机后不进行试车，属于（ ）",
+    "options": [
+      "特例违规",
+      "处境违规",
+      "习惯违归",
+      "乐观违归"
+    ],
+    "answer": "C",
+    "explanation": "",
+    "chapter": "第二次测验",
+    "score": 3
+  },
+  {
+    "id": "hf-test-2-10",
+    "type": "single",
+    "stem": "司机为了寻求刺激将车开地飞快，属于（ ）",
+    "options": [
+      "特例违规",
+      "处境违规",
+      "习惯违归",
+      "乐观违归"
+    ],
+    "answer": "D",
+    "explanation": "",
+    "chapter": "第二次测验",
+    "score": 3
+  },
+  {
+    "id": "hf-test-2-11",
+    "type": "single",
+    "stem": "特定情况下发生的违规，属于（ ）",
+    "options": [
+      "特例违规",
+      "处境违规",
+      "习惯违归",
+      "乐观违归"
+    ],
+    "answer": "A",
+    "explanation": "",
+    "chapter": "第二次测验",
+    "score": 3
+  },
+  {
+    "id": "hf-test-2-12",
+    "type": "single",
+    "stem": "维修人员由于责任心不强、维护作风差而发生的差错属于( )维修差错",
+    "options": [
+      "维护作风型",
+      "机能失常型",
+      "技术技能型",
+      "组织管理型"
+    ],
+    "answer": "A",
+    "explanation": "",
+    "chapter": "第二次测验",
+    "score": 3
+  },
+  {
+    "id": "hf-test-2-13",
+    "type": "single",
+    "stem": "维修人员由于生理机能下降、判断能力下降而发生的差错属于( )维修差错",
+    "options": [
+      "维护作风型",
+      "机能失常型",
+      "技术技能型",
+      "组织管理型"
+    ],
+    "answer": "B",
+    "explanation": "",
+    "chapter": "第二次测验",
+    "score": 3
+  },
+  {
+    "id": "hf-test-2-14",
+    "type": "single",
+    "stem": "下列人的不安全行为中，不属于差错的是（ ）",
+    "options": [
+      "失误",
+      "遗忘",
+      "违规",
+      "错误"
+    ],
+    "answer": "C",
+    "explanation": "",
+    "chapter": "第二次测验",
+    "score": 3
+  },
+  {
+    "id": "hf-test-2-15",
+    "type": "single",
+    "stem": "维修人员给3个螺栓中的2个磅完力矩之后，被叫去干其他工作，回来时忘记将剩余的螺栓磅力矩，属于（ ）",
+    "options": [
+      "失误",
+      "遗忘",
+      "违规",
+      "错误"
+    ],
+    "answer": "B",
+    "explanation": "",
+    "chapter": "第二次测验",
+    "score": 3
+  },
+  {
+    "id": "hf-test-2-16",
+    "type": "single",
+    "stem": "维修人员在抄写数字的时候颠倒数字，属于（ )",
+    "options": [
+      "失误",
+      "遗忘",
+      "违规",
+      "错误"
+    ],
+    "answer": "A",
+    "explanation": "",
+    "chapter": "第二次测验",
+    "score": 3
+  },
+  {
+    "id": "hf-test-2-17",
+    "type": "single",
+    "stem": "维修人员安装飞机轮挡的时候，由于错误的判断选择了错误的螺栓，属于（ ）",
+    "options": [
+      "失误",
+      "遗忘",
+      "违规",
+      "错误"
+    ],
+    "answer": "D",
+    "explanation": "",
+    "chapter": "第二次测验",
+    "score": 3
+  },
+  {
+    "id": "hf-test-2-18",
+    "type": "single",
+    "stem": "维修人员由于分工不清、工作不协调而发生的差错属于( )维修差错",
+    "options": [
+      "维护作风型",
+      "机能失常型",
+      "技术技能型",
+      "组织管理型"
+    ],
+    "answer": "D",
+    "explanation": "",
+    "chapter": "第二次测验",
+    "score": 3
+  },
+  {
+    "id": "hf-test-2-19",
+    "type": "single",
+    "stem": "下列哪种方法不是人为差错的控制方法（ ）",
+    "options": [
+      "杜绝差错",
+      "减少差错",
+      "捕获差错",
+      "包容差错"
+    ],
+    "answer": "A",
+    "explanation": "",
+    "chapter": "第二次测验",
+    "score": 3
+  },
+  {
+    "id": "hf-test-2-20",
+    "type": "single",
+    "stem": "维修人员由于缺乏必要的专业知识和操作技能而发生的差错属于( )维修差错",
+    "options": [
+      "维护作风型",
+      "机能失常型",
+      "技术技能型",
+      "组织管理型"
+    ],
+    "answer": "C",
+    "explanation": "",
+    "chapter": "第二次测验",
+    "score": 3
+  },
+  {
+    "id": "hf-test-2-21",
+    "type": "single",
+    "stem": "维修差错有五个基本特征，不属于这五个基本特征的是：( ) 。",
+    "options": [
+      "不可逆性",
+      "必然性",
+      "可积性",
+      "突变性"
+    ],
+    "answer": "A",
+    "explanation": "",
+    "chapter": "第二次测验",
+    "score": 3
+  },
+  {
+    "id": "hf-test-2-22",
+    "type": "single",
+    "stem": "SHEL模型是",
+    "options": [
+      "数学模型",
+      "人机设计理念模型",
+      "人为因素概念模型",
+      "上述答案不对"
+    ],
+    "answer": "C",
+    "explanation": "",
+    "chapter": "第二次测验",
+    "score": 3
+  },
+  {
+    "id": "hf-test-2-23",
+    "type": "single",
+    "stem": "按照REASON理论和方法,在解决民用航空安全问题时,重点是查找",
+    "options": [
+      "不安全行为",
+      "组织缺陷",
+      "航空器缺陷",
+      "不安全行为的前提条件"
+    ],
+    "answer": "D",
+    "explanation": "",
+    "chapter": "第二次测验",
+    "score": 3
+  },
+  {
+    "id": "hf-test-2-24",
+    "type": "single",
+    "stem": "MEDA维修差错调查表由几部分内容组成",
+    "options": [
+      "二部分",
+      "三部分",
+      "五部分",
+      "六部分"
+    ],
+    "answer": "D",
+    "explanation": "",
+    "chapter": "第二次测验",
+    "score": 3
+  },
+  {
+    "id": "hf-test-2-25",
+    "type": "single",
+    "stem": "按照中国民用航空总局维修差错调查表规定,下列各项中,那一项属于诱因?",
+    "options": [
+      "安装不当",
+      "勤务缺陷",
+      "设备工具",
+      "修理不当"
+    ],
+    "answer": "C",
+    "explanation": "",
+    "chapter": "第二次测验",
+    "score": 3
+  },
+  {
+    "id": "hf-test-2-26",
+    "type": "single",
+    "stem": "按照中国民用航空总局维修差错调查表规定, 下列各项中,那一项不属于诱因?",
+    "options": [
+      "工作任务",
+      "公司维修文件",
+      "器材管理",
+      "检查测试故障隔离欠妥"
+    ],
+    "answer": "D",
+    "explanation": "",
+    "chapter": "第二次测验",
+    "score": 3
+  },
+  {
+    "id": "hf-test-2-27",
+    "type": "single",
+    "stem": "指出下述那一项与MEDA维修差错调查表中规定的内容不符?",
+    "options": [
+      "第一部分概述,第二部分事件",
+      "第三部分维修差错,第四部分工作环境分析",
+      "第五部分责任,纠正和预防措施",
+      "第六部分纠正和预防措施闭环审计记录"
+    ],
+    "answer": "B",
+    "explanation": "",
+    "chapter": "第二次测验",
+    "score": 3
+  },
+  {
+    "id": "hf-test-2-28",
+    "type": "single",
+    "stem": "在霍金斯SHEL模式中，（ ）是这个模式的中心。",
+    "options": [
+      "人",
+      "硬件",
+      "软件",
+      "环境"
+    ],
+    "answer": "A",
+    "explanation": "",
+    "chapter": "第二次测验",
+    "score": 3
+  },
+  {
+    "id": "hf-test-2-29",
+    "type": "single",
+    "stem": "在霍金斯SHEL模式阐述了差错容易产生在以人为中心的与（ ）之间的接点上。",
+    "options": [
+      "硬件、软件、环境及其他人",
+      "硬件、软件、环境",
+      "软件、环境、人",
+      "硬件、环境、人"
+    ],
+    "answer": "A",
+    "explanation": "",
+    "chapter": "第二次测验",
+    "score": 4
+  },
+  {
+    "id": "hf-test-2-30",
+    "type": "single",
+    "stem": "在“中国民用航空总局维修差错调查表（RI）”中所列的诱因有多少种",
+    "options": [
+      "7",
+      "9",
+      "13",
+      "上述答案都不对"
+    ],
+    "answer": "C",
+    "explanation": "",
+    "chapter": "第二次测验",
+    "score": 4
+  },
+  {
+    "id": "hf-test-2-31",
+    "type": "single",
+    "stem": "按照“中国民用航空总局维修差错调查表（RI）”规定，下列各项中哪一项属于诱因？",
+    "options": [
+      "检查/测试/故障隔离欠妥",
+      "勤务缺陷",
+      "环境设施",
+      "修理不当"
+    ],
+    "answer": "C",
+    "explanation": "",
+    "chapter": "第二次测验",
+    "score": 4
+  },
+  {
+    "id": "hf-test-2-32",
+    "type": "single",
+    "stem": "按照“中国民用航空总局维修差错调查表（RI）”规定，下列各项中哪一项不属于诱因？",
+    "options": [
+      "工作任务",
+      "公司维修文件",
+      "器材管理",
+      "安装不当"
+    ],
+    "answer": "D",
+    "explanation": "",
+    "chapter": "第二次测验",
+    "score": 4
+  }
+]

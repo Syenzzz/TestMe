@@ -6,6 +6,7 @@ import { ResultPage } from './components/ResultPage'
 import { SharkBackground } from './components/SharkBackground'
 import type { SharkBackgroundHandle } from './components/SharkBackground'
 import { getScoreFeedback } from './utils/sharkFeedback'
+import { normalizeQuizScores } from './utils/normalizeQuizScores'
 
 const PAGE_HISTORY: AppPage[] = ['upload', 'quiz', 'result']
 
@@ -48,13 +49,7 @@ export default function App() {
   }, [])
 
   const handleStartQuiz = useCallback((q: Question[], title: string) => {
-    const raw = 100 / q.length
-    const perQuestion = Math.floor(raw * 100) / 100
-    const remainder = Math.round((100 - perQuestion * (q.length - 1)) * 100) / 100
-    const normalized = q.map((item, i) => ({
-      ...item,
-      score: i === q.length - 1 ? remainder : perQuestion,
-    }))
+    const normalized = normalizeQuizScores(q)
     setQuestions(normalized)
     setExamTitle(title)
     navigateTo('quiz')
