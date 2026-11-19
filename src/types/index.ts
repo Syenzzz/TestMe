@@ -13,6 +13,8 @@ export interface Question {
   explanation: string
   /** 原始学习资料的文字及 PDF 页码 */
   sourceText?: string
+  sourceLabel?: string
+  answerLabel?: string
   sourcePage?: string
   /** 所属章节 */
   chapter: string

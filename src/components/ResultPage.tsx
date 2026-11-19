@@ -46,7 +46,7 @@ export function ResultPage({ results, totalScore, maxScore, questions, examTitle
   if (selectedIndex !== null) {
     const result = results[selectedIndex]
     const question = getQuestion(result.questionId)
-    const answerText = question && (question.type === 'single' || question.type === 'multiple')
+    const answerText = question && (question.type === 'single' || question.type === 'multiple' || question.type === 'true-false')
       ? `${result.correctAnswer} ${result.correctAnswer.split('').map(letter => question.options[LABELS.indexOf(letter)]).filter(Boolean).join('、')}`
       : result.correctAnswer
     return (
@@ -75,8 +75,8 @@ export function ResultPage({ results, totalScore, maxScore, questions, examTitle
             {question && question.options.length > 0 && <div className="mb-6 space-y-2 text-sm text-claude-body">{question.options.map((option, index) => <p key={index}>{LABELS[index]}. {option}</p>)}</div>}
             <div className="space-y-5 border-t border-claude-border-soft pt-5 text-sm leading-relaxed">
               <div><p className="mb-1 text-claude-faint">你的答案</p><p className="whitespace-pre-wrap text-claude-body">{result.userAnswer || '未作答'}</p></div>
-              <div><p className="mb-1 text-claude-faint">标准答案</p><p className="whitespace-pre-wrap font-medium text-claude-ink">{answerText}</p></div>
-              {question?.sourceText && <div><p className="mb-1 text-claude-faint">PDF 原文{question.sourcePage ? `（第 ${question.sourcePage} 页）` : ''}</p><p className="whitespace-pre-wrap text-claude-body">{question.sourceText}</p></div>}
+              <div><p className="mb-1 text-claude-faint">{question?.answerLabel || '标准答案'}</p><p className="whitespace-pre-wrap font-medium text-claude-ink">{answerText}</p></div>
+              {question?.sourceText && <div><p className="mb-1 text-claude-faint">{question.sourceLabel || 'PDF 原文'}{question.sourcePage ? `（第 ${question.sourcePage} 页）` : ''}</p><p className="whitespace-pre-wrap text-claude-body">{question.sourceText}</p></div>}
             </div>
           </div>
           <div className="mt-5 flex justify-between gap-3">
